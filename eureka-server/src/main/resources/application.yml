@@ -1,0 +1,17 @@
+# 配置端口
+server:
+  port: 18080
+
+spring:
+  application:
+    name: eureka-server   # 应用名称
+
+# 配置eureka
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false   # 通过 配置 registerWithEureka：false和fetchRegistry：false来表明自己是一个eureka server.
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
