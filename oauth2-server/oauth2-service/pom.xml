@@ -10,6 +10,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>oauth2-service</artifactId>
+    <description>
+        相对具体的业务逻辑服务层，对具体业务进行业务逻辑处理
+    </description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -33,7 +36,7 @@
 
         <dependency>
             <groupId>com.cloud.oauth2</groupId>
-            <artifactId>oauth2-utils</artifactId>
+            <artifactId>oauth2-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

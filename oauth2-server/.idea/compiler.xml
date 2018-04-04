@@ -8,12 +8,17 @@
         <outputRelativeToContentRoot value="true" />
         <module name="oauth2-api" />
         <module name="oauth2-common" />
+        <module name="oauth2-interaction" />
+        <module name="oauth2-manager" />
         <module name="oauth2-model" />
         <module name="oauth2-repository" />
         <module name="oauth2-service" />
         <module name="oauth2-web" />
-        <module name="oauth2manager" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="oauth2-manager" target="1.8" />
+      <module name="oauth2manager" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
