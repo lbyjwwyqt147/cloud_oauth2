@@ -1,0 +1,32 @@
+server:
+  port: 18081
+
+spring:
+  application:
+    name: oauth-server   # 应用名称
+
+  jpa:
+      open-in-view: true
+      database: POSTGRESQL
+      show-sql: true
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          temp:
+            use_jdbc_metadata_defaults: false
+
+  datasource:
+      platform: postgres
+      url: jdbc:postgresql://192.168.213.130:5432/cloud_oauth2
+      username: postgres
+      password: postgres123
+      driver-class-name: org.postgresql.Driver
+
+
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

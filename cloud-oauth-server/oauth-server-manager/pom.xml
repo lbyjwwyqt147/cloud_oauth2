@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>oauth-server-manager</artifactId>
+    <packaging>jar</packaging>
+
+    <name>oauth-server-manager</name>
+    <url>http://maven.apache.org</url>
+    <description>
+        通用业务处理层，它有如下特征：
+        1 ） 对第三方平台封装的层，预处理返回结果及转化异常信息 ；
+        2 ） 对 Service 层通用能力的下沉，如缓存方案、中间件通用处理 ；
+        3 ） 与 DAO 层交互，对多个 DAO 的组合复用
+    </description>
+
+    <parent>
+        <groupId>com.example.oauth</groupId>
+        <artifactId>cloud-oauth-server</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

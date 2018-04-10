@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>oauth-server-web</artifactId>
+    <packaging>jar</packaging>
+
+    <name>oauth-server-web</name>
+    <url>http://maven.apache.org</url>
+    <description>主要是对访问控制进行转发，各类基本参数校验，或者不复用的业务简单处理等</description>
+
+    <parent>
+        <groupId>com.example.oauth</groupId>
+        <artifactId>cloud-oauth-server</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.example.oauth</groupId>
+            <artifactId>oauth-server-domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.example.oauth</groupId>
+            <artifactId>oauth-server-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

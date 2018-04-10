@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>oauth-server-domain</artifactId>
+    <packaging>jar</packaging>
+
+    <name>oauth-server-domain</name>
+    <url>http://maven.apache.org</url>
+    <description>
+        分层领域模型规约：
+         DO（Data Object） ：与数据库表结构一一对应，通过 DAO 层向上传输数据源对象。
+         DTO（Data Transfer Object） ：数据传输对象， Service 或 Manager 向外传输的对象。
+         BO（Business Object） ：业务对象。由 Service 层输出的封装业务逻辑的对象。
+         AO（Application Object） ：应用对象。在 Web 层与 Service 层之间抽象的复用对象模型，
+        极为贴近展示层，复用度不高。
+         VO（View Object） ：显示层对象，通常是 Web 向模板渲染引擎层传输的对象。
+         Query ：数据查询对象，各层接收上层的查询请求。注意超过 2 个参数的查询封装，禁止
+        使用 Map 类来传输。
+    </description>
+
+    <parent>
+        <groupId>com.example.oauth</groupId>
+        <artifactId>cloud-oauth-server</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+</project>

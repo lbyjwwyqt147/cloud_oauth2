@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cloud-oauth-server.iml" filepath="$PROJECT_DIR$/cloud-oauth-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oauth-server-api/oauth-server-api.iml" filepath="$PROJECT_DIR$/oauth-server-api/oauth-server-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oauth-server-common/oauth-server-common.iml" filepath="$PROJECT_DIR$/oauth-server-common/oauth-server-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oauth-server-domain/oauth-server-domain.iml" filepath="$PROJECT_DIR$/oauth-server-domain/oauth-server-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oauth-server-launcher/oauth-server-launcher.iml" filepath="$PROJECT_DIR$/oauth-server-launcher/oauth-server-launcher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oauth-server-manager/oauth-server-manager.iml" filepath="$PROJECT_DIR$/oauth-server-manager/oauth-server-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oauth-server-repository/oauth-server-repository.iml" filepath="$PROJECT_DIR$/oauth-server-repository/oauth-server-repository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oauth-server-service/oauth-server-service.iml" filepath="$PROJECT_DIR$/oauth-server-service/oauth-server-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oauth-server-web/oauth-server-web.iml" filepath="$PROJECT_DIR$/oauth-server-web/oauth-server-web.iml" />
+    </modules>
+  </component>
+</project>
