@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,6 +35,8 @@ public class RoleModuleServiceImpl implements RoleModuleService {
                SysRoleModule roleModule = new SysRoleModule();
                roleModule.setModuleId(item);
                roleModule.setRoleId(roleModuleDTO.getRoleId());
+               roleModule.setCreateTime(Instant.now());
+               roleModule.setId(1L);
                roleModuleList.add(roleModule);
             });
             success = this.roleModuleRepository.saveAll(roleModuleList) != null;

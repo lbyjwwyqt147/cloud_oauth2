@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,6 +34,8 @@ public class UserRoleServiceImpl implements UserRoleService {
                 SysUserRole userRole = new SysUserRole();
                 userRole.setRoleId(item);
                 userRole.setUserId(userRoleDTO.getUserId());
+                userRole.setCreateTime(Instant.now());
+                userRole.setId(1L);
                 userRoleList.add(userRole);
             });
             success = this.userRoleRepository.saveAll(userRoleList) != null;

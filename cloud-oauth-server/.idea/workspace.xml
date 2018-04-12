@@ -20,105 +20,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="UserRoleController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/role/UserRoleController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SysModule.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/module/entity/SysModule.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="36" column="22" selection-start-line="32" selection-start-column="3" selection-end-line="39" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SysModuleVO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/module/vo/SysModuleVO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="12" column="4" lean-forward="true" selection-start-line="12" selection-start-column="4" selection-end-line="19" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SysModuleDTO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/module/dto/SysModuleDTO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="11" column="18" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModuleReository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/oauth-server-repository/src/main/java/com/example/oauth/server/repository/module/ModuleReository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="8" column="23" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModuleService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/module/ModuleService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="7" column="26" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModuleServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/module/impl/ModuleServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="17" column="17" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModuleController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/module/ModuleController.java">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="RoleController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/role/RoleController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="391">
-              <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+              <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OauthServerLauncherApplication.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/oauth-server-launcher/src/main/java/com/example/oauth/OauthServerLauncherApplication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
         </entry>
@@ -126,11 +36,87 @@
       <file leaf-file-name="RoleServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/RoleServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="31" column="3" selection-start-line="31" selection-start-column="3" selection-end-line="40" selection-end-column="5" />
+            <state relative-caret-position="191">
+              <caret line="58" column="16" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BeanUtils.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-beans/5.0.5.RELEASE/spring-beans-5.0.5.RELEASE.jar!/org/springframework/beans/BeanUtils.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="121">
+              <caret line="339" column="31" selection-start-line="339" selection-start-column="23" selection-end-line="339" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DozerBeanMapperUtil.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/util/DozerBeanMapperUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2275">
+              <caret line="91" column="40" lean-forward="true" selection-start-line="91" selection-start-column="40" selection-end-line="91" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#372#393#0" expanded="true" />
+                <element signature="e#466#483#0" expanded="true" />
+                <element signature="e#554#575#0" expanded="true" />
+                <element signature="e#3239#3247#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oauth-server-common/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="341">
+              <caret line="42" column="45" lean-forward="true" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResultUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/restful/ResultUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RoleService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/RoleService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PageVo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/base/PageVo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="27">
+              <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OauthServerLauncherApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oauth-server-launcher/src/main/java/com/example/oauth/OauthServerLauncherApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
         </entry>
@@ -149,24 +135,15 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>Result</find>
+      <find>copyProperties</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/account/vo/AccountVO.java" />
-        <option value="$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/account/query/AccountQuery.java" />
-        <option value="$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/acount/SysAccountService.java" />
-        <option value="$PROJECT_DIR$/oauth-server-common/pom.xml" />
-        <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/exception/ErrorInfo.java" />
-        <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/exception/restful/restfulView.java" />
-        <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/restful/RestfulView.java" />
-        <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/restful/RestfulVO.java" />
-        <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/vo/RestfulVo.java" />
         <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/exception/DescribeException.java" />
         <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/exception/ErrorCodeEnum.java" />
         <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/restful/RestfulVo.java" />
-        <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/restful/ResultUtil.java" />
         <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/exception/GlobalExceptionHandler.java" />
         <option value="$PROJECT_DIR$/oauth-server-service/pom.xml" />
         <option value="$PROJECT_DIR$/oauth-server-web/pom.xml" />
@@ -183,28 +160,38 @@
         <option value="$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/vo/RoleModuleVO.java" />
         <option value="$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/vo/UserRoleVO.java" />
         <option value="$PROJECT_DIR$/oauth-server-repository/src/main/java/com/example/oauth/server/repository/account/role/RoleRepository.java" />
-        <option value="$PROJECT_DIR$/oauth-server-repository/src/main/java/com/example/oauth/server/repository/role/RoleRepository.java" />
         <option value="$PROJECT_DIR$/oauth-server-repository/src/main/java/com/example/oauth/server/repository/role/RoleModuleRepository.java" />
         <option value="$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/acount/role/RoleModuleService.java" />
         <option value="$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/RoleModuleService.java" />
         <option value="$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/dto/RoleModuleDTO.java" />
         <option value="$PROJECT_DIR$/oauth-server-repository/src/main/java/com/example/oauth/server/repository/role/UserRoleRepository.java" />
-        <option value="$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/RoleService.java" />
         <option value="$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/UserRoleService.java" />
         <option value="$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/dto/UserRoleDTO.java" />
-        <option value="$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/RoleModuleServiceImpl.java" />
-        <option value="$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/RoleServiceImpl.java" />
-        <option value="$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/UserRoleServiceImpl.java" />
-        <option value="$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/role/RoleController.java" />
-        <option value="$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/role/RoleModuleController.java" />
-        <option value="$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/role/UserRoleController.java" />
         <option value="$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/module/entity/SysModule.java" />
         <option value="$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/module/vo/SysModuleVO.java" />
         <option value="$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/module/dto/SysModuleDTO.java" />
         <option value="$PROJECT_DIR$/oauth-server-repository/src/main/java/com/example/oauth/server/repository/module/ModuleReository.java" />
         <option value="$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/module/ModuleService.java" />
-        <option value="$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/module/impl/ModuleServiceImpl.java" />
+        <option value="$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/role/RoleModuleController.java" />
+        <option value="$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/role/UserRoleController.java" />
         <option value="$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/module/ModuleController.java" />
+        <option value="$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/RoleModuleServiceImpl.java" />
+        <option value="$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/UserRoleServiceImpl.java" />
+        <option value="$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/module/impl/ModuleServiceImpl.java" />
+        <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/paging/LogicalExpression.java" />
+        <option value="$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/base/AbstractVO.java" />
+        <option value="$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/base/AbstractDTO.java" />
+        <option value="$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/query/RoleQuery.java" />
+        <option value="$PROJECT_DIR$/oauth-server-repository/src/main/java/com/example/oauth/server/repository/role/RoleRepository.java" />
+        <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/paging/Restrictions.java" />
+        <option value="$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/base/AbstractQuery.java" />
+        <option value="$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/base/PageVo.java" />
+        <option value="$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/RoleService.java" />
+        <option value="$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/role/RoleController.java" />
+        <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/restful/ResultUtil.java" />
+        <option value="$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/RoleServiceImpl.java" />
+        <option value="$PROJECT_DIR$/oauth-server-common/pom.xml" />
+        <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/util/DozerBeanMapperUtil.java" />
       </list>
     </option>
   </component>
@@ -237,8 +224,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -246,6 +231,51 @@
             <path>
               <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
               <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
+              <item name="oauth-server-common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
+              <item name="oauth-server-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
+              <item name="oauth-server-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
+              <item name="oauth-server-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
+              <item name="oauth-server-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
+              <item name="oauth-server-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
@@ -285,6 +315,16 @@
             <path>
               <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
               <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
+              <item name="oauth-server-domain" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="domain" type="462c0819:PsiDirectoryNode" />
+              <item name="base" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
               <item name="oauth-server-launcher" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -316,11 +356,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="oauth" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
-              <item name="oauth-server-manager" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
@@ -360,6 +395,16 @@
             <path>
               <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
               <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
+              <item name="oauth-server-repository" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="repository" type="462c0819:PsiDirectoryNode" />
+              <item name="role" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
               <item name="oauth-server-service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -391,27 +436,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
-              <item name="oauth-server-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="module" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
-              <item name="oauth-server-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="module" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
@@ -469,10 +493,42 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
+              <item name="oauth-server-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="account" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
+              <item name="oauth-server-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
+              <item name="oauth-server-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="role" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -499,6 +555,7 @@
       <recent name="com.example.oauth.server.domain.account" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\IdeaProjects\cloud_oauth2\cloud-oauth-server\oauth-server-common\src\main\java\com\example\oauth\server\common\paging" />
       <recent name="D:\IdeaProjects\cloud-oauth-server\oauth-server-service\src\main\java\com\example\oauth\server\service\acount" />
     </key>
   </component>
@@ -634,11 +691,12 @@
       <workItem from="1523415118532" duration="301000" />
       <workItem from="1523415452584" duration="1282000" />
       <workItem from="1523416764988" duration="17927000" />
+      <workItem from="1523495679251" duration="15831000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30990000" />
+    <option name="totallyTimeSpent" value="46821000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -655,7 +713,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39934713" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3297062" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
@@ -664,10 +722,9 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.3297062" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26066098" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26066098" />
       <window_info anchor="right" id="Bean Validation" order="3" />
       <window_info id="Web" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3297062" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -675,6 +732,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3297062" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -685,254 +743,24 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/RoleServiceImpl.java</url>
+          <line>48</line>
+          <properties />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/RoleServiceImpl.java</url>
+          <line>55</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="7" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/restful/RestfulVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/restful/A.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/exception/ErrorCodeEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
-          <folding>
-            <element signature="e#461#462#0" expanded="true" />
-            <element signature="e#491#492#0" expanded="true" />
-            <element signature="e#537#538#0" expanded="true" />
-            <element signature="e#575#576#0" expanded="true" />
-            <element signature="e#772#773#0" expanded="true" />
-            <element signature="e#799#800#0" expanded="true" />
-            <element signature="e#839#840#0" expanded="true" />
-            <element signature="e#871#872#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/restful/RestfulVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/restful/ResultUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="146" column="39" selection-start-line="146" selection-start-column="39" selection-end-line="146" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/exception/DescribeException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="e#329#330#0" expanded="true" />
-            <element signature="e#359#360#0" expanded="true" />
-            <element signature="e#325#326#0" expanded="true" />
-            <element signature="e#374#375#0" expanded="true" />
-            <element signature="e#508#509#0" expanded="true" />
-            <element signature="e#538#539#0" expanded="true" />
-            <element signature="e#664#665#0" expanded="true" />
-            <element signature="e#705#706#0" expanded="true" />
-            <element signature="e#758#759#0" expanded="true" />
-            <element signature="e#790#791#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/exception/GlobalExceptionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="21" column="41" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-service/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="32" column="23" selection-start-line="31" selection-start-column="7" selection-end-line="34" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-web/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/account/SysAccountController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1198#1199#0" expanded="true" />
-            <element signature="e#1224#1225#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/base/AbstractController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="26" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/acount/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/acount/SysAccountService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="23" column="48" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/account/entity/SysAccount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="39" column="30" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/acount/impl/SysAccountServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="50" column="35" selection-start-line="50" selection-start-column="35" selection-end-line="50" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/Z.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/entity/SysUserRole.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="33" column="14" selection-start-line="33" selection-start-column="4" selection-end-line="34" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/entity/SysRoleModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="34" column="23" selection-start-line="33" selection-start-column="3" selection-end-line="34" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/entity/SysRole.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="37" column="18" selection-start-line="36" selection-start-column="3" selection-end-line="38" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/base/AbstractVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/vo/RoleVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/dto/RoleDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="18" selection-start-line="12" selection-start-column="4" selection-end-line="14" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/vo/UserRoleVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-repository/src/main/java/com/example/oauth/server/repository/account/SysAccountRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/vo/RoleModuleVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/oauth-server-repository/src/main/java/com/example/oauth/server/repository/role/RoleModuleRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -947,16 +775,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
           <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-repository/src/main/java/com/example/oauth/server/repository/role/RoleRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1001,10 +819,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
           <caret line="84" column="19" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
-          <folding>
-            <element signature="e#2293#2294#0" expanded="true" />
-            <element signature="e#2327#2328#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1015,50 +829,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/RoleService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="25" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/UserRoleServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/role/RoleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/RoleModuleServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-134">
-          <caret line="21" column="14" lean-forward="true" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/role/RoleModuleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/UserRoleService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -1066,47 +836,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/role/UserRoleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/module/A.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/module/A.java" />
     <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/module/entity/SysModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
+        <state relative-caret-position="625">
           <caret line="36" column="22" selection-start-line="32" selection-start-column="3" selection-end-line="39" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/module/vo/SysModuleVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="12" column="4" lean-forward="true" selection-start-line="12" selection-start-column="4" selection-end-line="19" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/module/dto/SysModuleDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="11" column="18" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1115,7 +849,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/oauth-server-repository/src/main/java/com/example/oauth/server/repository/module/ModuleReository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
+        <state relative-caret-position="175">
           <caret line="8" column="23" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1130,20 +864,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/RoleServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/account/SysAccountController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="31" column="3" selection-start-line="31" selection-start-column="3" selection-end-line="40" selection-end-column="5" />
+        <state relative-caret-position="94">
+          <caret line="17" column="4" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/module/impl/ModuleServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/role/RoleModuleController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="17" column="17" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="19" />
+        <state relative-caret-position="141">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/role/UserRoleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1152,8 +896,209 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/module/ModuleController.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/dto/RoleDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="14" column="35" lean-forward="true" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/UserRoleServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="36" column="20" lean-forward="true" selection-start-line="36" selection-start-column="15" selection-end-line="37" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/module/impl/ModuleServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/base/AbstractVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/base/AbstractDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/entity/SysRole.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="37" column="15" selection-start-line="36" selection-start-column="4" selection-end-line="37" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/module/dto/SysModuleDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="11" column="18" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/module/vo/SysModuleVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="19" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/paging/LogicalExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/data/spring-data-commons/2.0.6.RELEASE/spring-data-commons-2.0.6.RELEASE.jar!/org/springframework/data/domain/PageRequest.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-repository/src/main/java/com/example/oauth/server/repository/role/RoleRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="100" selection-start-line="9" selection-start-column="100" selection-end-line="9" selection-end-column="100" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/paging/SimpleExpression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/paging/ICriterion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/paging/Restrictions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="309" column="55" selection-start-line="309" selection-start-column="55" selection-end-line="309" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/query/RoleQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="36" lean-forward="true" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/data/spring-data-commons/2.0.6.RELEASE/spring-data-commons-2.0.6.RELEASE.jar!/org/springframework/data/domain/Sort.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5929">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/base/AbstractQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_161/src.zip!/java/lang/Iterable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="44" column="17" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/data/spring-data-commons/2.0.6.RELEASE/spring-data-commons-2.0.6.RELEASE.jar!/org/springframework/data/util/Streamable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="17" column="41" lean-forward="true" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/data/spring-data-jpa/2.0.6.RELEASE/spring-data-jpa-2.0.6.RELEASE.jar!/org/springframework/data/jpa/repository/JpaSpecificationExecutor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="20" column="29" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/data/spring-data-commons/2.0.6.RELEASE/spring-data-commons-2.0.6.RELEASE.jar!/org/springframework/data/domain/PageImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/data/spring-data-commons/2.0.6.RELEASE/spring-data-commons-2.0.6.RELEASE.jar!/org/springframework/data/domain/Pageable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/data/spring-data-commons/2.0.6.RELEASE/spring-data-commons-2.0.6.RELEASE.jar!/org/springframework/data/domain/Page.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/role/RoleController.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
-          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+          <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1163,7 +1108,89 @@
     <entry file="file://$PROJECT_DIR$/oauth-server-launcher/src/main/java/com/example/oauth/OauthServerLauncherApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/RoleModuleServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="38" column="15" selection-start-line="38" selection-start-column="15" selection-end-line="38" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/base/PageVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/restful/ResultUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/data/spring-data-commons/2.0.6.RELEASE/spring-data-commons-2.0.6.RELEASE.jar!/org/springframework/data/domain/Slice.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/RoleService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-common/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="42" column="45" lean-forward="true" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/RoleServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="58" column="16" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-beans/5.0.5.RELEASE/spring-beans-5.0.5.RELEASE.jar!/org/springframework/beans/BeanUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="339" column="31" selection-start-line="339" selection-start-column="23" selection-end-line="339" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/util/DozerBeanMapperUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2275">
+          <caret line="91" column="40" lean-forward="true" selection-start-line="91" selection-start-column="40" selection-end-line="91" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#372#393#0" expanded="true" />
+            <element signature="e#466#483#0" expanded="true" />
+            <element signature="e#554#575#0" expanded="true" />
+            <element signature="e#3239#3247#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

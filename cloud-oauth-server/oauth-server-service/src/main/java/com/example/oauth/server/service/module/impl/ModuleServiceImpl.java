@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
+
 /***
  * 资源菜单　serviceImpl
  */
@@ -24,6 +26,9 @@ public class ModuleServiceImpl implements ModuleService {
     @Override
     public boolean saveModule(SysModuleDTO moduleDTO) {
         SysModule module = this.copyProperties(moduleDTO);
+        module.setStatus((byte)1);
+        module.setCreateTime(Instant.now());
+        module.setId(1L);
         this.moduleReository.save(module);
         return true;
     }

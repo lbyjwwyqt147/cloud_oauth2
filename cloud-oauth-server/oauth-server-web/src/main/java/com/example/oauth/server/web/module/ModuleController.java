@@ -6,6 +6,7 @@ import com.example.oauth.server.domain.module.dto.SysModuleDTO;
 import com.example.oauth.server.service.module.ModuleService;
 import com.example.oauth.server.web.base.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 资源菜单　controller
  */
 @RestController
+@CrossOrigin
 public class ModuleController extends AbstractController {
 
     @Autowired

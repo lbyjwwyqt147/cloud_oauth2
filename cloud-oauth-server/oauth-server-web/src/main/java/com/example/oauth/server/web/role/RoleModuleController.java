@@ -6,6 +6,7 @@ import com.example.oauth.server.domain.role.dto.RoleModuleDTO;
 import com.example.oauth.server.service.role.RoleModuleService;
 import com.example.oauth.server.web.base.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 角色资源 controller
  */
 @RestController
+@CrossOrigin
 public class RoleModuleController extends AbstractController {
 
     @Autowired

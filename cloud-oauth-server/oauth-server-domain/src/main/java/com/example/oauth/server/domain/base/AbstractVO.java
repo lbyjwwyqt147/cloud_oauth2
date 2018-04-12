@@ -10,8 +10,6 @@ import java.io.Serializable;
 import java.time.Instant;
 
 @MappedSuperclass
-@Audited
-@EntityListeners(AuditingEntityListener.class)
 @Data
 public class AbstractVO implements Serializable {
     private static final long serialVersionUID = -38807433084019658L;
