@@ -2,6 +2,7 @@ package com.example.oauth.server.service.role.impl;
 
 import com.example.oauth.server.common.paging.Criteria;
 import com.example.oauth.server.common.paging.Restrictions;
+import com.example.oauth.server.common.util.DozerBeanMapperUtil;
 import com.example.oauth.server.domain.base.PageVo;
 import com.example.oauth.server.domain.role.dto.RoleDTO;
 import com.example.oauth.server.domain.role.entity.SysRole;
@@ -45,6 +46,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public PageVo<RoleVO> findListPage(RoleQuery roleQuery){
+        this.copyProperties(roleQuery);
         PageVo<RoleVO> pageVo = new PageVo<>();
         Criteria<SysRole> criteria = new Criteria<>();
         criteria.add(Restrictions.eq("roleCode", roleQuery.getRoleCode()));
@@ -76,7 +78,21 @@ public class RoleServiceImpl implements RoleService {
      */
     private SysRole copyProperties(Object source){
         SysRole role = new SysRole();
+        Long start1 = System.currentTimeMillis();
         BeanUtils.copyProperties(source,role);
+        Long n = System.currentTimeMillis() - start1;
+        System.out.println("BeanUtils 对象拷贝花费："+n +"毫秒");
+
+    /*    Long start2 = System.currentTimeMillis();
+        DozerBeanMapperUtil.transferObject(source,SysRole.class);
+        Long n2 = System.currentTimeMillis() - start2;
+        System.out.println("Java 反射 对象拷贝花费："+n2 +"毫秒");*/
+
+        Long start3 = System.currentTimeMillis();
+        DozerBeanMapperUtil.reflectasmCopyProperties(source,SysRole.class);
+        Long n3 = System.currentTimeMillis() - start3;
+        System.out.println("reflectasm 反射 对象拷贝花费："+n3 +"毫秒");
+
         return role;
     }
 

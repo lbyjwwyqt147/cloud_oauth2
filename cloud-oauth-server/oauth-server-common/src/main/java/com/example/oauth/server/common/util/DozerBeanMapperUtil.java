@@ -104,7 +104,7 @@ public abstract class DozerBeanMapperUtil {
      * @param target 目标 类对象
      * @return  返回转换后对象
      */
-    public static<T> T  asmCopyProperties(Object source, Class<T> target) {
+    public static<T> T  reflectasmCopyProperties(Object source, Class<T> target) {
         T result = null;
         MethodAccess descMethodAccess = methodMap.get(source.getClass());
         if (descMethodAccess == null) {
