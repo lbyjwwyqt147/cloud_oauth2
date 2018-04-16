@@ -36,37 +36,30 @@ public class RoleServiceImpl implements RoleService {
     @Transactional
     @Override
     public boolean save(RoleDTO roleDTO) {
-        SysRole role = this.copyProperties(roleDTO);
+        SysRole role = DozerBeanMapperUtil.copyProperties(roleDTO,SysRole.class);
         role.setStatus((byte)1);
         role.setCreateTime(Instant.now());
-        role.setId(1L);
         this.roleRepository.save(role);
-        return true;
+        Long resultId = role.getId();
+        boolean success = resultId != null && resultId > 0;
+        return success;
     }
 
     @Override
     public PageVo<RoleVO> findListPage(RoleQuery roleQuery){
-        this.copyProperties(roleQuery);
-        PageVo<RoleVO> pageVo = new PageVo<>();
         Criteria<SysRole> criteria = new Criteria<>();
         criteria.add(Restrictions.eq("roleCode", roleQuery.getRoleCode()));
         criteria.add(Restrictions.eq("roleName", roleQuery.getRoleName()));
         //生成Sort变量
         Sort sort =  new Sort(Sort.Direction.DESC, "id");
         //生成Pageable变量
-        Pageable pageable = PageRequest.of(roleQuery.getPage()-1,roleQuery.getPageSize(),sort);
+        Pageable pageable = PageRequest.of(roleQuery.getP().getPageNum()-1,roleQuery.getP().getPageSize(),sort);
         Page<SysRole> listPage = this.roleRepository.findAll(criteria,pageable);
-        if (listPage.getTotalElements() > 0){
-            List<RoleVO> roleVOList = new LinkedList<>();
-            BeanUtils.copyProperties(listPage.getContent(),roleVOList);
+        Long totalElements =  listPage.getTotalElements();
+        PageVo<RoleVO> pageVo = new PageVo<>(roleQuery.getP().getPageNum(),pageable.getPageSize(),totalElements);
+        if (totalElements > 0){
+            List<RoleVO> roleVOList  = DozerBeanMapperUtil.copyProperties(listPage.getContent(),RoleVO.class);
             pageVo.setData(roleVOList);
-            PageVo.Meta meta = new PageVo<>().new Meta();
-            meta.setField("id");
-            meta.setPage(pageable.getPageNumber());
-            meta.setPages(pageable.getPageSize());
-            meta.setTotal(listPage.getTotalElements());
-            pageVo.setMeta(meta);
-
         }
         return pageVo;
     }
@@ -77,21 +70,19 @@ public class RoleServiceImpl implements RoleService {
      * @return
      */
     private SysRole copyProperties(Object source){
-        SysRole role = new SysRole();
         Long start1 = System.currentTimeMillis();
+        SysRole role = new SysRole();
         BeanUtils.copyProperties(source,role);
         Long n = System.currentTimeMillis() - start1;
         System.out.println("BeanUtils 对象拷贝花费："+n +"毫秒");
 
-    /*    Long start2 = System.currentTimeMillis();
-        DozerBeanMapperUtil.transferObject(source,SysRole.class);
-        Long n2 = System.currentTimeMillis() - start2;
-        System.out.println("Java 反射 对象拷贝花费："+n2 +"毫秒");*/
 
-        Long start3 = System.currentTimeMillis();
-        DozerBeanMapperUtil.reflectasmCopyProperties(source,SysRole.class);
-        Long n3 = System.currentTimeMillis() - start3;
-        System.out.println("reflectasm 反射 对象拷贝花费："+n3 +"毫秒");
+        Long start4 = System.currentTimeMillis();
+        SysRole role1 = DozerBeanMapperUtil.copyProperties(source,SysRole.class);
+        Long n4 = System.currentTimeMillis() - start4;
+        System.out.println( role1.getRoleCode() +" = DozerBeanMapperUtil 反射 对象拷贝花费："+n4 +"毫秒");
+
+
 
         return role;
     }

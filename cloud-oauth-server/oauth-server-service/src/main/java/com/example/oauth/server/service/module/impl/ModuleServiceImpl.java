@@ -1,5 +1,6 @@
 package com.example.oauth.server.service.module.impl;
 
+import com.example.oauth.server.common.util.DozerBeanMapperUtil;
 import com.example.oauth.server.domain.module.dto.SysModuleDTO;
 import com.example.oauth.server.domain.module.entity.SysModule;
 import com.example.oauth.server.repository.module.ModuleReository;
@@ -25,22 +26,14 @@ public class ModuleServiceImpl implements ModuleService {
     @Transactional
     @Override
     public boolean saveModule(SysModuleDTO moduleDTO) {
-        SysModule module = this.copyProperties(moduleDTO);
+        String[] ignoreProperties = new String[]{"updateId","updateUserName"};
+        SysModule module = DozerBeanMapperUtil.copyProperties(moduleDTO,SysModule.class,ignoreProperties);
         module.setStatus((byte)1);
         module.setCreateTime(Instant.now());
-        module.setId(1L);
+        module.setModulePid(0L);
         this.moduleReository.save(module);
-        return true;
+        boolean success = module.getId() != null && module.getId() > 0;
+        return success;
     }
 
-    /**
-     *  将SysModuleDTO 值 拷贝到 SysModule
-     * @param moduleDTO
-     * @return
-     */
-    private SysModule copyProperties(SysModuleDTO moduleDTO){
-        SysModule module = new SysModule();
-        BeanUtils.copyProperties(moduleDTO,module);
-        return module;
-    }
 }
