@@ -21,23 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="RoleController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/role/RoleController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RoleServiceImpl.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RoleServiceImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/RoleServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="58" column="16" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="21" />
+            <state relative-caret-position="444">
+              <caret line="72" column="26" selection-start-line="72" selection-start-column="26" selection-end-line="72" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -45,27 +33,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BeanUtils.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-beans/5.0.5.RELEASE/spring-beans-5.0.5.RELEASE.jar!/org/springframework/beans/BeanUtils.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="339" column="31" selection-start-line="339" selection-start-column="23" selection-end-line="339" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DozerBeanMapperUtil.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DozerBeanMapperUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/util/DozerBeanMapperUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2275">
-              <caret line="91" column="40" lean-forward="true" selection-start-line="91" selection-start-column="40" selection-end-line="91" selection-end-column="40" />
+            <state relative-caret-position="3525">
+              <caret line="148" column="40" selection-start-line="148" selection-start-column="40" selection-end-line="148" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#372#393#0" expanded="true" />
-                <element signature="e#466#483#0" expanded="true" />
-                <element signature="e#554#575#0" expanded="true" />
-                <element signature="e#3239#3247#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/account/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="14" column="46" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SysAccount.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/account/entity/SysAccount.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="20" selection-start-line="20" selection-end-line="21" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -73,8 +66,8 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/oauth-server-common/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="42" column="45" lean-forward="true" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="52" />
+            <state relative-caret-position="1050">
+              <caret line="42" column="45" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -82,7 +75,7 @@
       <file leaf-file-name="ResultUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/restful/ResultUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
+            <state relative-caret-position="900">
               <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
             </state>
           </provider>
@@ -91,7 +84,7 @@
       <file leaf-file-name="RoleService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/RoleService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="525">
               <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -103,7 +96,7 @@
       <file leaf-file-name="PageVo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/base/PageVo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
+            <state relative-caret-position="325">
               <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -141,7 +134,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/exception/DescribeException.java" />
         <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/exception/ErrorCodeEnum.java" />
         <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/restful/RestfulVo.java" />
         <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/exception/GlobalExceptionHandler.java" />
@@ -192,6 +184,7 @@
         <option value="$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/RoleServiceImpl.java" />
         <option value="$PROJECT_DIR$/oauth-server-common/pom.xml" />
         <option value="$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/util/DozerBeanMapperUtil.java" />
+        <option value="$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/account/User.java" />
       </list>
     </option>
   </component>
@@ -225,6 +218,8 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -320,7 +315,49 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="domain" type="462c0819:PsiDirectoryNode" />
+              <item name="account" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
+              <item name="oauth-server-domain" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="domain" type="462c0819:PsiDirectoryNode" />
+              <item name="account" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
+              <item name="oauth-server-domain" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="domain" type="462c0819:PsiDirectoryNode" />
+              <item name="account" type="462c0819:PsiDirectoryNode" />
+              <item name="vo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
+              <item name="oauth-server-domain" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="domain" type="462c0819:PsiDirectoryNode" />
               <item name="base" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cloud-oauth-server" type="462c0819:PsiDirectoryNode" />
+              <item name="oauth-server-domain" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="domain" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cloud-oauth-server" type="b2602c69:ProjectViewProjectNode" />
@@ -527,8 +564,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -692,11 +727,14 @@
       <workItem from="1523415452584" duration="1282000" />
       <workItem from="1523416764988" duration="17927000" />
       <workItem from="1523495679251" duration="15831000" />
+      <workItem from="1523840645881" duration="720000" />
+      <workItem from="1523841399322" duration="173000" />
+      <workItem from="1523841681646" duration="448000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46821000" />
+    <option name="totallyTimeSpent" value="48162000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -713,7 +751,6 @@
       <window_info id="UI Designer" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39934713" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3297062" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
@@ -722,7 +759,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.3297062" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26066098" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26599148" />
       <window_info anchor="right" id="Bean Validation" order="3" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
@@ -730,6 +767,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3297062" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3297062" />
@@ -761,46 +799,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/oauth-server-repository/src/main/java/com/example/oauth/server/repository/role/RoleModuleRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="27" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/dto/RoleModuleDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-repository/src/main/java/com/example/oauth/server/repository/role/UserRoleRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/role/dto/UserRoleDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="13" column="15" lean-forward="true" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/RoleModuleService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -841,9 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="625">
           <caret line="36" column="22" selection-start-line="32" selection-start-column="3" selection-end-line="39" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -851,9 +846,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="8" column="23" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -868,9 +860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="94">
           <caret line="17" column="4" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -878,9 +867,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
           <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -888,9 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -898,9 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -908,9 +888,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
           <caret line="14" column="35" lean-forward="true" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -918,9 +895,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
           <caret line="36" column="20" lean-forward="true" selection-start-line="36" selection-start-column="15" selection-end-line="37" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -928,9 +902,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -962,9 +933,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="11" column="18" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -972,9 +940,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="19" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -996,9 +961,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="9" column="100" selection-start-line="9" selection-start-column="100" selection-end-line="9" selection-end-column="100" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1020,9 +982,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="644">
           <caret line="309" column="55" selection-start-line="309" selection-start-column="55" selection-end-line="309" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1097,11 +1056,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/oauth-server-web/src/main/java/com/example/oauth/server/web/role/RoleController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
+        <state relative-caret-position="675">
           <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1116,15 +1072,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
           <caret line="38" column="15" selection-start-line="38" selection-start-column="15" selection-end-line="38" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/base/PageVo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
+        <state relative-caret-position="325">
           <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1134,7 +1087,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/restful/ResultUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
+        <state relative-caret-position="900">
           <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
         </state>
       </provider>
@@ -1148,7 +1101,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/RoleService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="525">
           <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1158,38 +1111,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/oauth-server-common/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="42" column="45" lean-forward="true" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="52" />
+        <state relative-caret-position="1050">
+          <caret line="42" column="45" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/RoleServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/account/vo/AccountVO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="58" column="16" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="225">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/account/entity/SysAccount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="20" selection-start-line="20" selection-end-line="21" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-domain/src/main/java/com/example/oauth/server/domain/account/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="14" column="46" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.m2/repository/org/springframework/spring-beans/5.0.5.RELEASE/spring-beans-5.0.5.RELEASE.jar!/org/springframework/beans/BeanUtils.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
+        <state relative-caret-position="25">
           <caret line="339" column="31" selection-start-line="339" selection-start-column="23" selection-end-line="339" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/oauth-server-common/src/main/java/com/example/oauth/server/common/util/DozerBeanMapperUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2275">
-          <caret line="91" column="40" lean-forward="true" selection-start-line="91" selection-start-column="40" selection-end-line="91" selection-end-column="40" />
+        <state relative-caret-position="3525">
+          <caret line="148" column="40" selection-start-line="148" selection-start-column="40" selection-end-line="148" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#372#393#0" expanded="true" />
-            <element signature="e#466#483#0" expanded="true" />
-            <element signature="e#554#575#0" expanded="true" />
-            <element signature="e#3239#3247#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oauth-server-service/src/main/java/com/example/oauth/server/service/role/impl/RoleServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="72" column="26" selection-start-line="72" selection-start-column="26" selection-end-line="72" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

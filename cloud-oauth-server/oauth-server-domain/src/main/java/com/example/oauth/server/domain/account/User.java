@@ -1,12 +1,18 @@
 package com.example.oauth.server.domain.account;
 
 
+import org.hibernate.envers.Audited;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
+@Audited
+@EntityListeners(AuditingEntityListener.class)
 public class User implements Serializable{
     @Id
     @GeneratedValue
