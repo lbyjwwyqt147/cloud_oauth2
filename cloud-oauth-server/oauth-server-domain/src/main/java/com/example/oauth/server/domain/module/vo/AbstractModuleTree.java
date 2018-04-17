@@ -5,11 +5,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 资源模块 VO
+ * 资源模块 tree 结构 VO
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class SysModuleVO extends AbstractVO {
+public abstract class AbstractModuleTree extends AbstractVO {
+
     private Long moduleCode;
     private String moduleName;
     private Byte moduleType;
@@ -19,4 +20,10 @@ public class SysModuleVO extends AbstractVO {
     private String menuIcon;
     private String menuUrl;
     private String authorizedSigns;
+
+    /**
+     * 业务方法
+     */
+    public abstract  void operation();
+
 }
