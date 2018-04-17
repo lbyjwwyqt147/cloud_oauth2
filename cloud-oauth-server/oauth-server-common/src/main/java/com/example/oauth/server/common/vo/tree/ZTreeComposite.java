@@ -5,19 +5,19 @@ import java.util.LinkedList;
 /***
  *  用于访问和管理成员子构件的方法，如add()、remove()和getChild()等方法
  */
-public class Composite extends AbstractComponent {
+public class ZTreeComposite extends AbstractZTreeComponent {
 
-    public Composite(Long id, String name, String icon) {
+    public ZTreeComposite(Long id, String name, String icon) {
         super(id, name, icon);
     }
 
-    private LinkedList<AbstractComponent> children = new LinkedList<AbstractComponent>();
+    private LinkedList<AbstractZTreeComponent> children = new LinkedList<AbstractZTreeComponent>();
 
     /**
      * 添加
      * @param c
      */
-    public void add(AbstractComponent c) {
+    public void add(AbstractZTreeComponent c) {
         children.add(c);
     }
 
@@ -25,7 +25,7 @@ public class Composite extends AbstractComponent {
      * 移除
      * @param c
      */
-    public void remove(AbstractComponent c) {
+    public void remove(AbstractZTreeComponent c) {
         children.remove(c);
     }
 
@@ -34,23 +34,23 @@ public class Composite extends AbstractComponent {
      * @param i
      * @return
      */
-    public AbstractComponent getChild(Integer i) {
-        return (AbstractComponent)children.get(i);
+    public AbstractZTreeComponent getChild(Integer i) {
+        return (AbstractZTreeComponent)children.get(i);
     }
 
     public void operation() {
         //容器构件具体业务方法的实现
         //递归调用成员构件的业务方法
         for(Object obj : children) {
-            ((AbstractComponent)obj).operation();
+            ((AbstractZTreeComponent)obj).operation();
         }
     }
 
-    public LinkedList<AbstractComponent> getChildren() {
+    public LinkedList<AbstractZTreeComponent> getChildren() {
         return children;
     }
 
-    public void setChildren(LinkedList<AbstractComponent> children) {
+    public void setChildren(LinkedList<AbstractZTreeComponent> children) {
         this.children = children;
     }
 }

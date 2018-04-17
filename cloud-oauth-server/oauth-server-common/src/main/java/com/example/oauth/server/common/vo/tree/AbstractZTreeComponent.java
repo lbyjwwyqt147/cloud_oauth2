@@ -7,12 +7,12 @@ import java.io.Serializable;
 
 /***
  *  一种安全的组合模式
- *  声明一个接口用于访问和管理TreeComponent的子部件
+ *  声明一个接口用于访问和管理AbstractZTreeComponent的子部件
  *
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public  abstract class AbstractComponent implements Serializable {
+public  abstract class AbstractZTreeComponent implements Serializable {
 
 
     private static final long serialVersionUID = 4689319284999357647L;
@@ -70,7 +70,7 @@ public  abstract class AbstractComponent implements Serializable {
     //节点显示的名称字符串
     private String name;
 
-    public AbstractComponent(Long id,String name,String icon){
+    public AbstractZTreeComponent(Long id, String name, String icon){
         this.icon = icon;
         this.id =  id;
         this.name = name;

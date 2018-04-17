@@ -10,3 +10,4 @@ public class OauthServerLauncherApplication {
         SpringApplication.run(OauthServerLauncherApplication.class, args);
     }
 }
+

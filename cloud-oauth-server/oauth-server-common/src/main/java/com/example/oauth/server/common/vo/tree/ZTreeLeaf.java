@@ -3,9 +3,9 @@ package com.example.oauth.server.common.vo.tree;
 /***
  *  叶子构件结构
  */
-public class Leaf extends AbstractComponent {
+public class ZTreeLeaf extends AbstractZTreeComponent {
 
-    public Leaf(Long id, String name, String icon) {
+    public ZTreeLeaf(Long id, String name, String icon) {
         super(id, name, icon);
     }
 
