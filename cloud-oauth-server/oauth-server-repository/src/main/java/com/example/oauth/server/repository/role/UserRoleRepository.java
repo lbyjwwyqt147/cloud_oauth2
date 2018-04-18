@@ -3,6 +3,7 @@ package com.example.oauth.server.repository.role;
 import com.example.oauth.server.domain.role.entity.SysUserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+
 import java.util.List;
 
 /***
@@ -16,6 +17,13 @@ public interface UserRoleRepository  extends JpaRepository<SysUserRole,Long> {
      * @return
      */
     List<SysUserRole> findByUserId(Long userId);
+
+    /**
+     *  根据 角色ID  获取角色人员
+     * @param roleId
+     * @return
+     */
+    List<SysUserRole> findByRoleId(Long roleId);
 
 
 }

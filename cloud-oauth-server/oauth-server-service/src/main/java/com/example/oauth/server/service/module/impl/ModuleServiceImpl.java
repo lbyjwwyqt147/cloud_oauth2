@@ -9,6 +9,8 @@ import com.example.oauth.server.domain.module.entity.SysModule;
 import com.example.oauth.server.domain.module.vo.AbstractModuleTree;
 import com.example.oauth.server.domain.module.vo.ModuleTreeComposite;
 import com.example.oauth.server.domain.module.vo.ModuleTreeLeaf;
+import com.example.oauth.server.manager.designmodel.template.tree.AbstractTree;
+import com.example.oauth.server.manager.designmodel.template.tree.EasyuiTree;
 import com.example.oauth.server.repository.module.ModuleReository;
 import com.example.oauth.server.service.module.ModuleService;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +32,10 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Autowired
     private ModuleReository moduleReository;
+    @Autowired
+    private AbstractTree zTree;
+    @Autowired
+    private AbstractTree easyuiTree;
 
     @Transactional
     @Override
@@ -52,13 +58,11 @@ public class ModuleServiceImpl implements ModuleService {
         if (firstChildren != null && !firstChildren.isEmpty()){
             firstChildren.stream().forEach(item -> {
                 AbstractModuleTree firstModuleTree = DozerBeanMapperUtil.copyProperties(item,ModuleTreeComposite.class);
-                buildTree(item.getId(),firstModuleTree);
+                //firstModuleTree.setState("closed");
+                firstModuleTree =  buildTree(item.getId(),firstModuleTree);
                 treeList.add(firstModuleTree);
-
             });
         }
-        //AbstractModuleTree firstModuleTree =  new ModuleTreeComposite();
-        System.out.println(JSON.toJSONString(treeList));
         return treeList;
     }
 
@@ -71,6 +75,7 @@ public class ModuleServiceImpl implements ModuleService {
                 AbstractEasyuiTreeComponent firstModuleTree = new EasyuiTreeComposite();
                 firstModuleTree.setId(item.getId());
                 firstModuleTree.setText(item.getModuleName());
+                firstModuleTree = (AbstractEasyuiTreeComponent) easyuiTree.bulidModuleTree(firstModuleTree.getId(),firstModuleTree);
                 treeList.add(firstModuleTree);
             });
         }
@@ -78,20 +83,27 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
 
-    private List<AbstractModuleTree> buildTree(Long id,AbstractModuleTree firstModuleTree){
-        List<AbstractModuleTree> treeList = new LinkedList<>();
-        // 获取 第一级 资源菜单数据
+    /**
+     * 构建 treeGrid 树结构数据
+     * @param id
+     * @param firstModuleTree
+     * @return
+     */
+    private AbstractModuleTree buildTree(Long id,AbstractModuleTree firstModuleTree){
+        // 根据PID获取 资源菜单数据
         List<SysModule> firstChildren = this.findByModulePid(id);
         if (firstChildren != null && !firstChildren.isEmpty()) {
             firstChildren.stream().forEach(item -> {
-                AbstractModuleTree leafTree = DozerBeanMapperUtil.copyProperties(item, ModuleTreeLeaf.class);
+                AbstractModuleTree leafTree = DozerBeanMapperUtil.copyProperties(item, ModuleTreeComposite.class);
                 ModuleTreeComposite moduleTreeComposite = (ModuleTreeComposite) firstModuleTree;
                 moduleTreeComposite.add(leafTree);
                 buildTree(leafTree.getId(),leafTree);
             });
         }
-        return treeList;
+        return firstModuleTree;
     }
+
+
 
     /**
      * 根据pid 获取下级信息

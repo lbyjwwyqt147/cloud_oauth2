@@ -5,6 +5,7 @@ import java.util.LinkedList;
 /**
  *
  *   用于访问和管理成员子构件的方法，如add()、remove()和getChild()等方法
+ *   树枝构件角色Composite：在组合中表示分支节点对象——有子节点，实现抽象构件角色声明的接口；存储子部件。
  *
  */
 public class ModuleTreeComposite extends AbstractModuleTree {

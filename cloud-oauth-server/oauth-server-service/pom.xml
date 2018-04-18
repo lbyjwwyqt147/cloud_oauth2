@@ -23,15 +23,7 @@
     <dependencies>
         <dependency>
             <groupId>com.example.oauth</groupId>
-            <artifactId>oauth-server-domain</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.example.oauth</groupId>
-            <artifactId>oauth-server-repository</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.example.oauth</groupId>
-            <artifactId>oauth-server-common</artifactId>
+            <artifactId>oauth-server-manager</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

@@ -103,6 +103,12 @@ public class ModuleController extends AbstractController {
         return treeJson;
     }
 
+    @GetMapping("module/tree/grid1")
+    public RestfulVo listTreeGrid1(){
+        List<AbstractModuleTree> treeList = this.moduleService.listTreeGrid();
+        return ResultUtil.success(treeList);
+    }
+
     /**
      *  符合 tree 结构的数据
      * @return
