@@ -41,7 +41,10 @@ public interface SysAccountRepository  extends JpaRepository<SysAccount,Long> {
      * @param pageable
      * @return
      */
-    @Query(value = "SELECT a.id AS id,a.user_account AS userAccount,a.user_email AS  userEmail,a.binding_phone AS  bindingPhone FROM sys_account a inner join sys_user_role r  on a.id = r.user_id where r.role_id = :roleId",
+   /* @Query(value = "SELECT a.id AS id,a.user_account AS userAccount,a.user_email AS  userEmail,a.binding_phone AS  bindingPhone FROM sys_account a inner join sys_user_role r  on a.id = r.user_id where r.role_id = :roleId",
+            countQuery = "SELECT count(*)  FROM sys_account a inner join sys_user_role r  on a.id = r.user_id where r.role_id = :roleId",
+            nativeQuery = true)*/
+    @Query(value = "SELECT a.* FROM sys_account a inner join sys_user_role r  on a.id = r.user_id where r.role_id = :roleId",
             countQuery = "SELECT count(*)  FROM sys_account a inner join sys_user_role r  on a.id = r.user_id where r.role_id = :roleId",
             nativeQuery = true)
     Page<SysAccount> findPageByRoleId(@Param("roleId") Long roleId, Pageable pageable);
@@ -52,7 +55,10 @@ public interface SysAccountRepository  extends JpaRepository<SysAccount,Long> {
      * @param pageable
      * @return
      */
-    @Query(value = "SELECT  a.id AS id,a.user_account AS userAccount,a.user_email AS  userEmail,a.binding_phone AS  bindingPhone FROM sys_account a WHERE not exists (select user_id FROM sys_user_role r  WHERE a.id = r.user_id AND r.role_id = :roleId)",
+/*    @Query(value = "SELECT  a.id AS id,a.user_account AS userAccount,a.user_email AS  userEmail,a.binding_phone AS  bindingPhone FROM sys_account a WHERE not exists (select user_id FROM sys_user_role r  WHERE a.id = r.user_id AND r.role_id = :roleId)",
+            countQuery = "SELECT count(*)  FROM sys_account a WHERE not exists (select user_id FROM sys_user_role r  WHERE a.id = r.user_id AND r.role_id = :roleId)",
+            nativeQuery = true)*/
+    @Query(value = "SELECT  a.* FROM sys_account a WHERE not exists (select user_id FROM sys_user_role r  WHERE a.id = r.user_id AND r.role_id = :roleId)",
             countQuery = "SELECT count(*)  FROM sys_account a WHERE not exists (select user_id FROM sys_user_role r  WHERE a.id = r.user_id AND r.role_id = :roleId)",
             nativeQuery = true)
     Page<SysAccount> findPageByRoleIdEliminate(@Param("roleId") Long roleId, Pageable pageable);
