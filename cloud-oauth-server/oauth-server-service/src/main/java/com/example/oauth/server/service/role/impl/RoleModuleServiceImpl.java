@@ -43,4 +43,12 @@ public class RoleModuleServiceImpl implements RoleModuleService {
         }
         return success;
     }
+
+    @Transactional
+    @Override
+    public boolean deleteByRoleIdAndModuleIdIn(Long roleId, List<Long> moduleList) {
+        Long resultNumber = this.roleModuleRepository.deleteByRoleIdAndModuleIdIn(roleId,moduleList);
+        boolean success = resultNumber > 0;
+        return success;
+    }
 }

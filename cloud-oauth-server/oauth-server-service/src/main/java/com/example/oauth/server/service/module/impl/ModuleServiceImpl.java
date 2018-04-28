@@ -3,7 +3,9 @@ package com.example.oauth.server.service.module.impl;
 import com.alibaba.fastjson.JSON;
 import com.example.oauth.server.common.util.DozerBeanMapperUtil;
 import com.example.oauth.server.common.vo.tree.AbstractEasyuiTreeComponent;
+import com.example.oauth.server.common.vo.tree.AbstractZTreeComponent;
 import com.example.oauth.server.common.vo.tree.EasyuiTreeComposite;
+import com.example.oauth.server.common.vo.tree.ZTreeComposite;
 import com.example.oauth.server.domain.module.dto.SysModuleDTO;
 import com.example.oauth.server.domain.module.entity.SysModule;
 import com.example.oauth.server.domain.module.vo.AbstractModuleTree;
@@ -12,6 +14,7 @@ import com.example.oauth.server.domain.module.vo.ModuleTreeLeaf;
 import com.example.oauth.server.manager.designmodel.template.tree.AbstractTree;
 import com.example.oauth.server.manager.designmodel.template.tree.EasyuiTree;
 import com.example.oauth.server.repository.module.ModuleReository;
+import com.example.oauth.server.repository.role.RoleModuleRepository;
 import com.example.oauth.server.service.module.ModuleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -33,9 +36,12 @@ public class ModuleServiceImpl implements ModuleService {
     @Autowired
     private ModuleReository moduleReository;
     @Autowired
+    private RoleModuleRepository roleModuleRepository;
+    @Autowired
     private AbstractTree zTree;
     @Autowired
     private AbstractTree easyuiTree;
+
 
     @Transactional
     @Override
@@ -69,13 +75,36 @@ public class ModuleServiceImpl implements ModuleService {
     @Override
     public List<AbstractEasyuiTreeComponent> moduleTree(Long pid) {
         List<AbstractEasyuiTreeComponent> treeList =  new LinkedList<>();
-        List<SysModule> firstChildren = this.findByModulePid(pid);
+        byte type = 3;
+        List<SysModule> firstChildren = this.moduleReository.findByModulePidAndModuleTypeNot(pid,type);
         if (firstChildren != null && !firstChildren.isEmpty()){
             firstChildren.stream().forEach(item -> {
                 AbstractEasyuiTreeComponent firstModuleTree = new EasyuiTreeComposite();
                 firstModuleTree.setId(item.getId());
                 firstModuleTree.setText(item.getModuleName());
-                firstModuleTree = (AbstractEasyuiTreeComponent) easyuiTree.bulidModuleTree(firstModuleTree.getId(),firstModuleTree);
+                firstModuleTree = (AbstractEasyuiTreeComponent) easyuiTree.bulidModuleTree(firstModuleTree.getId(),type,firstModuleTree);
+                treeList.add(firstModuleTree);
+            });
+        }
+        return treeList;
+    }
+
+    @Override
+    public List<AbstractZTreeComponent> roleModuleTree(Long pid, Long roleId) {
+        List<AbstractZTreeComponent> treeList = new LinkedList<>();
+        byte type = 0;
+        // 获取 第一级 资源菜单数据
+        List<SysModule> firstChildren = this.findByModulePid(0L);
+        if (firstChildren != null && !firstChildren.isEmpty()){
+            // 根据角色ID 获取角色分配的资源ID
+            List<String> roleModuleIds = this.roleModuleRepository.findModuleIdByRoleId(roleId);
+            firstChildren.stream().forEach(item -> {
+                AbstractZTreeComponent firstModuleTree = new ZTreeComposite(item.getId(),item.getModuleName(),"");
+                firstModuleTree.setParent(true);
+               // firstModuleTree.setOpen(true);
+               // if(roleModuleIds != null && !roleModuleIds.isEmpty()){
+                    firstModuleTree = (AbstractZTreeComponent) zTree.bulidModuleTree(pid,type,roleModuleIds,firstModuleTree);
+              //  }
                 treeList.add(firstModuleTree);
             });
         }

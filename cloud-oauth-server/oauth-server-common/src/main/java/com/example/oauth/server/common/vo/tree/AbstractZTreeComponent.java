@@ -66,9 +66,13 @@ public  abstract class AbstractZTreeComponent implements Serializable {
 
     //节点id
     private Long id;
+    private Long pid;
 
     //节点显示的名称字符串
     private String name;
+
+    // 附加属性
+    private Object attributes;
 
     public AbstractZTreeComponent(Long id, String name, String icon){
         this.icon = icon;

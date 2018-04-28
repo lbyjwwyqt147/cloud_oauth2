@@ -110,7 +110,7 @@ public class ModuleController extends AbstractController {
     }
 
     /**
-     *  符合 tree 结构的数据
+     *  符合 tree 结构的数据(排除 按钮类型的数据)
      * @return
      */
     @GetMapping("module/tree/{pid}")
@@ -119,4 +119,18 @@ public class ModuleController extends AbstractController {
         String treeJson = JSON.toJSONString(treeList);
         return treeJson;
     }
+
+    /**
+     *  获取符合 ztree 结构的数据(根据角色获取分配的资源 分配的资源设为选中状态)
+     * @param roleId  角色ID
+     * @return
+     */
+    @GetMapping("module/role/tree/{roleId}")
+    public String roleModuleTree(@PathVariable Long roleId){
+        List<AbstractZTreeComponent> treeList = this.moduleService.roleModuleTree(0L,roleId);
+        String treeJson = JSON.toJSONString(treeList);
+        return treeJson;
+    }
+
+
 }

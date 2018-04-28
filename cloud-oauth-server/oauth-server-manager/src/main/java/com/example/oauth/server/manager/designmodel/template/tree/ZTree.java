@@ -8,7 +8,9 @@ import com.example.oauth.server.domain.module.vo.AbstractModuleTree;
 import com.example.oauth.server.domain.module.vo.ModuleTreeComposite;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /***
@@ -18,16 +20,44 @@ import java.util.List;
 public class ZTree extends AbstractTree {
 
     @Override
-    public Object bulidModuleTree(Long pid, Object leaf) {
+    public Object bulidModuleTree(Long pid,Byte moduleType, Object leaf) {
         AbstractZTreeComponent zTreeComponent = (AbstractZTreeComponent) leaf;
         // 根据PID获取 资源菜单数据
         List<SysModule> firstChildren = this.moduleReository.findByModulePid(pid);
         if (firstChildren != null && !firstChildren.isEmpty()) {
+            Map<String,String> map = new HashMap<>();
             firstChildren.stream().forEach(item -> {
-                AbstractZTreeComponent leafTree = DozerBeanMapperUtil.copyProperties(item, ZTreeComposite.class);
+                AbstractZTreeComponent leafTree = new ZTreeComposite(item.getId(),item.getModuleName(),"");
+                map.put("type",item.getModuleType().toString());
+                leafTree.setAttributes(map);
                 ZTreeComposite moduleTreeComposite = (ZTreeComposite) zTreeComponent;
                 moduleTreeComposite.add(leafTree);
-                bulidModuleTree(leafTree.getId(),leafTree);
+                map.clear();
+                bulidModuleTree(leafTree.getId(),moduleType,leafTree);
+            });
+        }
+        return zTreeComponent;
+    }
+
+    @Override
+    public Object bulidModuleTree(Long pid, Byte moduleType, List<String> moduleIds, Object leaf) {
+        AbstractZTreeComponent zTreeComponent = (AbstractZTreeComponent) leaf;
+        // 根据PID获取 资源菜单数据
+        List<SysModule> firstChildren = this.moduleReository.findByModulePid(pid);
+        if (firstChildren != null && !firstChildren.isEmpty()) {
+            Map<String,String> map = new HashMap<>();
+            firstChildren.stream().forEach(item -> {
+                AbstractZTreeComponent leafTree = new ZTreeComposite(item.getId(),item.getModuleName(),"");
+               // leafTree.setOpen(true);
+                map.put("type",item.getModuleType().toString());
+                leafTree.setAttributes(map);
+                if (moduleIds != null && moduleIds.contains(item.getId())){
+                    leafTree.setChecked(true);
+                }
+                ZTreeComposite moduleTreeComposite = (ZTreeComposite) zTreeComponent;
+                moduleTreeComposite.add(leafTree);
+                map.clear();
+                bulidModuleTree(leafTree.getId(),moduleType,moduleIds,leafTree);
             });
         }
         return zTreeComponent;

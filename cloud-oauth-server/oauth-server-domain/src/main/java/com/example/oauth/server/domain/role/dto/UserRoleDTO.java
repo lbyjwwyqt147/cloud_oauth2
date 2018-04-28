@@ -15,7 +15,7 @@ public class UserRoleDTO extends AbstractDTO {
 
     private Long userId;
     private Long roleId;
-
-    private List<Long> roleIds;
+    private String[] userIds;
+    private String[] roleIds;
 
 }

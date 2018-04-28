@@ -17,10 +17,10 @@ import java.util.List;
 public class EasyuiTree extends AbstractTree {
 
     @Override
-    public Object bulidModuleTree(Long pid, Object leaf) {
+    public Object bulidModuleTree(Long pid, Byte moduleType,Object leaf) {
         AbstractEasyuiTreeComponent easyuiTreeComponent = (AbstractEasyuiTreeComponent) leaf;
         // 根据PID获取 资源菜单数据
-        List<SysModule> firstChildren = this.moduleReository.findByModulePid(pid);
+        List<SysModule> firstChildren = this.moduleReository.findByModulePidAndModuleTypeNot(pid,moduleType);
         if (firstChildren != null && !firstChildren.isEmpty()) {
             firstChildren.stream().forEach(item -> {
                 AbstractEasyuiTreeComponent firstModuleTree = new EasyuiTreeComposite();
@@ -29,9 +29,14 @@ public class EasyuiTree extends AbstractTree {
                 //firstModuleTree.setState("closed");
                 EasyuiTreeComposite moduleTreeComposite = (EasyuiTreeComposite) easyuiTreeComponent;
                 moduleTreeComposite.add(firstModuleTree);
-                bulidModuleTree(firstModuleTree.getId(),firstModuleTree);
+                bulidModuleTree(firstModuleTree.getId(),moduleType,firstModuleTree);
             });
         }
         return easyuiTreeComponent;
+    }
+
+    @Override
+    public Object bulidModuleTree(Long pid, Byte moduleType, List<String> moduleIds, Object leaf) {
+        return null;
     }
 }

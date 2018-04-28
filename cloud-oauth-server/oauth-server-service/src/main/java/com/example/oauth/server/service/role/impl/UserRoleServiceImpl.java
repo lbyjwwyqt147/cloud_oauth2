@@ -35,20 +35,40 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Transactional
     @Override
-    public boolean batchSave(UserRoleDTO userRoleDTO) {
+    public boolean batchUserRoleSave(UserRoleDTO userRoleDTO) {
         boolean success = false;
-        List<Long> roleIds = userRoleDTO.getRoleIds();
-        boolean roleIdsEmpty = roleIds != null && !roleIds.isEmpty();
+        String[] roleIds = userRoleDTO.getRoleIds();
+        boolean roleIdsEmpty = roleIds != null && roleIds.length > 0;
         if (roleIdsEmpty){
             List<SysUserRole> userRoleList = new LinkedList<>();
-            roleIds.stream().forEach(item -> {
+            for (String roleId : roleIds) {
                 SysUserRole userRole = new SysUserRole();
-                userRole.setRoleId(item);
-                userRole.setUserId(userRoleDTO.getUserId());
+                userRole.setRoleId(Long.valueOf(roleId));
+                userRole.setCreateId(1L);
                 userRole.setCreateTime(Instant.now());
-                userRole.setId(1L);
+                userRole.setUserId(userRole.getUserId());
                 userRoleList.add(userRole);
-            });
+            }
+            success = this.userRoleRepository.saveAll(userRoleList) != null;
+        }
+        return success;
+    }
+
+    @Override
+    public boolean batchRoleUserSave(UserRoleDTO userRoleDTO) {
+        boolean success = false;
+        String[]  userIds = userRoleDTO.getUserIds();
+        boolean userIdsEmpty = userIds != null && userIds.length > 0;
+        if (userIdsEmpty){
+            List<SysUserRole> userRoleList = new LinkedList<>();
+            for(String userId : userIds){
+                SysUserRole userRole = new SysUserRole();
+                userRole.setUserId(Long.valueOf(userId));
+                userRole.setCreateId(1L);
+                userRole.setCreateTime(Instant.now());
+                userRole.setRoleId(userRoleDTO.getRoleId());
+                userRoleList.add(userRole);
+            }
             success = this.userRoleRepository.saveAll(userRoleList) != null;
         }
         return success;
@@ -64,6 +84,20 @@ public class UserRoleServiceImpl implements UserRoleService {
         return bulidAccountPage((byte)1,userRoleQuery);
     }
 
+    @Transactional
+    @Override
+    public boolean deleteByRoleIdAndUserIdIn(Long roleId, List<Long> userIds) {
+        Long resultNumber = this.userRoleRepository.deleteByRoleIdAndUserIdIn(roleId,userIds);
+        boolean success = resultNumber > 0;
+        return success;
+    }
+
+    /**
+     * 构建 分页数据
+     * @param sign
+     * @param userRoleQuery
+     * @return
+     */
     private PageVo<AccountVO> bulidAccountPage(Byte sign,UserRoleQuery userRoleQuery){
         Long roleId = userRoleQuery.getRoleId();
         //生成Pageable变量

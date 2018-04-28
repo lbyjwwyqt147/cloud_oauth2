@@ -9,10 +9,10 @@ import com.example.oauth.server.domain.role.query.UserRoleQuery;
 import com.example.oauth.server.service.role.UserRoleService;
 import com.example.oauth.server.web.base.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.List;
 
 /***
  * 人员角色  controller
@@ -25,26 +25,61 @@ public class UserRoleController extends AbstractController {
     private UserRoleService userRoleService;
 
     /**
-     * 保存数据
+     * 保存数据(一个用户保存多个角色)
      * @param userRoleDTO
      * @return
      */
     @PostMapping("userRole")
-    public RestfulVo save(UserRoleDTO userRoleDTO){
-        boolean success  = this.userRoleService.batchSave(userRoleDTO);
+    public RestfulVo batchUserRoleSave(UserRoleDTO userRoleDTO){
+        boolean success  = this.userRoleService.batchUserRoleSave(userRoleDTO);
         return ResultUtil.restful(success);
     }
 
+    /**
+     * 保存数据（一个角色保存多个用户）
+     * @param userRoleDTO
+     * @return
+     */
+    @PostMapping("roleUser")
+    public RestfulVo batchRoleUserSave(UserRoleDTO userRoleDTO){
+        boolean success  = this.userRoleService.batchRoleUserSave(userRoleDTO);
+        return ResultUtil.restful(success);
+    }
+
+    /**
+     *  删除角色分配的人员
+     * @param roleId  角色ID
+     * @param userIds 人员ID 集合
+     * @return
+     */
+    @DeleteMapping("userRole")
+    public RestfulVo deleteByRoleIdAndUserIdIn(Long roleId, Long[]  userIds){
+        boolean success = this.userRoleService.deleteByRoleIdAndUserIdIn(roleId,Arrays.asList(userIds));
+        return ResultUtil.restful(success);
+    }
+
+    /**
+     *  更具角色ID 获取角色已经拥有的人员信息 列表
+     * @param userRoleQuery
+     * @return
+     */
     @GetMapping("role/user/have")
     public PageVo findUserByRoleId(UserRoleQuery userRoleQuery){
         PageVo<AccountVO> pageVo = this.userRoleService.findPageByRoleId(userRoleQuery);
         return pageVo;
     }
 
+    /**
+     * 根据角色ID 获取角色未分配的人员信息列表
+     * @param userRoleQuery
+     * @return
+     */
     @GetMapping("role/user/not")
     public PageVo findPageByRoleIdEliminate(UserRoleQuery userRoleQuery){
         PageVo<AccountVO> pageVo = this.userRoleService.findPageByRoleIdEliminate(userRoleQuery);
         return pageVo;
     }
+
+
 
 }

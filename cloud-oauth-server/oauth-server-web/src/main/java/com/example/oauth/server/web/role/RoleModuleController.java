@@ -7,8 +7,11 @@ import com.example.oauth.server.service.role.RoleModuleService;
 import com.example.oauth.server.web.base.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /***
  * 角色资源 controller
@@ -29,5 +32,17 @@ public class RoleModuleController extends AbstractController {
     public RestfulVo save(RoleModuleDTO roleModuleDTO){
        boolean success = this.roleModuleService.batchSave(roleModuleDTO);
        return ResultUtil.restful(success);
+    }
+
+    /**
+     *  删除 角色 分配的 资源
+     * @param roleId  角色ID
+     * @param moduleList  资源ID
+     * @return
+     */
+    @DeleteMapping("roleModule")
+    public RestfulVo deleteByRoleIdAndModuleIdIn(Long roleId, List<Long> moduleList){
+        boolean success = this.roleModuleService.deleteByRoleIdAndModuleIdIn(roleId,moduleList);
+        return ResultUtil.restful(success);
     }
 }
