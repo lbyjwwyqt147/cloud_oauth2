@@ -22,11 +22,18 @@ public interface RoleModuleRepository extends JpaRepository<SysRoleModule,Long> 
       Long deleteByRoleIdAndModuleIdIn(Long roleId, List<Long> moduleList);
 
     /**
+     * 删除角色资源
+     * @param roleId 角色ID
+     * @return
+     */
+      Long deleteByRoleId(Long roleId);
+
+    /**
      *  根据角色ID 获取角色分配的 资源ID
      * @param roleId  角色ID
      * @return
      */
     @Query(value = "select module_id from sys_role_module where role_id = :roleId",nativeQuery = true)
-    List<String> findModuleIdByRoleId(@Param("roleId") Long roleId);
+    List<Long> findModuleIdByRoleId(@Param("roleId") Long roleId);
 
 }

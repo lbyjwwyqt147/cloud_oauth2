@@ -3,7 +3,9 @@ package com.example.oauth.server.service.module;
 import com.example.oauth.server.common.vo.tree.AbstractEasyuiTreeComponent;
 import com.example.oauth.server.common.vo.tree.AbstractZTreeComponent;
 import com.example.oauth.server.domain.module.dto.SysModuleDTO;
+import com.example.oauth.server.domain.module.entity.SysModule;
 import com.example.oauth.server.domain.module.vo.AbstractModuleTree;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -31,6 +33,20 @@ public interface ModuleService {
      * @return
      */
     List<AbstractEasyuiTreeComponent> moduleTree(Long pid);
+
+    /**
+     * 根据 userId 获取用户资源菜单tree
+     * @param userId
+     * @return
+     */
+    List<AbstractModuleTree> userModuleTree(Long userId);
+
+    /**
+     * 根据userId 获取用户资源菜单
+     * @param userId
+     * @return
+     */
+    List<SysModule> findByUserModule(Long userId);
 
     /**
      *  获取符合 ztree 结构的数据(根据角色获取分配的资源 分配的资源设为选中状态)

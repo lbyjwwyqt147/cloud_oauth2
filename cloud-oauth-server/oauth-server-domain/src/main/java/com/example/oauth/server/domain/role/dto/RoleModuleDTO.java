@@ -15,6 +15,6 @@ public class RoleModuleDTO extends AbstractDTO {
     private Long roleId;
     private Long moduleId;
 
-    private List<Long> moduleIds;
+    private String[] moduleIds;
 
 }

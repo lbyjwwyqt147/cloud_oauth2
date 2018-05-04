@@ -2,6 +2,8 @@ package com.example.oauth.server.repository.module;
 
 import com.example.oauth.server.domain.module.entity.SysModule;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -25,4 +27,11 @@ public interface ModuleReository extends JpaRepository<SysModule,Long> {
      */
     List<SysModule> findByModulePidAndModuleTypeNot(Long modulePid,Byte moduleType);
 
+    /**
+     * 根据userid 获取所属的资源菜单
+     * @param userId userid
+     * @return
+     */
+    @Query(value = "select m.* from sys_module as m inner join sys_role_module as rm on m.id = rm.module_id inner join sys_user_role ur on rm.role_id = ur.role_id where ur.user_id = :userId",nativeQuery = true)
+    List<SysModule> findByUserModule(@Param("userId") Long userId);
 }

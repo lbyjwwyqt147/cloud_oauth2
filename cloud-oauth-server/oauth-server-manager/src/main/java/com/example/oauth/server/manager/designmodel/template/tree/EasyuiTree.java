@@ -36,7 +36,7 @@ public class EasyuiTree extends AbstractTree {
     }
 
     @Override
-    public Object bulidModuleTree(Long pid, Byte moduleType, List<String> moduleIds, Object leaf) {
+    public Object bulidModuleTree(Long pid, Byte moduleType, List<Long> moduleIds, Object leaf) {
         return null;
     }
 }

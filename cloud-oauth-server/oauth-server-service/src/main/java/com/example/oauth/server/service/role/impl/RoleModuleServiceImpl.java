@@ -27,18 +27,20 @@ public class RoleModuleServiceImpl implements RoleModuleService {
     @Override
     public boolean batchSave(RoleModuleDTO roleModuleDTO) {
         boolean success = false;
-        List<Long> moduleIds = roleModuleDTO.getModuleIds();
-        boolean moduleIdsEmpty = moduleIds != null && !moduleIds.isEmpty();
+        String[] moduleIds = roleModuleDTO.getModuleIds();
+        boolean moduleIdsEmpty = moduleIds != null && moduleIds.length > 0;
         if(moduleIdsEmpty){
             List<SysRoleModule> roleModuleList = new LinkedList<>();
-            moduleIds.stream().forEach(item -> {
-               SysRoleModule roleModule = new SysRoleModule();
-               roleModule.setModuleId(item);
-               roleModule.setRoleId(roleModuleDTO.getRoleId());
-               roleModule.setCreateTime(Instant.now());
-               roleModule.setId(1L);
-               roleModuleList.add(roleModule);
-            });
+            for (String moduleId:moduleIds) {
+                SysRoleModule roleModule = new SysRoleModule();
+                roleModule.setModuleId(Long.valueOf(moduleId));
+                roleModule.setRoleId(roleModuleDTO.getRoleId());
+                roleModule.setCreateTime(Instant.now());
+                roleModule.setCreateId(1L);
+                roleModuleList.add(roleModule);
+            }
+            //先删除角色资源 再重新保存
+            this.roleModuleRepository.deleteByRoleId(roleModuleDTO.getRoleId());
             success = this.roleModuleRepository.saveAll(roleModuleList) != null;
         }
         return success;

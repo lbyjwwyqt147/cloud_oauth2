@@ -30,5 +30,5 @@ public abstract class AbstractTree {
      * @param leaf  叶子节点
      * @return
      */
-    public abstract Object bulidModuleTree(Long pid, Byte moduleType, List<String> moduleIds, Object leaf);
+    public abstract Object bulidModuleTree(Long pid, Byte moduleType, List<Long> moduleIds, Object leaf);
 }

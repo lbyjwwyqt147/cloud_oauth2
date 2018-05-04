@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigInteger;
 import java.time.Instant;
 import java.util.LinkedList;
 import java.util.List;
@@ -97,13 +98,17 @@ public class ModuleServiceImpl implements ModuleService {
         List<SysModule> firstChildren = this.findByModulePid(0L);
         if (firstChildren != null && !firstChildren.isEmpty()){
             // 根据角色ID 获取角色分配的资源ID
-            List<String> roleModuleIds = this.roleModuleRepository.findModuleIdByRoleId(roleId);
+            List<Long> roleModuleIds = this.roleModuleRepository.findModuleIdByRoleId(roleId);
             firstChildren.stream().forEach(item -> {
                 AbstractZTreeComponent firstModuleTree = new ZTreeComposite(item.getId(),item.getModuleName(),"");
                 firstModuleTree.setParent(true);
-               // firstModuleTree.setOpen(true);
+                //firstModuleTree.setOpen(true);
+                firstModuleTree.setPid(item.getModulePid());
+                if (roleModuleIds != null && roleModuleIds.contains(BigInteger.valueOf(item.getId()))){
+                    firstModuleTree.setChecked(true);
+                }
                // if(roleModuleIds != null && !roleModuleIds.isEmpty()){
-                    firstModuleTree = (AbstractZTreeComponent) zTree.bulidModuleTree(pid,type,roleModuleIds,firstModuleTree);
+                    firstModuleTree = (AbstractZTreeComponent) zTree.bulidModuleTree(item.getId(),type,roleModuleIds,firstModuleTree);
               //  }
                 treeList.add(firstModuleTree);
             });
@@ -111,6 +116,32 @@ public class ModuleServiceImpl implements ModuleService {
         return treeList;
     }
 
+    @Override
+    public List<AbstractModuleTree> userModuleTree(Long userId) {
+        List<AbstractModuleTree> treeList = new LinkedList<>();
+        List<SysModule> firstChildren = this.moduleReository.findByUserModule(userId);
+        if (firstChildren != null && !firstChildren.isEmpty()){
+            firstChildren.stream().forEach(item -> {
+
+                firstChildren.stream().forEach(it -> {
+                  if (item.getId() == it.getModulePid()){
+                      AbstractModuleTree firstModuleTree = DozerBeanMapperUtil.copyProperties(it,ModuleTreeComposite.class);
+                      firstModuleTree =  buildTree(item.getId(),firstModuleTree);
+                      treeList.add(firstModuleTree);
+                  };
+                });
+                //firstModuleTree.setState("closed");
+
+
+            });
+        }
+        return treeList;
+    }
+
+    @Override
+    public List<SysModule> findByUserModule(Long userId) {
+        return null;
+    }
 
     /**
      * 构建 treeGrid 树结构数据

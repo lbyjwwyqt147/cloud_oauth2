@@ -132,5 +132,18 @@ public class ModuleController extends AbstractController {
         return treeJson;
     }
 
+    /**
+     * 获取登录人的资源菜单
+     * @param token
+     * @return
+     */
+    @GetMapping("module/user/module/tree")
+    public String userModuleTree(String token){
+        Long userId = 68L;
+        List<AbstractModuleTree> treeList = this.moduleService.userModuleTree(userId);
+        String treeJson = JSON.toJSONString(treeList);
+        return treeJson;
+    }
+
 
 }
