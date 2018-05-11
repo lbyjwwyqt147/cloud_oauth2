@@ -5,6 +5,7 @@ import com.example.oauth.server.domain.account.vo.AccountVO;
 import com.example.oauth.server.domain.base.PageVo;
 import com.example.oauth.server.domain.role.dto.UserRoleDTO;
 import com.example.oauth.server.domain.role.query.UserRoleQuery;
+import com.example.oauth.server.domain.role.vo.UserRoleVO;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -49,5 +50,12 @@ public interface UserRoleService {
      * @return
      */
     boolean deleteByRoleIdAndUserIdIn(Long roleId,List<Long> userIds);
+
+    /**
+     * 根据登录名获取用户信息和用户角色信息
+     * @param username
+     * @return
+     */
+    UserRoleVO findUserAndRole(String username);
 
 }

@@ -64,6 +64,11 @@ public class RoleServiceImpl implements RoleService {
         return pageVo;
     }
 
+    @Override
+    public List<SysRole> findByUserId(Long userId) {
+        return this.roleRepository.findByUserId(userId);
+    }
+
     /**
      *  将目标对象值 拷贝到 SysRole
      * @param source

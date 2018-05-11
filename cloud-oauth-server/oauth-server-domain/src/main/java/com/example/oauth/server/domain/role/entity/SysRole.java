@@ -46,6 +46,8 @@ public class SysRole implements Serializable{
     @LastModifiedBy
     private Long updateId;
     private Byte status;
+    private String authorizedSigns;
+
 
 
 }

@@ -5,9 +5,13 @@ import com.example.oauth.server.domain.account.entity.SysAccount;
 import com.example.oauth.server.domain.account.vo.AccountVO;
 import com.example.oauth.server.domain.base.PageVo;
 import com.example.oauth.server.domain.role.dto.UserRoleDTO;
+import com.example.oauth.server.domain.role.entity.SysRole;
 import com.example.oauth.server.domain.role.entity.SysUserRole;
 import com.example.oauth.server.domain.role.query.UserRoleQuery;
+import com.example.oauth.server.domain.role.vo.RoleVO;
+import com.example.oauth.server.domain.role.vo.UserRoleVO;
 import com.example.oauth.server.repository.account.SysAccountRepository;
+import com.example.oauth.server.repository.role.RoleRepository;
 import com.example.oauth.server.repository.role.UserRoleRepository;
 import com.example.oauth.server.service.role.UserRoleService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,6 +37,8 @@ public class UserRoleServiceImpl implements UserRoleService {
     private UserRoleRepository userRoleRepository;
     @Autowired
     private SysAccountRepository accountRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Transactional
     @Override
@@ -90,6 +97,20 @@ public class UserRoleServiceImpl implements UserRoleService {
         Long resultNumber = this.userRoleRepository.deleteByRoleIdAndUserIdIn(roleId,userIds);
         boolean success = resultNumber > 0;
         return success;
+    }
+
+    @Override
+    public UserRoleVO findUserAndRole(String username) {
+        UserRoleVO userRoleVO =  new UserRoleVO();
+        SysAccount account  = this.accountRepository.findByUserAccount(username);
+        if(account != null){
+            userRoleVO.setAccount(DozerBeanMapperUtil.copyProperties(account,AccountVO.class));
+            userRoleVO.setUserId(account.getId());
+            List<SysRole> roles = this.roleRepository.findByUserId(account.getId());
+            userRoleVO.setRoles(DozerBeanMapperUtil.copyProperties(roles,RoleVO.class));
+        }
+
+        return userRoleVO;
     }
 
     /**

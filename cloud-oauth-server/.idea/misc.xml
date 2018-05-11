@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/oauth-server-common/pom.xml" />
         <option value="$PROJECT_DIR$/oauth-server-manager/pom.xml" />
         <option value="$PROJECT_DIR$/oauth-server-api/pom.xml" />
+        <option value="$PROJECT_DIR$/oauth-security/pom.xml" />
       </list>
     </option>
   </component>

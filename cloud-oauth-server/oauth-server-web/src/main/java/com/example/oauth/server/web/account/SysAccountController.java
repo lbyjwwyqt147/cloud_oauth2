@@ -32,13 +32,5 @@ public class SysAccountController extends AbstractController {
         return ResultUtil.restful(success);
     }
 
-    /**
-     * 登录
-     * @param userAccount
-     * @param userPwd
-     * @return
-     */
-    public RestfulVo login(String userAccount, String userPwd){
-       return null;
-    }
+
 }

@@ -140,7 +140,7 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public List<SysModule> findByUserModule(Long userId) {
-        return null;
+        return this.moduleReository.findByUserModule(userId);
     }
 
     /**

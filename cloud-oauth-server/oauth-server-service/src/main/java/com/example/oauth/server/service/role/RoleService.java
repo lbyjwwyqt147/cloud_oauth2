@@ -2,9 +2,12 @@ package com.example.oauth.server.service.role;
 
 import com.example.oauth.server.domain.base.PageVo;
 import com.example.oauth.server.domain.role.dto.RoleDTO;
+import com.example.oauth.server.domain.role.entity.SysRole;
 import com.example.oauth.server.domain.role.query.RoleQuery;
 import com.example.oauth.server.domain.role.vo.RoleVO;
 import org.springframework.data.domain.Page;
+
+import java.util.List;
 
 /***
  *  角色 service
@@ -24,5 +27,12 @@ public interface RoleService {
      * @return
      */
     PageVo<RoleVO> findListPage(RoleQuery roleQuery);
+
+    /**
+     * 根据userId 获取用户拥有的角色
+     * @param userId
+     * @return
+     */
+    List<SysRole> findByUserId(Long userId);
 
 }

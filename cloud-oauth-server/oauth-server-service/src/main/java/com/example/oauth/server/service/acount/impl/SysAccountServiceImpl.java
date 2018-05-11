@@ -31,6 +31,11 @@ public class SysAccountServiceImpl implements SysAccountService {
     }
 
     @Override
+    public SysAccount findByAccount(String userAccount) {
+        return this.accountRepository.findByUserAccount(userAccount);
+    }
+
+    @Override
     public AccountVO findByUserAccountAndUserPwd(String userAccount, String userPwd) {
         SysAccount account = this.accountRepository.findByUserAccountAndUserPwd(userAccount,userPwd);
         return this.copyProperties(account);

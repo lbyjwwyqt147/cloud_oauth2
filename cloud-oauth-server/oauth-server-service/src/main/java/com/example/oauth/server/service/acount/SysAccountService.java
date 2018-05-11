@@ -1,6 +1,7 @@
 package com.example.oauth.server.service.acount;
 
 import com.example.oauth.server.domain.account.dto.AccountDTO;
+import com.example.oauth.server.domain.account.entity.SysAccount;
 import com.example.oauth.server.domain.account.vo.AccountVO;
 
 /***
@@ -14,6 +15,13 @@ public interface SysAccountService {
      * @return
      */
     AccountVO findByUserAccount(String userAccount);
+
+    /**
+     * 根据账户获取账户信息
+     * @param userAccount 账户
+     * @return
+     */
+    SysAccount findByAccount(String userAccount);
 
     /**
      * 根据 账户和密码获取账户信息

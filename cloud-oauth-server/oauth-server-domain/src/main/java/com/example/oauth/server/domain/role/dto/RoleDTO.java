@@ -13,4 +13,5 @@ public class RoleDTO extends AbstractDTO {
     private String roleCode;
     private String roleName;
     private String roleDescription;
+    private String authorizedSigns;
 }

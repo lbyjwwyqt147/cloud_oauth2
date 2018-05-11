@@ -2,6 +2,8 @@ package com.example.oauth.server.domain.account.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.envers.Audited;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -42,4 +44,6 @@ public class SysAccount implements Serializable{
     private Byte status;
     private String userEmail;
     private Integer bindingPhone;
+
+
 }

@@ -13,4 +13,5 @@ public class RoleVO extends AbstractVO {
     private String roleCode;
     private String roleName;
     private String roleDescription;
+    private String authorizedSigns;
 }
