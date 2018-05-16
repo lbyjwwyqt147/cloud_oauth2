@@ -10,8 +10,11 @@ public enum ErrorCodeEnum {
     FAIL("fail.", "1"),
     EXIST("数据已经存在.","10"),
     PARAMS("参数错误.","1002"),
-    ERROR("程序运行中发生异常.","-1"),
-    DELETE("删除成功.","3");
+    ERROR("程序执行发生错误异常.","500"),
+    DELETE("删除成功.","3"),
+    AUTHORITY("无访问权限.","403"),
+    LOGIN("未登录系统","-1");
+
 
     private String message ;
     private String code ;

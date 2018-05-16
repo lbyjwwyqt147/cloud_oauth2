@@ -16,6 +16,7 @@ spring:
         hibernate:
           temp:
             use_jdbc_metadata_defaults: false
+
   # 数据源 配置
   datasource:
       platform: postgres

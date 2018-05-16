@@ -35,7 +35,7 @@ public class ModuleController extends AbstractController {
     @PostMapping("module")
     public RestfulVo save(SysModuleDTO moduleDTO){
         boolean success = this.moduleService.saveModule(moduleDTO);
-        return ResultUtil.restful(success);
+        return ResultUtil.restfulInfo(success);
     }
 
     /**

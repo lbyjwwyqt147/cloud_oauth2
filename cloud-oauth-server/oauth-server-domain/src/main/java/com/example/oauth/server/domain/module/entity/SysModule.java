@@ -17,7 +17,7 @@ import java.time.Instant;
  * 资源菜单 DO
  */
 @Entity
-@Audited
+//@Audited
 @EntityListeners(AuditingEntityListener.class)
 @EqualsAndHashCode(callSuper = false)
 @Data

@@ -117,6 +117,16 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     @Override
+    public List<SysModule> findAllModuleExcludeDirectory() {
+        return this.moduleReository.findByModuleTypeNot((byte)1);
+    }
+
+    @Override
+    public List<SysModule> findByRoleModule() {
+        return this.moduleReository.findByRoleModule();
+    }
+
+    @Override
     public List<AbstractModuleTree> userModuleTree(Long userId) {
         List<AbstractModuleTree> treeList = new LinkedList<>();
         List<SysModule> firstChildren = this.moduleReository.findByUserModule(userId);

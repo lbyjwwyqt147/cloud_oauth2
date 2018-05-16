@@ -32,7 +32,7 @@ public class UserRoleController extends AbstractController {
     @PostMapping("userRole")
     public RestfulVo batchUserRoleSave(UserRoleDTO userRoleDTO){
         boolean success  = this.userRoleService.batchUserRoleSave(userRoleDTO);
-        return ResultUtil.restful(success);
+        return ResultUtil.restfulInfo(success);
     }
 
     /**
@@ -43,7 +43,7 @@ public class UserRoleController extends AbstractController {
     @PostMapping("roleUser")
     public RestfulVo batchRoleUserSave(UserRoleDTO userRoleDTO){
         boolean success  = this.userRoleService.batchRoleUserSave(userRoleDTO);
-        return ResultUtil.restful(success);
+        return ResultUtil.restfulInfo(success);
     }
 
     /**
@@ -55,7 +55,7 @@ public class UserRoleController extends AbstractController {
     @DeleteMapping("userRole")
     public RestfulVo deleteByRoleIdAndUserIdIn(Long roleId, Long[]  userIds){
         boolean success = this.userRoleService.deleteByRoleIdAndUserIdIn(roleId,Arrays.asList(userIds));
-        return ResultUtil.restful(success);
+        return ResultUtil.restfulInfo(success);
     }
 
     /**

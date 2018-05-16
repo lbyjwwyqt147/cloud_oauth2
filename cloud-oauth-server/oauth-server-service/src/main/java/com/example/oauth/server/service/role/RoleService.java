@@ -35,4 +35,9 @@ public interface RoleService {
      */
     List<SysRole> findByUserId(Long userId);
 
+    /**
+     * 获取所有分配的角色
+     * @return
+     */
+    List<SysRole> findByRoleModule();
 }

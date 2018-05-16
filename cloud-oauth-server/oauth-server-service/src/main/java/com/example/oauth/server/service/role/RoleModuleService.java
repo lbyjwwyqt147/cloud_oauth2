@@ -1,6 +1,7 @@
 package com.example.oauth.server.service.role;
 
 import com.example.oauth.server.domain.role.dto.RoleModuleDTO;
+import com.example.oauth.server.domain.role.vo.RoleModuleVO;
 
 import java.util.List;
 
@@ -23,5 +24,6 @@ public interface RoleModuleService {
      * @return
      */
     boolean deleteByRoleIdAndModuleIdIn(Long roleId, List<Long> moduleList);
+
 
 }

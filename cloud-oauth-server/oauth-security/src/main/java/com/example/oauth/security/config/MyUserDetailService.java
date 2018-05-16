@@ -1,12 +1,10 @@
-package com.example.oauth.security.userdetails;
+package com.example.oauth.security.config;
 
-import com.example.oauth.server.domain.account.entity.SysAccount;
 import com.example.oauth.server.domain.account.vo.AccountVO;
-import com.example.oauth.server.domain.module.entity.SysModule;
+import com.example.oauth.server.domain.account.vo.UserInfoVO;
 import com.example.oauth.server.domain.role.entity.SysRole;
 import com.example.oauth.server.domain.role.vo.RoleVO;
 import com.example.oauth.server.domain.role.vo.UserRoleVO;
-import com.example.oauth.server.service.acount.SysAccountService;
 import com.example.oauth.server.service.module.ModuleService;
 import com.example.oauth.server.service.role.RoleService;
 import com.example.oauth.server.service.role.UserRoleService;
@@ -20,7 +18,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,6 +32,15 @@ import java.util.Set;
  * @remark:   配置用户权限认证
  * @explain   当用户登录时会进入此类的loadUserByUsername方法对用户进行验证，验证成功后会被保存在当前回话的principal对象中
  *             系统获取当前登录对象信息方法 WebUserDetails webUserDetails = (WebUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+ *
+ *              异常信息：
+ *              UsernameNotFoundException     用户找不到
+ *              BadCredentialsException       坏的凭据
+ *              AccountExpiredException       账户过期
+ *              LockedException               账户锁定
+ *              DisabledException             账户不可用
+ *              CredentialsExpiredException   证书过期
+ *
  *
  */
 @Slf4j
@@ -54,12 +60,13 @@ public class MyUserDetailService implements UserDetailsService {
         //用户用户信息和用户角色
         UserRoleVO userRole = this.userRoleService.findUserAndRole(username);
         if(userRole.getUserId() == null){
+            //后台抛出的异常是：org.springframework.security.authentication.BadCredentialsException: Bad credentials  坏的凭证 如果要抛出UsernameNotFoundException 用户找不到异常则需要自定义重新它的异常
             throw new UsernameNotFoundException("用户：" + username + " 不存在");
 
         }
         //获取用户信息
-        AccountVO account = userRole.getAccount();
-        //获取用户角色
+        UserInfoVO userInfo = userRole.getUserInfo();
+        //获取用户拥有的角色
         List<RoleVO> roleList = userRole.getRoles();
         Set<GrantedAuthority> grantedAuths = new HashSet<GrantedAuthority>();
         if(roleList.size() > 0){
@@ -67,7 +74,7 @@ public class MyUserDetailService implements UserDetailsService {
                 grantedAuths.add(new SimpleGrantedAuthority(role.getAuthorizedSigns()));
             });
         }
-        User userDetail = new User(account.getUserAccount(),account.getUserPwd(),
+        User userDetail = new User(userInfo.getUserAccount(),userInfo.getUserPwd(),
                 grantedAuths);
 
 

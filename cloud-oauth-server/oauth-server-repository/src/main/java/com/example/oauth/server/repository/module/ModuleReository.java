@@ -34,4 +34,17 @@ public interface ModuleReository extends JpaRepository<SysModule,Long> {
      */
     @Query(value = "select m.* from sys_module as m inner join sys_role_module as rm on m.id = rm.module_id inner join sys_user_role ur on rm.role_id = ur.role_id where ur.user_id = :userId",nativeQuery = true)
     List<SysModule> findByUserModule(@Param("userId") Long userId);
+
+    /**
+     * 查询角色资源
+     * @return
+     */
+    @Query(value = "select m.*,rm.role_id as authorizedSigns from sys_module as m inner join sys_role_module as rm on m.id = rm.module_id where m.status = 1",nativeQuery = true)
+    List<SysModule> findByRoleModule();
+
+    /**
+     * 获取所有资源（排除目录类型资源）
+     * @return
+     */
+    List<SysModule> findByModuleTypeNot(Byte type);
 }

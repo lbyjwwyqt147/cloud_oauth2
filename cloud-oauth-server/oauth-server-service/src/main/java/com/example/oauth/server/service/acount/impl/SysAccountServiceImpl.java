@@ -2,8 +2,10 @@ package com.example.oauth.server.service.acount.impl;
 
 import com.example.oauth.server.domain.account.dto.AccountDTO;
 import com.example.oauth.server.domain.account.entity.SysAccount;
+import com.example.oauth.server.domain.account.entity.UserInfo;
 import com.example.oauth.server.domain.account.vo.AccountVO;
 import com.example.oauth.server.repository.account.SysAccountRepository;
+import com.example.oauth.server.repository.account.UserInfoRepository;
 import com.example.oauth.server.service.acount.SysAccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -22,6 +24,8 @@ public class SysAccountServiceImpl implements SysAccountService {
 
     @Autowired
     private SysAccountRepository accountRepository;
+    @Autowired
+    private UserInfoRepository userInfoRepository;
 
 
     @Override
@@ -54,8 +58,15 @@ public class SysAccountServiceImpl implements SysAccountService {
         if (account != null){
             account.setCreateTime(Instant.now());
             account.setStatus((byte) 1);
+            //保存账号信息
             this.accountRepository.save(account);
-            log.info("保存后的 id值：" + account.getId());
+            //保存用户信息
+            UserInfo userInfo = new UserInfo();
+            userInfo.setAccountId(account.getId());
+            userInfo.setUserName(account.getUserAccount());
+            userInfo.setUserSex((byte)1);
+            userInfo.setCreateTime(Instant.now());
+            this.userInfoRepository.save(userInfo);
             return true;
         }
         return false;

@@ -1,5 +1,7 @@
 package com.example.oauth.server.common.restful;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.example.oauth.server.common.exception.ErrorCodeEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -15,4 +17,28 @@ public class RestfulVo  implements Serializable {
     private String message; // 描述信息
     private Object data;   // 数据
     private Object extend; //扩展数据
+    @JSONField(serialize=false)
+    private ErrorCodeEnum  errorCodeEnum;
+
+    public RestfulVo(){
+
+    }
+
+    public RestfulVo(ErrorCodeEnum  errorCodeEnum){
+        this.status = errorCodeEnum.getCode();
+        this.message = errorCodeEnum.getMessage();
+    }
+
+    public RestfulVo(ErrorCodeEnum  errorCodeEnum,Object data,Object extend){
+        this.status = errorCodeEnum.getCode();
+        this.message = errorCodeEnum.getMessage();
+        this.data = data;
+        this.extend = extend;
+    }
+
+    public RestfulVo(ErrorCodeEnum  errorCodeEnum,Object data){
+        this.status = errorCodeEnum.getCode();
+        this.message = errorCodeEnum.getMessage();
+        this.data = data;
+    }
 }

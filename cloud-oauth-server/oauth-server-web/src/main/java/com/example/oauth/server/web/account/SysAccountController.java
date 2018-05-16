@@ -29,7 +29,7 @@ public class SysAccountController extends AbstractController {
     @PostMapping("account")
     public RestfulVo saveAccount(AccountDTO accountDTO){
         boolean success = this.accountService.saveAccount(accountDTO);
-        return ResultUtil.restful(success);
+        return ResultUtil.restfulInfo(success);
     }
 
 

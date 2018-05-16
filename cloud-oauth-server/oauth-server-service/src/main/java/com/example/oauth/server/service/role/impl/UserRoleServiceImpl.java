@@ -2,7 +2,9 @@ package com.example.oauth.server.service.role.impl;
 
 import com.example.oauth.server.common.util.DozerBeanMapperUtil;
 import com.example.oauth.server.domain.account.entity.SysAccount;
+import com.example.oauth.server.domain.account.entity.UserInfo;
 import com.example.oauth.server.domain.account.vo.AccountVO;
+import com.example.oauth.server.domain.account.vo.UserInfoVO;
 import com.example.oauth.server.domain.base.PageVo;
 import com.example.oauth.server.domain.role.dto.UserRoleDTO;
 import com.example.oauth.server.domain.role.entity.SysRole;
@@ -104,7 +106,14 @@ public class UserRoleServiceImpl implements UserRoleService {
         UserRoleVO userRoleVO =  new UserRoleVO();
         SysAccount account  = this.accountRepository.findByUserAccount(username);
         if(account != null){
-            userRoleVO.setAccount(DozerBeanMapperUtil.copyProperties(account,AccountVO.class));
+            UserInfo userInfo = account.getUserInfo();
+            UserInfoVO userInfoVO = DozerBeanMapperUtil.copyProperties(userInfo,UserInfoVO.class);
+            userInfoVO.setBindingPhone(account.getBindingPhone());
+            userInfoVO.setUserAccount(account.getUserAccount());
+            userInfoVO.setUserEmail(account.getUserEmail());
+            userInfoVO.setUserPwd(account.getUserPwd());
+            userInfoVO.setStatus(account.getStatus());
+            userRoleVO.setUserInfo(userInfoVO);
             userRoleVO.setUserId(account.getId());
             List<SysRole> roles = this.roleRepository.findByUserId(account.getId());
             userRoleVO.setRoles(DozerBeanMapperUtil.copyProperties(roles,RoleVO.class));

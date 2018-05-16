@@ -38,6 +38,7 @@ public class RoleServiceImpl implements RoleService {
     public boolean save(RoleDTO roleDTO) {
         SysRole role = DozerBeanMapperUtil.copyProperties(roleDTO,SysRole.class);
         role.setStatus((byte)1);
+        role.setAuthorizedSigns("ROLE_"+roleDTO.getAuthorizedSigns().toUpperCase());
         role.setCreateTime(Instant.now());
         this.roleRepository.save(role);
         Long resultId = role.getId();
@@ -67,6 +68,11 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public List<SysRole> findByUserId(Long userId) {
         return this.roleRepository.findByUserId(userId);
+    }
+
+    @Override
+    public List<SysRole> findByRoleModule() {
+        return this.roleRepository.findByRoleModule();
     }
 
     /**

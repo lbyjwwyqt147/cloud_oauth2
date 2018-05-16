@@ -1,6 +1,6 @@
 package com.example.oauth.security.config;
 
-import com.example.oauth.security.userdetails.MyUserDetailService;
+import com.example.oauth.security.handlerinterceptor.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +11,12 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 
 /***
@@ -33,6 +39,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private MyUserDetailService myUserDetailService;
+    @Autowired
+    private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
 
     /**
      * 置user-detail服务
@@ -109,16 +117,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //对请求进行认证
                 .authorizeRequests()
                 // 所有 /oauth/v1/api/login/ 请求的都放行 不做认证即不需要登录即可访问
-                .antMatchers("/oauth/v1/api/login/**").permitAll()
+                .antMatchers("/auth/v1/api/login/**").permitAll()
                 // 对于获取token的rest api要允许匿名访问
                 .antMatchers("oauth/**").permitAll()
                 // 其他请求都需要进行认证,认证通过够才能访问
                 .anyRequest().authenticated()
+                .and().exceptionHandling()
+                // 当用户请求了一个受保护的资源，但是用户没有通过登录认证，则抛出登录认证异常，MyAuthenticationEntryPointHandler类中commence()就会调用
+                .authenticationEntryPoint(myAuthenticationEntryPoint())
+                //用户已经通过了登录认证，在访问一个受保护的资源，但是权限不够，则抛出授权异常，MyAccessDeniedHandler类中handle()就会调用
+                .accessDeniedHandler(myAccessDeniedHandler())
                 .and()
                 //
                 .formLogin()
                 // 登录url
-                .loginProcessingUrl("/oauth/v1/api/login/enter")
+                .loginProcessingUrl("/auth/v1/api/login/entry")
                 // username参数名称 后台接收前端的参数名
                 .usernameParameter("userAccount")
                 //登录密码参数名称 后台接收前端的参数名
@@ -129,6 +142,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/")
                 //登录页面路径
                 .loginPage("/")
+                .permitAll()
+                //登录成功后 MyAuthenticationSuccessHandler类中onAuthenticationSuccess（）被调用
+                .successHandler(myAuthenticationSuccessHandler())
+                //登录失败后 MyAuthenticationFailureHandler 类中onAuthenticationFailure（）被调用
+                .failureHandler(myAuthenticationFailureHandler())
+                .and()
+                .logout()
+                //退出系统url
+                .logoutUrl("/auth/v1/api/login/logout")
+                //退出系统后的url跳转
+                .logoutSuccessUrl("/")
+                //退出系统后的 业务处理
+                .logoutSuccessHandler(myLogoutSuccessHandler())
+                .permitAll()
+                .invalidateHttpSession(true)
+                .and()
+                //登录后记住用户，下次自动登录,数据库中必须存在名为persistent_logins的表
+                // 勾选Remember me登录会在PERSISTENT_LOGINS表中，生成一条记录
+                .rememberMe()
+                //cookie的有效期（秒为单位
+                .tokenValiditySeconds(3600);
+        //在 beforeFilter 之前添加 自定义filter
+        http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
 
 
 
@@ -142,6 +178,52 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+
+    /**
+     * 注册  登录认证 bean
+     * @return
+     */
+    @Bean
+    public AuthenticationEntryPoint myAuthenticationEntryPoint(){
+        return new MyAuthenticationEntryPointHandler();
+    }
+
+    /**
+     * 注册  认证权限不足处理 bean
+     * @return
+     */
+    @Bean
+    public AccessDeniedHandler myAccessDeniedHandler(){
+        return new MyAccessDeniedHandler();
+    }
+
+    /**
+     * 注册  登录成功 处理 bean
+     * @return
+     */
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        return new MyAuthenticationSuccessHandler();
+    }
+
+    /**
+     *  注册 登录失败 处理 bean
+     * @return
+     */
+    @Bean
+    public AuthenticationFailureHandler myAuthenticationFailureHandler(){
+        return new MyAuthenticationFailureHandler();
+    }
+
+    /**
+     * 注册 退出系统成功 处理bean
+     * @return
+     */
+    @Bean
+    public LogoutSuccessHandler myLogoutSuccessHandler(){
+        return new MyLogoutSuccessHandler();
     }
 
 }

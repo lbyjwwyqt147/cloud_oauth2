@@ -51,7 +51,7 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
             String needRole = configAttribute.getAttribute();
             for(GrantedAuthority grantedAuthority : authentication.getAuthorities()){
                 //grantedAuthority 为用户所被赋予的权限。 needRole 为访问相应的资源应该具有的权限。
-                //判断两个请求的url的权限和用户具有的权限是否相同，如相同，允许访问
+                //判断两个请求的url的权限和用户具有的权限是否相同，如相同，允许访问 权限就是那些以ROLE_为前缀的角色
                 if (grantedAuthority.getAuthority().equals(needRole)){
                     //匹配到对应的角色，则允许通过
                     return;

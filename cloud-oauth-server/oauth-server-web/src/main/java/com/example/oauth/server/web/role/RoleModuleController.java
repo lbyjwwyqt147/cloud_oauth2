@@ -31,7 +31,7 @@ public class RoleModuleController extends AbstractController {
     @PostMapping("roleModule")
     public RestfulVo save(RoleModuleDTO roleModuleDTO){
        boolean success = this.roleModuleService.batchSave(roleModuleDTO);
-       return ResultUtil.restful(success);
+       return ResultUtil.restfulInfo(success);
     }
 
     /**
@@ -43,6 +43,6 @@ public class RoleModuleController extends AbstractController {
     @DeleteMapping("roleModule")
     public RestfulVo deleteByRoleIdAndModuleIdIn(Long roleId, List<Long> moduleList){
         boolean success = this.roleModuleService.deleteByRoleIdAndModuleIdIn(roleId,moduleList);
-        return ResultUtil.restful(success);
+        return ResultUtil.restfulInfo(success);
     }
 }

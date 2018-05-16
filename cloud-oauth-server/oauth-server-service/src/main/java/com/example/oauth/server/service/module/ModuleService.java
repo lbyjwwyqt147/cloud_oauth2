@@ -56,4 +56,15 @@ public interface ModuleService {
      */
     List<AbstractZTreeComponent> roleModuleTree(Long pid,Long roleId);
 
+    /**
+     * 获取所有资源（排除目录类型资源）
+     * @return
+     */
+    List<SysModule> findAllModuleExcludeDirectory();
+
+    /**
+     * 查询角色资源
+     * @return
+     */
+    List<SysModule> findByRoleModule();
 }

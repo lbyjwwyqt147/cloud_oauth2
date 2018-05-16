@@ -1,16 +1,22 @@
 package com.example.oauth.server.common.util;
 
-import com.esotericsoftware.reflectasm.MethodAccess;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.util.*;
 
+
 /***
- *  bean 对象 复制
+ *
+ * @FileName: DozerBeanMapperUtil
+ * @Company:
+ * @author    ljy
+ * @Date      2018年04月15日
+ * @version   1.0.0
+ * @remark:   bean 对象拷贝 工具类
+ * @explain
+ *
+ *
  */
 public abstract class DozerBeanMapperUtil {
 

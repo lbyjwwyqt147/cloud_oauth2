@@ -18,7 +18,13 @@ public interface RoleRepository extends JpaRepository<SysRole,Long>,JpaSpecifica
      * @param userId
      * @return
      */
-    @Query(value = "select r.* from sys_role as r inner join sys_user_role as ur on r.id = ur.role_id  where ur.user_id = ?userId",nativeQuery = true)
+    @Query(value = "select r.* from sys_role as r inner join sys_user_role as ur on r.id = ur.role_id  where ur.user_id = :userId",nativeQuery = true)
     List<SysRole> findByUserId(@Param("userId") Long userId);
 
+    /**
+     * 获取所有分配的角色
+     * @return
+     */
+    @Query(value = "select r.* from sys_role as r inner join sys_user_role as ur on r.id = ur.role_id  where r.status = 1",nativeQuery = true)
+    List<SysRole> findByRoleModule();
 }

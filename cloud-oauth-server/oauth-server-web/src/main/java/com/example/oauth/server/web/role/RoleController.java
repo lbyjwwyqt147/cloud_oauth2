@@ -32,7 +32,7 @@ public class RoleController extends AbstractController {
     @PostMapping("role")
     public RestfulVo saveRole(RoleDTO roleDTO){
         boolean success = this.roleService.save(roleDTO);
-        return ResultUtil.restful(success);
+        return ResultUtil.restfulInfo(success);
     }
 
     @GetMapping("role")

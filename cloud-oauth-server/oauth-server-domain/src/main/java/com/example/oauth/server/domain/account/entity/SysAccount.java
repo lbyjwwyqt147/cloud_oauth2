@@ -2,17 +2,11 @@ package com.example.oauth.server.domain.account.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.envers.Audited;
-import org.springframework.data.annotation.CreatedDate;
+
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 
@@ -20,7 +14,7 @@ import java.time.Instant;
  *  账号 DO
  */
 @Entity
-@Audited
+//@Audited
 @EntityListeners(AuditingEntityListener.class)
 @EqualsAndHashCode(callSuper = false)
 @Data
@@ -44,6 +38,10 @@ public class SysAccount implements Serializable{
     private Byte status;
     private String userEmail;
     private Integer bindingPhone;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    @JoinColumn(name="account_id",insertable = false, updatable = false, nullable=true)
+    private UserInfo userInfo;
 
 
 }
