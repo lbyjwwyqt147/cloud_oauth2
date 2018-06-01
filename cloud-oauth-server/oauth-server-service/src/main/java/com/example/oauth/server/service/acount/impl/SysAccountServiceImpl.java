@@ -63,7 +63,7 @@ public class SysAccountServiceImpl implements SysAccountService {
             //保存用户信息
             UserInfo userInfo = new UserInfo();
             userInfo.setAccountId(account.getId());
-            userInfo.setUserName(account.getUserAccount());
+            userInfo.setUserName(accountDTO.getUserName());
             userInfo.setUserSex((byte)1);
             userInfo.setCreateTime(Instant.now());
             this.userInfoRepository.save(userInfo);

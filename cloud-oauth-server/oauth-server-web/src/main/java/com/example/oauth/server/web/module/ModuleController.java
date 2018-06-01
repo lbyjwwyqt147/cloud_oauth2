@@ -3,15 +3,19 @@ package com.example.oauth.server.web.module;
 import com.alibaba.fastjson.JSON;
 import com.example.oauth.server.common.restful.RestfulVo;
 import com.example.oauth.server.common.restful.ResultUtil;
+import com.example.oauth.server.common.util.UserUtils;
 import com.example.oauth.server.common.vo.tree.AbstractEasyuiTreeComponent;
 import com.example.oauth.server.common.vo.tree.AbstractZTreeComponent;
 import com.example.oauth.server.common.vo.tree.ZTreeComposite;
 import com.example.oauth.server.common.vo.tree.ZTreeLeaf;
+import com.example.oauth.server.common.vo.user.UserDetail;
 import com.example.oauth.server.domain.module.dto.SysModuleDTO;
 import com.example.oauth.server.domain.module.vo.AbstractModuleTree;
 import com.example.oauth.server.service.module.ModuleService;
 import com.example.oauth.server.web.base.AbstractController;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -26,6 +30,8 @@ public class ModuleController extends AbstractController {
 
     @Autowired
     private ModuleService moduleService;
+    @Autowired
+    private UserUtils userUtils;
 
     /**
      * 保存数据
@@ -133,16 +139,21 @@ public class ModuleController extends AbstractController {
     }
 
     /**
-     * 获取登录人的资源菜单
-     * @param token
+     * 获取登录人拥有的资源菜单
+     * @param request
      * @return
      */
-    @GetMapping("module/user/module/tree")
-    public String userModuleTree(String token){
-        Long userId = 68L;
-        List<AbstractModuleTree> treeList = this.moduleService.userModuleTree(userId);
-        String treeJson = JSON.toJSONString(treeList);
-        return treeJson;
+    @GetMapping("module/user/tree")
+    public RestfulVo userModuleTree(HttpServletRequest request){
+        UserDetail userDetail = userUtils.getUser(this.getUserToken(request));
+        if(userDetail != null){
+            Long userId = userDetail.getAccountId();
+            List<AbstractModuleTree> treeList = this.moduleService.userModuleTree(userId);
+            String treeJson = JSON.toJSONString(treeList);
+            return ResultUtil.success(treeJson);
+        }
+        return ResultUtil.error("1","无效的token，无法获取用户信息");
+
     }
 
 

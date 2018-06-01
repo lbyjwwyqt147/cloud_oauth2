@@ -129,16 +129,17 @@ public class ModuleServiceImpl implements ModuleService {
     @Override
     public List<AbstractModuleTree> userModuleTree(Long userId) {
         List<AbstractModuleTree> treeList = new LinkedList<>();
-        List<SysModule> firstChildren = this.moduleReository.findByUserModule(userId);
+        byte type = 3;
+        List<SysModule> firstChildren = this.moduleReository.findByModulePidAndModuleTypeNot(0L,type);
         if (firstChildren != null && !firstChildren.isEmpty()){
             firstChildren.stream().forEach(item -> {
 
                 firstChildren.stream().forEach(it -> {
-                  if (item.getId() == it.getModulePid()){
+                 // if (item.getId() == it.getModulePid()){
                       AbstractModuleTree firstModuleTree = DozerBeanMapperUtil.copyProperties(it,ModuleTreeComposite.class);
                       firstModuleTree =  buildTree(item.getId(),firstModuleTree);
                       treeList.add(firstModuleTree);
-                  };
+                 // }
                 });
                 //firstModuleTree.setState("closed");
 

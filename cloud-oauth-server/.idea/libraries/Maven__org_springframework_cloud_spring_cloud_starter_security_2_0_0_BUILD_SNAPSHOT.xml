@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.springframework.cloud:spring-cloud-starter-security:2.0.0.BUILD-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.m2/repository/org/springframework/cloud/spring-cloud-starter-security/2.0.0.BUILD-SNAPSHOT/spring-cloud-starter-security-2.0.0.BUILD-20180516.004222-1169.jar!/" />
+      <root url="jar://$USER_HOME$/.m2/repository/org/springframework/cloud/spring-cloud-starter-security/2.0.0.BUILD-SNAPSHOT/spring-cloud-starter-security-2.0.0.BUILD-20180531.034222-1289.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/.m2/repository/org/springframework/cloud/spring-cloud-starter-security/2.0.0.BUILD-SNAPSHOT/spring-cloud-starter-security-2.0.0.BUILD-20180516.004222-1169-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.m2/repository/org/springframework/cloud/spring-cloud-starter-security/2.0.0.BUILD-SNAPSHOT/spring-cloud-starter-security-2.0.0.BUILD-20180531.034222-1289-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/.m2/repository/org/springframework/cloud/spring-cloud-starter-security/2.0.0.BUILD-SNAPSHOT/spring-cloud-starter-security-2.0.0.BUILD-20180516.004222-1169-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.m2/repository/org/springframework/cloud/spring-cloud-starter-security/2.0.0.BUILD-SNAPSHOT/spring-cloud-starter-security-2.0.0.BUILD-20180531.034222-1289-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

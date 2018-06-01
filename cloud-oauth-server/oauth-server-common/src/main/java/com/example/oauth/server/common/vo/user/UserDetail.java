@@ -1,9 +1,11 @@
 package com.example.oauth.server.common.vo.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.List;
 
@@ -13,13 +15,18 @@ public class UserDetail implements Serializable {
 
     private static final long serialVersionUID = 7921971562167237551L;
 
-    private Long id;
+    private Long accountId;         //帐号ID
     private String userAccount;    //帐号
-    private String userName;       //名称
+    @JsonIgnore
     private String userPwd;
     private Byte status;           //状态
     private String userEmail;      //邮箱
     private Integer bindingPhone;  //绑定手机
-    private List<Module> modules;  //拥有的资源
+    private String token;          //用户token
+    private Long userId;         //用户ID
+    private String userName;       //用户名称
+    private Instant lastPasswordResetDate;  //上次密码重置时间
+    private Byte userSex;
+
 
 }

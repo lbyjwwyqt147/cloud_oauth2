@@ -6,7 +6,7 @@ import com.example.oauth.server.domain.account.dto.AccountDTO;
 import com.example.oauth.server.service.acount.SysAccountService;
 import com.example.oauth.server.web.base.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,9 +36,9 @@ public class LoginController extends AbstractController {
     @PostMapping("login/account")
     public RestfulVo registerAccount(AccountDTO accountDTO){
         //进行加密
-        BCryptPasswordEncoder encoder =new BCryptPasswordEncoder();
+       /* BCryptPasswordEncoder encoder =new BCryptPasswordEncoder();
         String password = encoder.encode(accountDTO.getUserPwd());
-        accountDTO.setUserPwd(password);
+        accountDTO.setUserPwd(password);*/
         boolean success = this.accountService.saveAccount(accountDTO);
         return ResultUtil.restfulInfo(success);
     }

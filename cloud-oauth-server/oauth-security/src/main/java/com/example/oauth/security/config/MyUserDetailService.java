@@ -1,5 +1,9 @@
 package com.example.oauth.security.config;
 
+import com.example.oauth.security.jwt.JWTUserDetailsFactory;
+import com.example.oauth.server.common.exception.DescribeException;
+import com.example.oauth.server.common.util.DozerBeanMapperUtil;
+import com.example.oauth.server.common.vo.user.UserDetail;
 import com.example.oauth.server.domain.account.vo.AccountVO;
 import com.example.oauth.server.domain.account.vo.UserInfoVO;
 import com.example.oauth.server.domain.role.entity.SysRole;
@@ -16,6 +20,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -61,9 +67,13 @@ public class MyUserDetailService implements UserDetailsService {
         UserRoleVO userRole = this.userRoleService.findUserAndRole(username);
         if(userRole.getUserId() == null){
             //后台抛出的异常是：org.springframework.security.authentication.BadCredentialsException: Bad credentials  坏的凭证 如果要抛出UsernameNotFoundException 用户找不到异常则需要自定义重新它的异常
-            throw new UsernameNotFoundException("用户：" + username + " 不存在");
-
+            log.info("登录用户：" + username + " 不存在.");
+            throw new UsernameNotFoundException("登录用户：" + username + " 不存在");
         }
+        //验证密码是否正确
+       // PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
+
         //获取用户信息
         UserInfoVO userInfo = userRole.getUserInfo();
         //获取用户拥有的角色
@@ -73,6 +83,8 @@ public class MyUserDetailService implements UserDetailsService {
             roleList.stream().forEach(role ->{
                 grantedAuths.add(new SimpleGrantedAuthority(role.getAuthorizedSigns()));
             });
+        }else{
+            //throw new DescribeException("你无权访问系统,请联系管理员.");
         }
         User userDetail = new User(userInfo.getUserAccount(),userInfo.getUserPwd(),
                 grantedAuths);
@@ -89,7 +101,14 @@ public class MyUserDetailService implements UserDetailsService {
         User userDetail = new User(account.getUserAccount(),account.getUserPwd(),
                 grantedAuths);*/
 
-        return userDetail;
+       //不使用jwt 代码
+       //return userDetail;
+
+
+        //使用JWT 代码
+        UserDetail user = DozerBeanMapperUtil.copyProperties(userInfo,UserDetail.class);
+        user.setUserId(userInfo.getId());
+        return JWTUserDetailsFactory.create(userDetail,user);
     }
 
 

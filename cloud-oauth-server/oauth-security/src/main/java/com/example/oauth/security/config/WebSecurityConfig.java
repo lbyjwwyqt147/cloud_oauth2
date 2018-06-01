@@ -1,7 +1,12 @@
 package com.example.oauth.security.config;
 
+import com.example.oauth.security.filter.SimpleCORSFilter;
 import com.example.oauth.security.handlerinterceptor.*;
+import com.example.oauth.security.jwt.JwtAuthenticationEntryPoint;
+import com.example.oauth.security.jwt.JwtAuthenticationTokenFilter;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,10 +18,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 /***
@@ -41,6 +52,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private MyUserDetailService myUserDetailService;
     @Autowired
     private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
+    @Autowired
+    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    @Autowired
+    private SimpleCORSFilter simpleCORSFilter;
+
+    @Value("${jwt.route.authentication.path}")
+    private String authenticationPath;
+
+    // 不需要认证的接口
+    @Value("${com.example.oauth.security.antMatchers}")
+    private List<String> antMatchers = new ArrayList<>();
 
     /**
      * 置user-detail服务
@@ -112,19 +134,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //super.configure(http);
+        //http.addFilterBefore(simpleCORSFilter, ChannelProcessingFilter.class); //跨域
         //关闭csrf验证
         http.csrf().disable()
                 //对请求进行认证
                 .authorizeRequests()
                 // 所有 /oauth/v1/api/login/ 请求的都放行 不做认证即不需要登录即可访问
-                .antMatchers("/auth/v1/api/login/**").permitAll()
+                .antMatchers(StringUtils.join(antMatchers.toArray(), ",")).permitAll()
                 // 对于获取token的rest api要允许匿名访问
                 .antMatchers("oauth/**").permitAll()
                 // 其他请求都需要进行认证,认证通过够才能访问
                 .anyRequest().authenticated()
                 .and().exceptionHandling()
-                // 当用户请求了一个受保护的资源，但是用户没有通过登录认证，则抛出登录认证异常，MyAuthenticationEntryPointHandler类中commence()就会调用
-                .authenticationEntryPoint(myAuthenticationEntryPoint())
+                // 非jwt 认证配置当用户请求了一个受保护的资源，但是用户没有通过登录认证，则抛出登录认证异常，MyAuthenticationEntryPointHandler类中commence()就会调用
+                //.authenticationEntryPoint(myAuthenticationEntryPoint())
+                //jwt 认证配置
+                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 //用户已经通过了登录认证，在访问一个受保护的资源，但是权限不够，则抛出授权异常，MyAccessDeniedHandler类中handle()就会调用
                 .accessDeniedHandler(myAccessDeniedHandler())
                 .and()
@@ -165,7 +190,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .tokenValiditySeconds(3600);
         //在 beforeFilter 之前添加 自定义filter
         http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
-
+        // 添加JWT filter 验证其他请求的Token是否合法
+        http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+        // 禁用缓存
+        http.headers().cacheControl();
 
 
     }
@@ -226,4 +254,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new MyLogoutSuccessHandler();
     }
 
+    /**
+     * 注册jwt 认证
+     * @return
+     * @throws Exception
+     */
+    @Bean
+    public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
+        return new JwtAuthenticationTokenFilter();
+    }
 }

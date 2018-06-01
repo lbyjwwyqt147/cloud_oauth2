@@ -38,10 +38,12 @@ public class SysAccount implements Serializable{
     private Byte status;
     private String userEmail;
     private Integer bindingPhone;
+    //上次密码重置时间
+    private  Instant lastPasswordResetDate;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-    @JoinColumn(name="account_id",insertable = false, updatable = false, nullable=true)
-    private UserInfo userInfo;
+
+   /* @OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL },mappedBy="account")
+    private UserInfo userInfo;*/
 
 
 }

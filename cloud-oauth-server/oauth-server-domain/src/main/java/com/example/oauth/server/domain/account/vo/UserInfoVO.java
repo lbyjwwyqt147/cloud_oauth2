@@ -4,6 +4,8 @@ import com.example.oauth.server.domain.base.AbstractVO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.time.Instant;
+
 /***
  * 用户信息 vo
  */
@@ -19,7 +21,8 @@ public class UserInfoVO extends AbstractVO {
     private Long accountId;
     private String userName;
     private Byte userSex;
-
+    //上次密码重置时间
+    private  Instant lastPasswordResetDate;
 
 
 

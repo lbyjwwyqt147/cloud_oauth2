@@ -182,7 +182,7 @@ public class ResultUtil {
         //自定义的信息方便自己查看
         Map<String,Object> map = new HashMap<>();
         map.put("message",obj);
-        RestfulVo restfulVo = ResultUtil.resultInfo(ErrorCodeEnum.LOGIN,map);
+        RestfulVo restfulVo = ResultUtil.resultInfo(errorCodeEnum,map);
         writeJavaScript(response,restfulVo);
     }
 

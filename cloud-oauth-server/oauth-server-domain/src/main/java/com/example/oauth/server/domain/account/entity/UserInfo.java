@@ -23,7 +23,9 @@ public class UserInfo extends AbstractEntity {
     private String userName;
     private Byte userSex;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL },mappedBy="userInfo")
-    private SysAccount account;
+
+  /*  @OneToOne(fetch = FetchType.LAZY,targetEntity = SysAccount.class,cascade = { CascadeType.ALL })
+    @JoinColumn(name="account_id",insertable = false, updatable = false, nullable=true)
+    private SysAccount account;*/
 
 }

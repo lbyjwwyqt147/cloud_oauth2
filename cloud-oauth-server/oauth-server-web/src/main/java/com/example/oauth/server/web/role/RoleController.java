@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
  * 角色 controller
  */
 @RestController
-@CrossOrigin
 public class RoleController extends AbstractController {
 
     @Autowired

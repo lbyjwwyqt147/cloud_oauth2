@@ -13,10 +13,12 @@ import com.example.oauth.server.domain.role.query.UserRoleQuery;
 import com.example.oauth.server.domain.role.vo.RoleVO;
 import com.example.oauth.server.domain.role.vo.UserRoleVO;
 import com.example.oauth.server.repository.account.SysAccountRepository;
+import com.example.oauth.server.repository.account.UserInfoRepository;
 import com.example.oauth.server.repository.role.RoleRepository;
 import com.example.oauth.server.repository.role.UserRoleRepository;
 import com.example.oauth.server.service.role.UserRoleService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -41,6 +43,8 @@ public class UserRoleServiceImpl implements UserRoleService {
     private SysAccountRepository accountRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private UserInfoRepository userInfoRepository;
 
     @Transactional
     @Override
@@ -106,19 +110,20 @@ public class UserRoleServiceImpl implements UserRoleService {
         UserRoleVO userRoleVO =  new UserRoleVO();
         SysAccount account  = this.accountRepository.findByUserAccount(username);
         if(account != null){
-            UserInfo userInfo = account.getUserInfo();
+            //UserInfo userInfo = account.getUserInfo();
+            UserInfo userInfo = this.userInfoRepository.findByAccountId(account.getId());
             UserInfoVO userInfoVO = DozerBeanMapperUtil.copyProperties(userInfo,UserInfoVO.class);
             userInfoVO.setBindingPhone(account.getBindingPhone());
             userInfoVO.setUserAccount(account.getUserAccount());
             userInfoVO.setUserEmail(account.getUserEmail());
             userInfoVO.setUserPwd(account.getUserPwd());
             userInfoVO.setStatus(account.getStatus());
+            userInfoVO.setAccountId(account.getId());
             userRoleVO.setUserInfo(userInfoVO);
             userRoleVO.setUserId(account.getId());
             List<SysRole> roles = this.roleRepository.findByUserId(account.getId());
             userRoleVO.setRoles(DozerBeanMapperUtil.copyProperties(roles,RoleVO.class));
         }
-
         return userRoleVO;
     }
 

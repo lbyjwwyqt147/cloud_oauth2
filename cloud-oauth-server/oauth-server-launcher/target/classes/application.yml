@@ -20,7 +20,7 @@ spring:
   # 数据源 配置
   datasource:
       platform: postgres
-      url: jdbc:postgresql://101.132.136.225:5432/cloud_oauth2
+      url: jdbc:postgresql://101.132.136.225:5432/cloud_oauth2?useUnicode=true&characterEncoding=utf-8
       username: postgres
       password: postgres123
       driver-class-name: org.postgresql.Driver
@@ -45,6 +45,38 @@ spring:
     timeout: 1000ms
 
 
+
+# JWT 配置
+jwt:
+  # 存放Token的Header Key
+  header: Authorization
+  # 密匙key
+  secret: mySecret
+  # 过期时间   单位秒 7天后过期
+  expiration: 604800
+  # 自定义token 前缀字符
+  tokenHead: Bearer-
+  # 超时时间   单位秒
+  access_token: 604800
+  # 刷新token时间   单位秒
+  refresh_token: 604800
+  route:
+    authentication:
+      path: login/entry
+      refresh: oauth/refresh
+      register: login/account
+
+
+# 配置不需要认证的接口
+com:
+  example:
+    oauth:
+      security:
+        antMatchers:
+          -/auth/v1/api/login/**
+          -/auth/v1/api/module/**
+
+# 日志
 logging:
   level:
     org:
