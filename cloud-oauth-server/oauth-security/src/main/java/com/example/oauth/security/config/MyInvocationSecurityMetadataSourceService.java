@@ -45,7 +45,6 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
     @Autowired
     private RoleService roleService;
 
-
     /**
      * 参数是要访问的url，返回这个url对于的所有权限（或角色）
      * 每次请求后台就会调用 得到请求所拥有的权限
@@ -60,7 +59,7 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
         }
         // object 是一个URL，被用户请求的url。
         String url = ((FilterInvocation) object).getRequestUrl();
-        System.out.println("url" + url);
+        log.info("请求 url ：" + url);
         int firstQuestionMarkIndex = url.indexOf("?");
         if (firstQuestionMarkIndex != -1) {
             url = url.substring(0, firstQuestionMarkIndex);

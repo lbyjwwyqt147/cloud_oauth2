@@ -64,6 +64,18 @@ public class UserUtils {
     }
 
     /**
+     * 用户ID
+     * @return
+     */
+    public Long getUserId(){
+        UserDetail userDetail = this.getUserDetail();
+        if(userDetail != null){
+            return userDetail.getAccountId();
+        }
+        return null;
+    }
+
+    /**
      * 获取用户token值
      * @param request
      * @return
