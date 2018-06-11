@@ -28,7 +28,7 @@ public class RoleModuleController extends AbstractController {
      * @param roleModuleDTO
      * @return
      */
-    @PostMapping("roleModule")
+    @PostMapping("roleModule/batch/post")
     public RestfulVo save(RoleModuleDTO roleModuleDTO){
        boolean success = this.roleModuleService.batchSave(roleModuleDTO);
        return ResultUtil.restfulInfo(success);
@@ -40,7 +40,7 @@ public class RoleModuleController extends AbstractController {
      * @param moduleList  资源ID
      * @return
      */
-    @DeleteMapping("roleModule")
+    @DeleteMapping("roleModule/del")
     public RestfulVo deleteByRoleIdAndModuleIdIn(Long roleId, List<Long> moduleList){
         boolean success = this.roleModuleService.deleteByRoleIdAndModuleIdIn(roleId,moduleList);
         return ResultUtil.restfulInfo(success);

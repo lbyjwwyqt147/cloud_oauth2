@@ -22,6 +22,13 @@ public interface ModuleService {
     boolean saveModule(SysModuleDTO moduleDTO);
 
     /**
+     * 根据ID 删除数据
+     * @param id
+     * @return
+     */
+    boolean singleDeleteById(Long id);
+
+    /**
      * 获取符合treeGrid 结构的数据(不分页)
      * @return
      */

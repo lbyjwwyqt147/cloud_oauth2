@@ -2,6 +2,7 @@ package com.example.oauth.server.common.restful;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.example.oauth.server.common.exception.ErrorCodeEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,7 +18,9 @@ public class RestfulVo  implements Serializable {
     private String message; // 描述信息
     private Object data;   // 数据
     private Object extend; //扩展数据
+    private Long totalElements; //分页数据的　总记录条数
     @JSONField(serialize=false)
+    @JsonIgnore
     private ErrorCodeEnum  errorCodeEnum;
 
     public RestfulVo(){

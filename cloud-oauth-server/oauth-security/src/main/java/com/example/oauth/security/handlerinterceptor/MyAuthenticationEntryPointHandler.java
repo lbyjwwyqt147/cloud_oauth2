@@ -5,6 +5,7 @@ import com.example.oauth.server.common.restful.RestfulVo;
 import com.example.oauth.server.common.restful.ResultUtil;
 import com.example.oauth.server.common.util.HttpUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -38,7 +39,6 @@ public class MyAuthenticationEntryPointHandler implements AuthenticationEntryPoi
         msg.append(httpServletRequest.getRequestURI()).append(" 接口， 因为登录超时，无法访问系统资源.");
         log.info(msg.toString());
         ResultUtil.writeJavaScript(httpServletResponse,ErrorCodeEnum.LOGIN_WITHOUT,msg.toString());
-
 
       /*  boolean ajaxRequest = HttpUtils.isAjaxRequest(httpServletRequest);
         if (ajaxRequest){

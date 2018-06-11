@@ -1,11 +1,11 @@
 package com.example.oauth.server.service.role.impl;
 
+import com.example.oauth.server.common.restful.RestfulVo;
+import com.example.oauth.server.common.restful.ResultUtil;
 import com.example.oauth.server.common.util.DozerBeanMapperUtil;
 import com.example.oauth.server.domain.account.entity.SysAccount;
 import com.example.oauth.server.domain.account.entity.UserInfo;
-import com.example.oauth.server.domain.account.vo.AccountVO;
 import com.example.oauth.server.domain.account.vo.UserInfoVO;
-import com.example.oauth.server.domain.base.PageVo;
 import com.example.oauth.server.domain.role.dto.UserRoleDTO;
 import com.example.oauth.server.domain.role.entity.SysRole;
 import com.example.oauth.server.domain.role.entity.SysUserRole;
@@ -14,11 +14,11 @@ import com.example.oauth.server.domain.role.vo.RoleVO;
 import com.example.oauth.server.domain.role.vo.UserRoleVO;
 import com.example.oauth.server.repository.account.SysAccountRepository;
 import com.example.oauth.server.repository.account.UserInfoRepository;
+import com.example.oauth.server.repository.account.UserInfoResultSets;
 import com.example.oauth.server.repository.role.RoleRepository;
 import com.example.oauth.server.repository.role.UserRoleRepository;
 import com.example.oauth.server.service.role.UserRoleService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,8 +26,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -57,8 +55,8 @@ public class UserRoleServiceImpl implements UserRoleService {
             for (String roleId : roleIds) {
                 SysUserRole userRole = new SysUserRole();
                 userRole.setRoleId(Long.valueOf(roleId));
-                userRole.setCreateId(1L);
-                userRole.setCreateTime(Instant.now());
+               // userRole.setCreateId(1L);
+                //userRole.setCreateTime(Instant.now());
                 userRole.setUserId(userRole.getUserId());
                 userRoleList.add(userRole);
             }
@@ -67,6 +65,7 @@ public class UserRoleServiceImpl implements UserRoleService {
         return success;
     }
 
+    @Transactional
     @Override
     public boolean batchRoleUserSave(UserRoleDTO userRoleDTO) {
         boolean success = false;
@@ -77,8 +76,8 @@ public class UserRoleServiceImpl implements UserRoleService {
             for(String userId : userIds){
                 SysUserRole userRole = new SysUserRole();
                 userRole.setUserId(Long.valueOf(userId));
-                userRole.setCreateId(1L);
-                userRole.setCreateTime(Instant.now());
+                //userRole.setCreateId(1L);
+               // userRole.setCreateTime(Instant.now());
                 userRole.setRoleId(userRoleDTO.getRoleId());
                 userRoleList.add(userRole);
             }
@@ -88,12 +87,12 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public PageVo<AccountVO> findPageByRoleId(UserRoleQuery userRoleQuery) {
+    public RestfulVo findPageByRoleId(UserRoleQuery userRoleQuery) {
         return bulidAccountPage((byte)0,userRoleQuery);
     }
 
     @Override
-    public PageVo<AccountVO> findPageByRoleIdEliminate(UserRoleQuery userRoleQuery) {
+    public RestfulVo findPageByRoleIdEliminate(UserRoleQuery userRoleQuery) {
         return bulidAccountPage((byte)1,userRoleQuery);
     }
 
@@ -133,17 +132,18 @@ public class UserRoleServiceImpl implements UserRoleService {
      * @param userRoleQuery
      * @return
      */
-    private PageVo<AccountVO> bulidAccountPage(Byte sign,UserRoleQuery userRoleQuery){
+    private RestfulVo bulidAccountPage(Byte sign,UserRoleQuery userRoleQuery){
         Long roleId = userRoleQuery.getRoleId();
         //生成Pageable变量
         Pageable pageable = PageRequest.of(userRoleQuery.getP().getPageNum()-1,userRoleQuery.getP().getPageSize());
-        Page<SysAccount> accountPage = sign == 1 ? this.accountRepository.findPageByRoleIdEliminate(roleId,pageable) : this.accountRepository.findPageByRoleId(roleId,pageable);
+        Page<UserInfoResultSets> accountPage = sign == 1 ? this.accountRepository.findPageByRoleIdEliminate(roleId,pageable) : this.accountRepository.findPageByRoleId(roleId,pageable);
         Long totalElements =  accountPage.getTotalElements();
-        PageVo<AccountVO> pageVo = new PageVo<>(userRoleQuery.getP().getPageNum(),pageable.getPageSize(),totalElements);
+        List<UserInfoVO> accountVOList = null;
         if(totalElements > 0){
-            List<AccountVO> accountVOList  = DozerBeanMapperUtil.copyProperties(accountPage.getContent(),AccountVO.class);
-            pageVo.setData(accountVOList);
+            accountVOList  = DozerBeanMapperUtil.copyProperties(accountPage.getContent(),UserInfoVO.class);
         }
-        return pageVo;
+        RestfulVo restfulVo = ResultUtil.success(accountVOList);
+        restfulVo.setTotalElements(totalElements);
+        return restfulVo;
     }
 }

@@ -13,7 +13,7 @@ public class DescribeException extends RuntimeException {
     }
 
     /**
-     * 继承exception，加入错误状态值
+     * 加入错误状态值
      * @param exceptionEnum
      */
     public DescribeException(ErrorCodeEnum exceptionEnum) {

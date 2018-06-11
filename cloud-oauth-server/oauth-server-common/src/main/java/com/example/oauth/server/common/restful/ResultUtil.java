@@ -186,4 +186,15 @@ public class ResultUtil {
         writeJavaScript(response,restfulVo);
     }
 
+    /**
+     * 将数据输出给前端
+     * @param response
+     * @param errorCodeEnum
+     */
+    public static void writeJavaScript(HttpServletResponse response,ErrorCodeEnum errorCodeEnum){
+        //自定义的信息方便自己查看
+        RestfulVo restfulVo = ResultUtil.resultInfo(errorCodeEnum,null);
+        writeJavaScript(response,restfulVo);
+    }
+
 }

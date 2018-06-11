@@ -29,7 +29,7 @@ public class UserRoleController extends AbstractController {
      * @param userRoleDTO
      * @return
      */
-    @PostMapping("userRole")
+    @PostMapping("userRole/batch/post")
     public RestfulVo batchUserRoleSave(UserRoleDTO userRoleDTO){
         boolean success  = this.userRoleService.batchUserRoleSave(userRoleDTO);
         return ResultUtil.restfulInfo(success);
@@ -40,7 +40,7 @@ public class UserRoleController extends AbstractController {
      * @param userRoleDTO
      * @return
      */
-    @PostMapping("roleUser")
+    @PostMapping("roleUser/batch/post")
     public RestfulVo batchRoleUserSave(UserRoleDTO userRoleDTO){
         boolean success  = this.userRoleService.batchRoleUserSave(userRoleDTO);
         return ResultUtil.restfulInfo(success);
@@ -52,7 +52,7 @@ public class UserRoleController extends AbstractController {
      * @param userIds 人员ID 集合
      * @return
      */
-    @DeleteMapping("userRole")
+    @DeleteMapping("userRole/del")
     public RestfulVo deleteByRoleIdAndUserIdIn(Long roleId, Long[]  userIds){
         boolean success = this.userRoleService.deleteByRoleIdAndUserIdIn(roleId,Arrays.asList(userIds));
         return ResultUtil.restfulInfo(success);
@@ -63,10 +63,9 @@ public class UserRoleController extends AbstractController {
      * @param userRoleQuery
      * @return
      */
-    @GetMapping("role/user/have")
-    public PageVo findUserByRoleId(UserRoleQuery userRoleQuery){
-        PageVo<AccountVO> pageVo = this.userRoleService.findPageByRoleId(userRoleQuery);
-        return pageVo;
+    @GetMapping("grid/role/user/have")
+    public RestfulVo findUserByRoleId(UserRoleQuery userRoleQuery){
+        return this.userRoleService.findPageByRoleId(userRoleQuery);
     }
 
     /**
@@ -74,10 +73,9 @@ public class UserRoleController extends AbstractController {
      * @param userRoleQuery
      * @return
      */
-    @GetMapping("role/user/not")
-    public PageVo findPageByRoleIdEliminate(UserRoleQuery userRoleQuery){
-        PageVo<AccountVO> pageVo = this.userRoleService.findPageByRoleIdEliminate(userRoleQuery);
-        return pageVo;
+    @GetMapping("grid/role/user/not")
+    public RestfulVo findPageByRoleIdEliminate(UserRoleQuery userRoleQuery){
+        return this.userRoleService.findPageByRoleIdEliminate(userRoleQuery);
     }
 
 

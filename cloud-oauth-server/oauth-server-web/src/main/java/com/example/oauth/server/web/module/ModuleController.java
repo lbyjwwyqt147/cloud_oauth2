@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.example.oauth.server.common.restful.RestfulVo;
 import com.example.oauth.server.common.restful.ResultUtil;
 import com.example.oauth.server.common.util.UserUtils;
-import com.example.oauth.server.common.vo.tree.AbstractEasyuiTreeComponent;
-import com.example.oauth.server.common.vo.tree.AbstractZTreeComponent;
-import com.example.oauth.server.common.vo.tree.ZTreeComposite;
-import com.example.oauth.server.common.vo.tree.ZTreeLeaf;
+import com.example.oauth.server.common.vo.tree.*;
 import com.example.oauth.server.common.vo.user.UserDetail;
 import com.example.oauth.server.domain.module.dto.SysModuleDTO;
 import com.example.oauth.server.domain.module.vo.AbstractModuleTree;
@@ -15,10 +12,9 @@ import com.example.oauth.server.service.module.ModuleService;
 import com.example.oauth.server.web.base.AbstractController;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /***
@@ -38,92 +34,52 @@ public class ModuleController extends AbstractController {
      * @param moduleDTO
      * @return
      */
-    @PostMapping("module")
+    @PostMapping("module/post")
     public RestfulVo save(SysModuleDTO moduleDTO){
         boolean success = this.moduleService.saveModule(moduleDTO);
         return ResultUtil.restfulInfo(success);
     }
 
     /**
-     * 资源菜单树(全部)
+     * 根据ID 删除数据
+     * @param id
      * @return
      */
-    @GetMapping("module/tree")
-    public RestfulVo moduleTree(){
-
-        //生成根节点  root
-        AbstractZTreeComponent root = new ZTreeComposite(1L,"root","icon");
-        //给root 节点添加2个叶子节点
-        ((ZTreeComposite) root).add(new ZTreeLeaf(2L,"A","A"));
-        ((ZTreeComposite) root).add(new ZTreeLeaf(3L,"b","b"));
-
-        //生成根节点  test
-        AbstractZTreeComponent test = new ZTreeComposite(10L,"test","icon");
-        //给root 节点添加2个叶子节点
-        ((ZTreeComposite) test).add(new ZTreeLeaf(20L,"A0","A"));
-        ((ZTreeComposite) test).add(new ZTreeLeaf(30L,"b0","b"));
-
-        ((ZTreeComposite) root).add(test);
-
-        root.operation();
-
-        System.out.println(JSON.toJSON(root));
-
-        return ResultUtil.success(root);
+    @DeleteMapping("module/del/single")
+    public RestfulVo singleDeleteById(Long id){
+        boolean success = this.moduleService.singleDeleteById(id);
+        return ResultUtil.restfulInfo(success);
     }
-
-    @GetMapping("module/tree1")
-    public String moduleTree1(){
-
-        //生成根节点  root
-        AbstractZTreeComponent root = new ZTreeComposite(1L,"root","");
-        //给root 节点添加2个叶子节点
-        ((ZTreeComposite) root).add(new ZTreeLeaf(2L,"A","A"));
-        ((ZTreeComposite) root).add(new ZTreeLeaf(3L,"b","b"));
-
-        //生成根节点  test
-        AbstractZTreeComponent test = new ZTreeComposite(10L,"test","");
-        //给root 节点添加2个叶子节点
-        ((ZTreeComposite) test).add(new ZTreeLeaf(20L,"A0",""));
-        ((ZTreeComposite) test).add(new ZTreeLeaf(30L,"b0",""));
-
-        ((ZTreeComposite) root).add(test);
-
-        root.operation();
-
-        System.out.println(JSON.toJSON(root));
-        ArrayList<AbstractZTreeComponent> list = new ArrayList<>();
-        list.add(root);
-        return JSON.toJSON(list).toString();
-    }
-
 
     /**
      *  符合 treeGrid 结构的数据 （不分页）
      * @return
      */
     @GetMapping("module/tree/grid")
-    public String listTreeGrid(){
+    public RestfulVo listTreeGrid(){
         List<AbstractModuleTree> treeList = this.moduleService.listTreeGrid();
         String treeJson = JSON.toJSONString(treeList);
-        return treeJson;
+        return ResultUtil.success(treeJson);
     }
 
-    @GetMapping("module/tree/grid1")
-    public RestfulVo listTreeGrid1(){
-        List<AbstractModuleTree> treeList = this.moduleService.listTreeGrid();
-        return ResultUtil.success(treeList);
-    }
 
     /**
      *  符合 tree 结构的数据(排除 按钮类型的数据)
+     * @param  pid  pid
      * @return
      */
-    @GetMapping("module/tree/{pid}")
-    public String moduleTree(@PathVariable Long pid){
+    @GetMapping("module/tree/combotree/{pid}")
+    public RestfulVo moduleCombotree(@PathVariable Long pid){
+        LinkedList<AbstractEasyuiTreeComponent> combotree =  new LinkedList<>();
         List<AbstractEasyuiTreeComponent> treeList = this.moduleService.moduleTree(pid);
-        String treeJson = JSON.toJSONString(treeList);
-        return treeJson;
+        AbstractEasyuiTreeComponent treeComponent =  new EasyuiTreeComposite();
+        treeComponent.setState("1");
+        treeComponent.setId(0L);
+        treeComponent.setText("菜单资源");
+        ((EasyuiTreeComposite) treeComponent).setChildren(new LinkedList<>(treeList));
+        combotree.add(treeComponent);
+        String treeJson = JSON.toJSONString(combotree);
+        return ResultUtil.success(treeJson);
     }
 
     /**
@@ -131,11 +87,11 @@ public class ModuleController extends AbstractController {
      * @param roleId  角色ID
      * @return
      */
-    @GetMapping("module/role/tree/{roleId}")
-    public String roleModuleTree(@PathVariable Long roleId){
+    @GetMapping("module/tree/role/{roleId}")
+    public RestfulVo roleModuleTree(@PathVariable Long roleId){
         List<AbstractZTreeComponent> treeList = this.moduleService.roleModuleTree(0L,roleId);
         String treeJson = JSON.toJSONString(treeList);
-        return treeJson;
+        return ResultUtil.success(treeJson);
     }
 
     /**
@@ -143,7 +99,7 @@ public class ModuleController extends AbstractController {
      * @param request
      * @return
      */
-    @GetMapping("module/user/tree")
+    @GetMapping("module/tree/user")
     public RestfulVo userModuleTree(HttpServletRequest request){
         UserDetail userDetail = userUtils.getUser(this.getUserToken(request));
         if(userDetail != null){

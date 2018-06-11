@@ -28,12 +28,36 @@ public interface ModuleReository extends JpaRepository<SysModule,Long> {
     List<SysModule> findByModulePidAndModuleTypeNot(Long modulePid,Byte moduleType);
 
     /**
+     * 根据PID 获取类型（module_type）为 目录、菜单 资源数据
+     * @param modulePid  资源PID
+     * @param moduleType    类型  1:目录  2：菜单   3：功能按钮
+     * @return
+     */
+    List<SysModule> findByModulePidAndModuleType(Long modulePid,Byte moduleType);
+
+    /**
      * 根据userid 获取所属的资源菜单
      * @param userId userid
      * @return
      */
     @Query(value = "select m.* from sys_module as m inner join sys_role_module as rm on m.id = rm.module_id inner join sys_user_role ur on rm.role_id = ur.role_id where ur.user_id = :userId",nativeQuery = true)
     List<SysModule> findByUserModule(@Param("userId") Long userId);
+
+    /**
+     * 根据userid 获取所属的资源菜单
+     * @param userId userid
+     * @return
+     */
+    @Query(value = "select m.* from sys_module as m inner join sys_role_module as rm on m.id = rm.module_id inner join sys_user_role ur on rm.role_id = ur.role_id where ur.user_id = :userId and m.module_type != :moduleType",nativeQuery = true)
+    List<SysModule> findByUserModuleNot(@Param("userId") Long userId,@Param("moduleType") Byte moduleType);
+
+    /**
+     * 根据userid 获取所属的资源菜单
+     * @param userId userid
+     * @return
+     */
+    @Query(value = "select m.* from sys_module as m inner join sys_role_module as rm on m.id = rm.module_id inner join sys_user_role ur on rm.role_id = ur.role_id where ur.user_id = :userId and m.module_type = :moduleType",nativeQuery = true)
+    List<SysModule> findByUserModuleAAndModuleType(@Param("userId") Long userId,@Param("moduleType") Byte moduleType);
 
     /**
      * 查询角色资源
@@ -47,4 +71,10 @@ public interface ModuleReository extends JpaRepository<SysModule,Long> {
      * @return
      */
     List<SysModule> findByModuleTypeNot(Byte type);
+
+    /**
+     * 根据 pid 删除数据
+     * @param pid
+     */
+    void deleteByModulePid(Long pid);
 }

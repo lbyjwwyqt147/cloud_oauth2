@@ -1,5 +1,6 @@
 package com.example.oauth.server.service.role;
 
+import com.example.oauth.server.common.restful.RestfulVo;
 import com.example.oauth.server.domain.base.PageVo;
 import com.example.oauth.server.domain.role.dto.RoleDTO;
 import com.example.oauth.server.domain.role.entity.SysRole;
@@ -21,12 +22,13 @@ public interface RoleService {
      */
     boolean save(RoleDTO roleDTO);
 
+
     /**
      * 分页查询
      * @param roleQuery
      * @return
      */
-    PageVo<RoleVO> findListPage(RoleQuery roleQuery);
+    RestfulVo findListGridPage(RoleQuery roleQuery);
 
     /**
      * 根据userId 获取用户拥有的角色
@@ -40,4 +42,11 @@ public interface RoleService {
      * @return
      */
     List<SysRole> findByRoleModule();
+
+    /**
+     * 根据ID 删除数据
+     * @param id
+     * @return
+     */
+    boolean singleDeleteById(Long id);
 }

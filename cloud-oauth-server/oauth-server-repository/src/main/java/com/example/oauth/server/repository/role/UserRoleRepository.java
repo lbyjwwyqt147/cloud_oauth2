@@ -33,5 +33,11 @@ public interface UserRoleRepository  extends JpaRepository<SysUserRole,Long> {
      */
     Long deleteByRoleIdAndUserIdIn(Long roleId,List<Long> userIds);
 
+    /**
+     * 根据 roleId 删除数据
+     * @param roleId
+     * @return
+     */
+    Long deleteByRoleId(Long roleId);
 
 }

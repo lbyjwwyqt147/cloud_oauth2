@@ -1,5 +1,6 @@
 package com.example.oauth.server.web.role;
 
+import com.example.oauth.server.common.redis.RedisUtil;
 import com.example.oauth.server.common.restful.RestfulVo;
 import com.example.oauth.server.common.restful.ResultUtil;
 import com.example.oauth.server.domain.base.PageVo;
@@ -9,10 +10,10 @@ import com.example.oauth.server.domain.role.vo.RoleVO;
 import com.example.oauth.server.service.role.RoleService;
 import com.example.oauth.server.web.base.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /***
  * 角色 controller
@@ -28,15 +29,30 @@ public class RoleController extends AbstractController {
      * @param roleDTO
      * @return
      */
-    @PostMapping("role")
+    @PostMapping("role/post")
     public RestfulVo saveRole(RoleDTO roleDTO){
         boolean success = this.roleService.save(roleDTO);
         return ResultUtil.restfulInfo(success);
     }
 
-    @GetMapping("role")
-    public PageVo listPage(RoleQuery roleQuery){
-        PageVo<RoleVO> pageVo = this.roleService.findListPage(roleQuery);
-        return  pageVo;
+    /**
+     * 根据ID 删除数据
+     * @param id
+     * @return
+     */
+    @DeleteMapping("role/del/single")
+    public RestfulVo singleDeleteById(Long id){
+        boolean success = this.roleService.singleDeleteById(id);
+        return ResultUtil.restfulInfo(success);
+    }
+
+    /**
+     * 分页数据
+     * @param roleQuery
+     * @return
+     */
+    @GetMapping("grid/role")
+    public RestfulVo listGridPage(RoleQuery roleQuery){
+       return this.roleService.findListGridPage(roleQuery);
     }
 }

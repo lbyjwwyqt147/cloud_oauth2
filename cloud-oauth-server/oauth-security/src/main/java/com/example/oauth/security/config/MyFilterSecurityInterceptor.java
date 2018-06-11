@@ -1,6 +1,7 @@
 package com.example.oauth.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.SecurityMetadataSource;
 import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
 import org.springframework.security.access.intercept.InterceptorStatusToken;
@@ -66,8 +67,12 @@ public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor imp
         return this.securityMetadataSource;
     }
 
+   /* @Override
+    public void setAccessDecisionManager(MyAccessDecisionManager accessDecisionManager) {
+        super.setAccessDecisionManager(this.accessDecisionManager);
+    }*/
     @Autowired
-    public void setMyAccessDecisionManager(MyAccessDecisionManager myAccessDecisionManager) {
+    public void setAccessDecisionManager(MyAccessDecisionManager myAccessDecisionManager) {
         super.setAccessDecisionManager(myAccessDecisionManager);
     }
 

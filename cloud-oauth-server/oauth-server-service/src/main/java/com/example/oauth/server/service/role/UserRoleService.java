@@ -1,5 +1,6 @@
 package com.example.oauth.server.service.role;
 
+import com.example.oauth.server.common.restful.RestfulVo;
 import com.example.oauth.server.domain.account.entity.SysAccount;
 import com.example.oauth.server.domain.account.vo.AccountVO;
 import com.example.oauth.server.domain.base.PageVo;
@@ -34,14 +35,14 @@ public interface UserRoleService {
      * @param userRoleQuery
      * @return
      */
-    PageVo<AccountVO> findPageByRoleId(UserRoleQuery userRoleQuery);
+    RestfulVo findPageByRoleId(UserRoleQuery userRoleQuery);
 
     /**
      * 根据角色ID 获取角色未分配的人员信息列表
      * @param userRoleQuery
      * @return
      */
-    PageVo<AccountVO> findPageByRoleIdEliminate(UserRoleQuery userRoleQuery);
+    RestfulVo findPageByRoleIdEliminate(UserRoleQuery userRoleQuery);
 
     /**
      *  删除角色绑定的人员

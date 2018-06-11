@@ -52,14 +52,14 @@ jwt:
   header: Authorization
   # 密匙key
   secret: mySecret
-  # 过期时间   单位秒 7天后过期
-  expiration: 604800
+  # 过期时间   单位秒 7天后过期  604800
+  expiration: 3600
   # 自定义token 前缀字符
   tokenHead: Bearer-
   # 超时时间   单位秒
-  access_token: 604800
+  access_token: 3600
   # 刷新token时间   单位秒
-  refresh_token: 604800
+  refresh_token: 3600
   route:
     authentication:
       path: login/entry
@@ -74,7 +74,9 @@ com:
       security:
         antMatchers:
           -/auth/v1/api/login/**
-          -/auth/v1/api/module/**
+          -/auth/v1/api/module/tree/**
+          -/auth/v1/api/grid/**
+          -/error
 
 # 日志
 logging:

@@ -1,6 +1,6 @@
 package com.example.oauth.security.config;
 
-import com.example.oauth.security.filter.SimpleCORSFilter;
+import com.example.oauth.server.common.filter.SimpleCORSFilter;
 import com.example.oauth.security.handlerinterceptor.*;
 import com.example.oauth.security.jwt.JwtAuthenticationEntryPoint;
 import com.example.oauth.security.jwt.JwtAuthenticationTokenFilter;
@@ -18,7 +18,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
-import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -26,7 +25,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -52,8 +50,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private MyUserDetailService myUserDetailService;
     @Autowired
     private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
-    @Autowired
-    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     @Autowired
     private SimpleCORSFilter simpleCORSFilter;
 
@@ -146,10 +142,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 其他请求都需要进行认证,认证通过够才能访问
                 .anyRequest().authenticated()
                 .and().exceptionHandling()
-                // 非jwt 认证配置当用户请求了一个受保护的资源，但是用户没有通过登录认证，则抛出登录认证异常，MyAuthenticationEntryPointHandler类中commence()就会调用
-                //.authenticationEntryPoint(myAuthenticationEntryPoint())
-                //jwt 认证配置
-                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                // 认证配置当用户请求了一个受保护的资源，但是用户没有通过登录认证，则抛出登录认证异常，MyAuthenticationEntryPointHandler类中commence()就会调用
+                .authenticationEntryPoint(myAuthenticationEntryPoint())
                 //用户已经通过了登录认证，在访问一个受保护的资源，但是权限不够，则抛出授权异常，MyAccessDeniedHandler类中handle()就会调用
                 .accessDeniedHandler(myAccessDeniedHandler())
                 .and()
@@ -215,7 +209,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Bean
     public AuthenticationEntryPoint myAuthenticationEntryPoint(){
-        return new MyAuthenticationEntryPointHandler();
+
+        //return new MyAuthenticationEntryPointHandler();
+        return new JwtAuthenticationEntryPoint();
     }
 
     /**

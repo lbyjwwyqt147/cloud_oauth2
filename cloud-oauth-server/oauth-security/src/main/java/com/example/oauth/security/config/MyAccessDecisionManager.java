@@ -1,5 +1,6 @@
 package com.example.oauth.security.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
@@ -24,6 +25,7 @@ import java.util.Iterator;
  *
  *
  */
+@Slf4j
 @Component
 public class MyAccessDecisionManager implements AccessDecisionManager {
 
@@ -43,6 +45,7 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
     public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
         // 无权限访问
         if(CollectionUtils.isEmpty(configAttributes)){
+             log.info("无访问权限.");
              new AccessDeniedException("无访问权限.");
         }
         Iterator<ConfigAttribute> iterator = configAttributes.iterator();
@@ -59,6 +62,7 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
             }
         }
         //该url具有访问权限，但是当前登录用户没有匹配到URL对应的权限，则抛出无权限错误
+        log.info("无访问权限.");
         throw  new AccessDeniedException("无访问权限.");
     }
 

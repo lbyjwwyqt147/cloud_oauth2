@@ -3,6 +3,7 @@ package com.example.oauth.server.domain.account.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -14,8 +15,8 @@ import java.time.Instant;
  *  账号 DO
  */
 @Entity
-//@Audited
-@EntityListeners(AuditingEntityListener.class)
+//@Audited   //这个注解会在数据库中创建一个历史记录表 保存历史数据
+@EntityListeners(AuditingEntityListener.class)   //需要在启动类加上@EnableJpaAuditing注解 才会生效
 @EqualsAndHashCode(callSuper = false)
 @Data
 public class SysAccount implements Serializable{
@@ -30,6 +31,7 @@ public class SysAccount implements Serializable{
     private Long id;
     private String userAccount;
     private String userPwd;
+    @CreatedDate
     private Instant createTime;
     private Long createId;
     @LastModifiedDate
