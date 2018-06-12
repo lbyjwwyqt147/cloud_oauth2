@@ -1,7 +1,8 @@
 package com.example.oauth.server.manager.designmodel.template.tree;
 
-import com.alibaba.fastjson.JSON;
+import com.example.oauth.server.common.vo.tree.AbstractEasyuiTreeComponent;
 import com.example.oauth.server.common.vo.tree.AbstractZTreeComponent;
+import com.example.oauth.server.common.vo.tree.EasyuiTreeComposite;
 import com.example.oauth.server.common.vo.tree.ZTreeComposite;
 import com.example.oauth.server.domain.module.entity.SysModule;
 import org.springframework.stereotype.Component;
@@ -61,5 +62,27 @@ public class ZTree extends AbstractTree {
             });
         }
         return zTreeComponent;
+    }
+
+    @Override
+    public Object findTreeChildren(Object leaf, List<SysModule> moduleList) {
+        return null;
+    }
+
+    @Override
+    public Object findTreeChildren(Object leaf, List<SysModule> moduleList, List<Long> moduleIds) {
+        AbstractZTreeComponent zTree = (AbstractZTreeComponent) leaf;
+        moduleList.stream().forEach(item ->{
+            if (zTree.getId().equals(item.getModulePid())){
+                AbstractZTreeComponent leafTree = new ZTreeComposite(item.getId(),item.getModuleName(),"/img/leaf.gif");
+                if (moduleIds != null && moduleIds.contains(BigInteger.valueOf(item.getId()))){
+                    leafTree.setChecked(true);
+                }
+                ZTreeComposite moduleTreeComposite = (ZTreeComposite) zTree;
+                moduleTreeComposite.add(leafTree);
+                findTreeChildren(leafTree,moduleList,moduleIds);
+            }
+        });
+        return zTree;
     }
 }

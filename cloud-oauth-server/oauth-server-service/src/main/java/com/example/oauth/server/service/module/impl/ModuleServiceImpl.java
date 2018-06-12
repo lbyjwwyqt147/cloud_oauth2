@@ -9,17 +9,19 @@ import com.example.oauth.server.domain.module.dto.SysModuleDTO;
 import com.example.oauth.server.domain.module.entity.SysModule;
 import com.example.oauth.server.domain.module.vo.AbstractModuleTree;
 import com.example.oauth.server.domain.module.vo.ModuleTreeComposite;
+import com.example.oauth.server.domain.module.vo.SysModuleVO;
 import com.example.oauth.server.manager.designmodel.template.tree.AbstractTree;
 import com.example.oauth.server.repository.module.ModuleReository;
+import com.example.oauth.server.repository.module.ModuleResultSets;
 import com.example.oauth.server.repository.role.RoleModuleRepository;
 import com.example.oauth.server.service.module.ModuleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.math.BigInteger;
-import java.time.Instant;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -68,17 +70,8 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public List<AbstractModuleTree> listTreeGrid() {
-        List<AbstractModuleTree> treeList = new LinkedList<>();
-        // 获取 第一级 资源菜单数据
-        List<SysModule> firstChildren = this.findByModulePid(0L);
-        if (firstChildren != null && !firstChildren.isEmpty()){
-            firstChildren.stream().forEach(item -> {
-                AbstractModuleTree firstModuleTree = DozerBeanMapperUtil.copyProperties(item,ModuleTreeComposite.class);
-                firstModuleTree =  buildTree(item.getId(),firstModuleTree,null);
-                treeList.add(firstModuleTree);
-            });
-        }
-        return treeList;
+        List<SysModule> moduleList = this.moduleReository.findAll();
+        return this.getModuleTree(moduleList);
     }
 
     @Override
@@ -86,7 +79,7 @@ public class ModuleServiceImpl implements ModuleService {
         List<AbstractEasyuiTreeComponent> treeList =  new LinkedList<>();
         byte type = 3;
         List<SysModule> firstChildren = this.moduleReository.findByModulePidAndModuleTypeNot(pid,type);
-        if (firstChildren != null && !firstChildren.isEmpty()){
+        if (!CollectionUtils.isEmpty(firstChildren)){
             firstChildren.stream().forEach(item -> {
                 AbstractEasyuiTreeComponent firstModuleTree = new EasyuiTreeComposite();
                 firstModuleTree.setId(item.getId());
@@ -99,12 +92,54 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     @Override
+    public List<AbstractEasyuiTreeComponent> easyuiTree(Long pid) {
+        List<AbstractEasyuiTreeComponent> treeList =  new LinkedList<>();
+        List<SysModule> moduleList = this.moduleReository.findByModuleTypeNot((byte)3);
+        if (!CollectionUtils.isEmpty(moduleList)){
+            moduleList.stream().forEach(item -> {
+                if (item.getModulePid().longValue() == 0){
+                    AbstractEasyuiTreeComponent firstModuleTree = new EasyuiTreeComposite();
+                    firstModuleTree.setId(item.getId());
+                    firstModuleTree.setText(item.getModuleName());
+                    firstModuleTree = (AbstractEasyuiTreeComponent) easyuiTree.findTreeChildren(firstModuleTree,moduleList);
+                    treeList.add(firstModuleTree);
+                }
+            });
+        }
+        return treeList;
+    }
+
+    @Override
+    public List<AbstractZTreeComponent> roleModuleTreeZTree(Long roleId) {
+        List<AbstractZTreeComponent> treeList = new LinkedList<>();
+        // 获取 第一级 资源菜单数据
+        List<SysModule> moduleLists = this.moduleReository.findAll();
+        if (!CollectionUtils.isEmpty(moduleLists)){
+            // 根据角色ID 获取角色分配的资源ID
+            List<Long> roleModuleIds = this.roleModuleRepository.findModuleIdByRoleId(roleId);
+            moduleLists.stream().forEach(item -> {
+                if (item.getModulePid().longValue() == 0) {
+                    AbstractZTreeComponent firstModuleTree = new ZTreeComposite(item.getId(), item.getModuleName(), "/img/leaf.gif");
+                    firstModuleTree.setParent(true);
+                    firstModuleTree.setPid(item.getModulePid());
+                    if (roleModuleIds != null && roleModuleIds.contains(BigInteger.valueOf(item.getId()))) {
+                        firstModuleTree.setChecked(true);
+                    }
+                    firstModuleTree = (AbstractZTreeComponent) zTree.findTreeChildren(firstModuleTree, moduleLists, roleModuleIds);
+                    treeList.add(firstModuleTree);
+                }
+            });
+        }
+        return treeList;
+    }
+
+    @Override
     public List<AbstractZTreeComponent> roleModuleTree(Long pid, Long roleId) {
         List<AbstractZTreeComponent> treeList = new LinkedList<>();
         byte type = 0;
         // 获取 第一级 资源菜单数据
         List<SysModule> firstChildren = this.findByModulePid(0L);
-        if (firstChildren != null && !firstChildren.isEmpty()){
+        if (!CollectionUtils.isEmpty(firstChildren)){
             // 根据角色ID 获取角色分配的资源ID
             List<Long> roleModuleIds = this.roleModuleRepository.findModuleIdByRoleId(roleId);
             firstChildren.stream().forEach(item -> {
@@ -129,24 +164,18 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     @Override
-    public List<SysModule> findByRoleModule() {
-        return this.moduleReository.findByRoleModule();
+    public List<SysModuleVO> findByRoleModule() {
+        List<ModuleResultSets> moduleResultSets = this.moduleReository.findByRoleModule();
+        if(!CollectionUtils.isEmpty(moduleResultSets)){
+            return DozerBeanMapperUtil.copyProperties(moduleResultSets,SysModuleVO.class);
+        }
+        return null;
     }
 
     @Override
     public List<AbstractModuleTree> userModuleTree(Long userId) {
-        List<AbstractModuleTree> treeList = new LinkedList<>();
         List<SysModule> moduleList = this.moduleReository.findByUserModuleNot(userId,(byte)3);
-        if (moduleList != null && !moduleList.isEmpty()){
-            moduleList.stream().forEach(item -> {
-                if (item.getModulePid()==0){
-                    AbstractModuleTree firstModuleTree = DozerBeanMapperUtil.copyProperties(item,ModuleTreeComposite.class);
-                    firstModuleTree =  buildUserModuelTree(firstModuleTree,moduleList);
-                    treeList.add(firstModuleTree);
-                }
-            });
-        }
-        return treeList;
+        return this.getModuleTree(moduleList);
     }
 
     @Override
@@ -155,18 +184,40 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     /**
-     * 构建用户拥有的资源菜单树
+     * 递归查找子节点
+     * @param firstModuleTree
+     * @param moduleList
      * @return
      */
-    private AbstractModuleTree buildUserModuelTree(AbstractModuleTree firstModuleTree,List<SysModule> moduleList){
+    private AbstractModuleTree findChildren(AbstractModuleTree firstModuleTree,List<SysModule> moduleList){
         moduleList.stream().forEach(item ->{
-            if (firstModuleTree.getId() == item.getModulePid()){
+            if (firstModuleTree.getId().equals(item.getModulePid())){
                 AbstractModuleTree leafTree = DozerBeanMapperUtil.copyProperties(item, ModuleTreeComposite.class);
                 ModuleTreeComposite moduleTreeComposite = (ModuleTreeComposite) firstModuleTree;
                 moduleTreeComposite.add(leafTree);
+                findChildren(leafTree,moduleList);
             }
         });
         return firstModuleTree;
+    }
+
+    /**
+     * 使用递归方法建菜单tree 结构
+     * @param moduleList
+     * @return
+     */
+    private List<AbstractModuleTree> getModuleTree(List<SysModule> moduleList){
+        List<AbstractModuleTree> treeList = new LinkedList<>();
+        if (!CollectionUtils.isEmpty(moduleList)){
+            moduleList.stream().forEach(item -> {
+                if (item.getModulePid().longValue() == 0){
+                    AbstractModuleTree firstModuleTree = DozerBeanMapperUtil.copyProperties(item,ModuleTreeComposite.class);
+                    firstModuleTree =  findChildren(firstModuleTree,moduleList);
+                    treeList.add(firstModuleTree);
+                }
+            });
+        }
+        return treeList;
     }
 
 
@@ -176,6 +227,7 @@ public class ModuleServiceImpl implements ModuleService {
      * @param firstModuleTree
      * @return
      */
+    @Deprecated
     private AbstractModuleTree buildTree(Long id,AbstractModuleTree firstModuleTree,Byte type){
         // 根据PID获取 资源菜单数据
         List<SysModule> firstChildren =  null;
@@ -184,7 +236,7 @@ public class ModuleServiceImpl implements ModuleService {
         }else {
             firstChildren = this.findByModulePid(id);
         }
-        if (firstChildren != null && !firstChildren.isEmpty()) {
+        if (!CollectionUtils.isEmpty(firstChildren)) {
             firstChildren.stream().forEach(item -> {
                 AbstractModuleTree leafTree = DozerBeanMapperUtil.copyProperties(item, ModuleTreeComposite.class);
                 ModuleTreeComposite moduleTreeComposite = (ModuleTreeComposite) firstModuleTree;

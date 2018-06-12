@@ -1,16 +1,11 @@
 package com.example.oauth.security.config;
 
 import com.example.oauth.security.jwt.JWTUserDetailsFactory;
-import com.example.oauth.server.common.exception.DescribeException;
 import com.example.oauth.server.common.util.DozerBeanMapperUtil;
 import com.example.oauth.server.common.vo.user.UserDetail;
-import com.example.oauth.server.domain.account.vo.AccountVO;
 import com.example.oauth.server.domain.account.vo.UserInfoVO;
-import com.example.oauth.server.domain.role.entity.SysRole;
 import com.example.oauth.server.domain.role.vo.RoleVO;
 import com.example.oauth.server.domain.role.vo.UserRoleVO;
-import com.example.oauth.server.service.module.ModuleService;
-import com.example.oauth.server.service.role.RoleService;
 import com.example.oauth.server.service.role.UserRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +15,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
@@ -54,11 +47,7 @@ import java.util.Set;
 public class MyUserDetailService implements UserDetailsService {
 
     @Autowired
-    private ModuleService moduleService;
-    @Autowired
     private UserRoleService userRoleService;
-    @Autowired
-    private RoleService roleService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -70,9 +59,6 @@ public class MyUserDetailService implements UserDetailsService {
             log.info("登录用户：" + username + " 不存在.");
             throw new UsernameNotFoundException("登录用户：" + username + " 不存在");
         }
-        //验证密码是否正确
-       // PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
 
         //获取用户信息
         UserInfoVO userInfo = userRole.getUserInfo();
@@ -83,23 +69,9 @@ public class MyUserDetailService implements UserDetailsService {
             roleList.stream().forEach(role ->{
                 grantedAuths.add(new SimpleGrantedAuthority(role.getAuthorizedSigns()));
             });
-        }else{
-            //throw new DescribeException("你无权访问系统,请联系管理员.");
         }
         User userDetail = new User(userInfo.getUserAccount(),userInfo.getUserPwd(),
                 grantedAuths);
-
-
-
-       /* //获取用户信息
-        SysAccount account = this.accountService.findByAccount(username);
-        if (account == null){
-            throw new UsernameNotFoundException("用户：" + username + " 不存在");
-        }
-        //封装用户权限 到 SecurityContextHolder全局缓存中
-        Collection<GrantedAuthority> grantedAuths = obtionGrantedAuthorities(account.getId());
-        User userDetail = new User(account.getUserAccount(),account.getUserPwd(),
-                grantedAuths);*/
 
        //不使用jwt 代码
        //return userDetail;
@@ -111,28 +83,4 @@ public class MyUserDetailService implements UserDetailsService {
         return JWTUserDetailsFactory.create(userDetail,user);
     }
 
-
-    /**
-     * 根据用户ID 获取用户拥有的资源
-     * @param userId
-     * @return
-     */
-    private Set<GrantedAuthority> obtionGrantedAuthorities(Long userId){
-        Set<GrantedAuthority> authSet = new HashSet<GrantedAuthority>();
-        //获取用户资源
-      /*  List<SysModule> moduleList = this.moduleService.findByUserModule(userId);
-        if(moduleList != null && moduleList.size() > 0){
-            moduleList.stream().forEach(item ->{
-                authSet.add(new SimpleGrantedAuthority("ROLE_"+item.getAuthorizedSigns()));
-            });
-        }*/
-        //获取用户拥有的角色
-        List<SysRole> roleList = this.roleService.findByUserId(userId);
-        if (roleList != null && !roleList.isEmpty()){
-            roleList.stream().forEach(role ->{
-                authSet.add(new SimpleGrantedAuthority(role.getAuthorizedSigns()));
-            });
-        }
-        return authSet;
-    }
 }

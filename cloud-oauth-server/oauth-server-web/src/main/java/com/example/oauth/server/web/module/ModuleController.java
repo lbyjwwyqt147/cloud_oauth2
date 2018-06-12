@@ -11,6 +11,7 @@ import com.example.oauth.server.domain.module.vo.AbstractModuleTree;
 import com.example.oauth.server.service.module.ModuleService;
 import com.example.oauth.server.web.base.AbstractController;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,11 @@ public class ModuleController extends AbstractController {
      */
     @PostMapping("module/post")
     public RestfulVo save(SysModuleDTO moduleDTO){
+        String moduleUrl = moduleDTO.getMenuUrl();
+        boolean flag = moduleDTO.getModuleType().byteValue() == 3 && StringUtils.isNotBlank(moduleUrl) && !moduleUrl.trim().substring(0,1).equals("/");
+        if(flag){
+            moduleDTO.setMenuUrl("/"+moduleUrl.trim());
+        }
         boolean success = this.moduleService.saveModule(moduleDTO);
         return ResultUtil.restfulInfo(success);
     }
@@ -71,7 +77,7 @@ public class ModuleController extends AbstractController {
     @GetMapping("module/tree/combotree/{pid}")
     public RestfulVo moduleCombotree(@PathVariable Long pid){
         LinkedList<AbstractEasyuiTreeComponent> combotree =  new LinkedList<>();
-        List<AbstractEasyuiTreeComponent> treeList = this.moduleService.moduleTree(pid);
+        List<AbstractEasyuiTreeComponent> treeList = this.moduleService.easyuiTree(pid);
         AbstractEasyuiTreeComponent treeComponent =  new EasyuiTreeComposite();
         treeComponent.setState("1");
         treeComponent.setId(0L);
@@ -89,7 +95,7 @@ public class ModuleController extends AbstractController {
      */
     @GetMapping("module/tree/role/{roleId}")
     public RestfulVo roleModuleTree(@PathVariable Long roleId){
-        List<AbstractZTreeComponent> treeList = this.moduleService.roleModuleTree(0L,roleId);
+        List<AbstractZTreeComponent> treeList = this.moduleService.roleModuleTreeZTree(roleId);
         String treeJson = JSON.toJSONString(treeList);
         return ResultUtil.success(treeJson);
     }

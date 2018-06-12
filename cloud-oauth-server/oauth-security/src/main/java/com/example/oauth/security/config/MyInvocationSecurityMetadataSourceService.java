@@ -1,10 +1,12 @@
 package com.example.oauth.security.config;
 
-import com.example.oauth.server.domain.module.entity.SysModule;
+import com.example.oauth.security.utils.UrlMatcher;
+import com.example.oauth.server.domain.module.vo.SysModuleVO;
 import com.example.oauth.server.domain.role.entity.SysRole;
 import com.example.oauth.server.service.module.ModuleService;
 import com.example.oauth.server.service.role.RoleService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
@@ -13,6 +15,7 @@ import org.springframework.security.web.access.intercept.FilterInvocationSecurit
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import javax.annotation.PostConstruct;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -37,13 +40,14 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 @Component
 public class MyInvocationSecurityMetadataSourceService implements FilterInvocationSecurityMetadataSource {
-
     //存放资源配置对象
     private static Map<String, Collection<ConfigAttribute>> resourceMap = null;
     @Autowired
     private ModuleService moduleService;
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private UrlMatcher urlMatcher;
 
     /**
      * 参数是要访问的url，返回这个url对于的所有权限（或角色）
@@ -67,14 +71,16 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
         //循环已有的角色配置对象 进行url匹配
         Iterator<String> ite = resourceMap.keySet().iterator();
         while (ite.hasNext()) {
-            String resURL = ite.next();
-            if (url.equals(resURL)) {
-                //返回当前 url  所需要的权限
+            String resURL = ite.next().trim();
+            if (urlMatcher.pathMatchesUrl(resURL, url)) {
                 return resourceMap.get(resURL);
             }
+           /* if (url.equals(resURL)) {
+                //返回当前 url  所需要的权限
+                return resourceMap.get(resURL);
+            }*/
         }
-
-        return null;
+        return null ;
     }
 
     @Override
@@ -93,7 +99,7 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
      * 初始化资源 ,提取系统中的所有权限，加载所有url和权限（或角色）的对应关系，  web容器启动就会执行
      * 如果启动@PostConstruct 注解   则web容器启动时就会执行
      */
-    //  @PostConstruct
+    @PostConstruct
     public void loadResourceDefine() {
         if (resourceMap == null) {
             //应当是资源为key， 权限为value。 资源通常为url， 权限就是那些以ROLE_为前缀的角色。 一个资源可以由多个权限来访问。
@@ -101,17 +107,17 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
             //获取所有分配的角色
             List<SysRole> roleList = this.roleService.findByRoleModule();
             //容器启动时,获取全部系统菜单资源信息
-            List<SysModule> moduleList = this.moduleService.findByRoleModule();
+            List<SysModuleVO> moduleList = this.moduleService.findByRoleModule();
             if (!CollectionUtils.isEmpty(roleList)){
                 for (SysRole role : roleList){
                     //授权标识
-                    String authorizedSigns = role.getAuthorizedSigns();
+                    String authorizedSigns = role.getAuthorizedSigns().trim();
                     ConfigAttribute configAttributes = new SecurityConfig(authorizedSigns);
-                    for (SysModule module : moduleList){
-                        //请求url
-                        String url = module.getMenuUrl();
+                    for (SysModuleVO module : moduleList){
                         boolean flag = String.valueOf(role.getId()).equals(module.getAuthorizedSigns());
                         if(flag){
+                            //请求url
+                            String url =StringUtils.isNotBlank(module.getMenuUrl()) ? module.getMenuUrl().trim() : "";
                             // 判断资源文件和权限的对应关系，如果已经存在相关的资源url，则要通过该url为key提取出权限集合，将权限增加到权限集合中。
                             if (resourceMap.containsKey(url)) {
                                 Collection<ConfigAttribute> value = resourceMap.get(url);

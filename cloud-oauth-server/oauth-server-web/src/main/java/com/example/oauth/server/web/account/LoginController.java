@@ -57,7 +57,7 @@ public class LoginController extends AbstractController {
 
     /**
      * 找回密码
-     * @param usercount
+     * @param userAccount
      * @param userPwd
      * @return
      */

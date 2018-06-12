@@ -1,7 +1,6 @@
 package com.example.oauth.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.SecurityMetadataSource;
 import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
 import org.springframework.security.access.intercept.InterceptorStatusToken;

@@ -1,5 +1,7 @@
 package com.example.oauth.server.manager.designmodel.template.tree;
 
+import com.example.oauth.server.common.vo.tree.AbstractEasyuiTreeComponent;
+import com.example.oauth.server.domain.module.entity.SysModule;
 import com.example.oauth.server.repository.module.ModuleReository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -31,4 +33,22 @@ public abstract class AbstractTree {
      * @return
      */
     public abstract Object bulidModuleTree(Long pid, Byte moduleType, List<Long> moduleIds, Object leaf);
+
+
+    /**
+     * 递归查找子节点
+     * @param leaf
+     * @param moduleList
+     * @return
+     */
+    public abstract Object findTreeChildren(Object leaf, List<SysModule> moduleList);
+
+    /**
+     * 递归查找子节点
+     * @param leaf
+     * @param moduleList
+     * @param moduleIds
+     * @return
+     */
+    public abstract Object findTreeChildren(Object leaf, List<SysModule> moduleList,List<Long> moduleIds);
 }
