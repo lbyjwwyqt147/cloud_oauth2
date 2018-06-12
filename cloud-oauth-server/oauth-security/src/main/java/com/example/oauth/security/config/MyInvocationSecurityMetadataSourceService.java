@@ -58,9 +58,9 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
      */
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
-        if (resourceMap == null){
-            loadResourceDefine();
-        }
+       // if (resourceMap == null){  //取消这段代码注释 情况下 每次服务启动后请求后台只有到数据库中取一次权限   如果注释掉这段代码则每次请求都会到数据库中取权限
+            loadResourceDefine();  // 每次请求 都会去数据库查询权限  貌似很耗性能
+       // }
         // object 是一个URL，被用户请求的url。
         String url = ((FilterInvocation) object).getRequestUrl();
         log.info("请求 url ：" + url);
@@ -72,10 +72,10 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
         Iterator<String> ite = resourceMap.keySet().iterator();
         while (ite.hasNext()) {
             String resURL = ite.next().trim();
-            if (urlMatcher.pathMatchesUrl(resURL, url)) {
+            if (urlMatcher.pathMatchesUrl(resURL, url)) {     // 路径支持Ant风格的通配符 /spitters/**
                 return resourceMap.get(resURL);
             }
-           /* if (url.equals(resURL)) {
+           /* if (url.equals(resURL)) {   // 路径不支持Ant风格的通配符
                 //返回当前 url  所需要的权限
                 return resourceMap.get(resURL);
             }*/
@@ -99,9 +99,9 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
      * 初始化资源 ,提取系统中的所有权限，加载所有url和权限（或角色）的对应关系，  web容器启动就会执行
      * 如果启动@PostConstruct 注解   则web容器启动时就会执行
      */
-    @PostConstruct
+    //@PostConstruct
     public void loadResourceDefine() {
-        if (resourceMap == null) {
+       // if (resourceMap == null) {
             //应当是资源为key， 权限为value。 资源通常为url， 权限就是那些以ROLE_为前缀的角色。 一个资源可以由多个权限来访问。
             resourceMap = new ConcurrentHashMap<>();
             //获取所有分配的角色
@@ -133,7 +133,7 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
                 }
             }
 
-        }
+      //  }
 
     }
 
