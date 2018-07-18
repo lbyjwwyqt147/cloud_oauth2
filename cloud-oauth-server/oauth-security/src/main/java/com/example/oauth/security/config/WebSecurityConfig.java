@@ -133,13 +133,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //http.addFilterBefore(simpleCORSFilter, ChannelProcessingFilter.class); //跨域
         //关闭csrf验证
         http.csrf().disable()
-                //对请求进行认证
+                //对请求进行认证  url认证配置顺序为：1.先配置放行不需要认证的 permitAll() 2.然后配置 需要特定权限的 hasRole() 3.最后配置 anyRequest().authenticated()
                 .authorizeRequests()
                 // 所有 /oauth/v1/api/login/ 请求的都放行 不做认证即不需要登录即可访问
                 .antMatchers(StringUtils.join(antMatchers.toArray(), ",")).permitAll()
                 // 对于获取token的rest api要允许匿名访问
                 .antMatchers("oauth/**").permitAll()
-                // 其他请求都需要进行认证,认证通过够才能访问
+                // 其他请求都需要进行认证,认证通过够才能访问   待考证：如果使用重定向 httpServletRequest.getRequestDispatcher(url).forward(httpServletRequest,httpServletResponse); 重定向跳转的url不会被拦截（即在这里配置了重定向的url需要特定权限认证不起效），但是如果在Controller 方法上配置了方法级的权限则会进行拦截
                 .anyRequest().authenticated()
                 .and().exceptionHandling()
                 // 认证配置当用户请求了一个受保护的资源，但是用户没有通过登录认证，则抛出登录认证异常，MyAuthenticationEntryPointHandler类中commence()就会调用

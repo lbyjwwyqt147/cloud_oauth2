@@ -41,7 +41,6 @@ public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
         String userKey =  RedisKeys.USER_KEY;
         String token = userUtils.getUserToken(httpServletRequest);
         redisUtil.hdel(userKey,token);
-
         //退出信息插入日志记录表中
         ResultUtil.writeJavaScript(httpServletResponse,ErrorCodeEnum.SUCCESS,"退出系统成功.");
     }
