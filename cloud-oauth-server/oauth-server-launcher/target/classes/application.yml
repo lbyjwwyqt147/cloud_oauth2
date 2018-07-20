@@ -73,10 +73,12 @@ com:
     oauth:
       security:
         antMatchers:
-          -/auth/v1/api/login/**
-          -/auth/v1/api/module/tree/**
-          -/auth/v1/api/grid/**
-          -/error
+          /,
+          /auth/v1/api/login/**,
+          /auth/v1/api/module/tree/**,
+          /auth/v1/api/grid/**,
+          /error
+
 
 # 日志
 logging:

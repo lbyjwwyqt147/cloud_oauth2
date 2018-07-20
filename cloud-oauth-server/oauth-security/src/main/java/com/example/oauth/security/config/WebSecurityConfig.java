@@ -9,20 +9,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private MyUserDetailService myUserDetailService;
     @Autowired
     private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
+
     @Autowired
     private SimpleCORSFilter simpleCORSFilter;
 
@@ -58,7 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     // 不需要认证的接口
     @Value("${com.example.oauth.security.antMatchers}")
-    private List<String> antMatchers = new ArrayList<>();
+    private String antMatchers;
 
     /**
      * 置user-detail服务
@@ -105,6 +111,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
+     *  解决 无法直接注入 AuthenticationManager
+     * @return
+     * @throws Exception
+     */
+    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    /**
      * 配置如何通过拦截器保护请求
      * 指定哪些请求需要认证，哪些请求不需要认证，以及所需要的权限
      * 通过调用authorizeRequests()和anyRequest().authenticated()就会要求所有进入应用的HTTP请求都要进行认证
@@ -129,14 +146,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        System.out.println("不需要认证的url:"+antMatchers);
         //super.configure(http);
-        //http.addFilterBefore(simpleCORSFilter, ChannelProcessingFilter.class); //跨域
         //关闭csrf验证
         http.csrf().disable()
+                // 基于token，所以不需要session  如果基于session 则表使用这段代码
+               // .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                //.and()
                 //对请求进行认证  url认证配置顺序为：1.先配置放行不需要认证的 permitAll() 2.然后配置 需要特定权限的 hasRole() 3.最后配置 anyRequest().authenticated()
                 .authorizeRequests()
                 // 所有 /oauth/v1/api/login/ 请求的都放行 不做认证即不需要登录即可访问
-                .antMatchers(StringUtils.join(antMatchers.toArray(), ",")).permitAll()
+                .antMatchers(antMatchers).permitAll()
                 // 对于获取token的rest api要允许匿名访问
                 .antMatchers("oauth/**").permitAll()
                 // 其他请求都需要进行认证,认证通过够才能访问   待考证：如果使用重定向 httpServletRequest.getRequestDispatcher(url).forward(httpServletRequest,httpServletResponse); 重定向跳转的url不会被拦截（即在这里配置了重定向的url需要特定权限认证不起效），但是如果在Controller 方法上配置了方法级的权限则会进行拦截
@@ -150,7 +170,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //
                 .formLogin()
                 // 登录url
-                .loginProcessingUrl("/auth/v1/api/login/entry")
+                .loginProcessingUrl("/auth/v1/api/login/entry")  // 此登录url 和Controller 无关系
+                //.loginProcessingUrl("/auth/v1/api/login/enter")  //使用自己定义的Controller 中的方法 登录会进入Controller 中的方法
                 // username参数名称 后台接收前端的参数名
                 .usernameParameter("userAccount")
                 //登录密码参数名称 后台接收前端的参数名
@@ -182,10 +203,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .rememberMe()
                 //cookie的有效期（秒为单位
                 .tokenValiditySeconds(3600);
-        //在 beforeFilter 之前添加 自定义filter
+
+        //http.addFilterBefore(simpleCORSFilter, BasicAuthenticationFilter.class); //跨域
+        // 加入自定义UsernamePasswordAuthenticationFilter替代原有Filter
+     //   http.addFilterAt(myUsernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        //在 beforeFilter 之前添加 自定义 filter
         http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
         // 添加JWT filter 验证其他请求的Token是否合法
-        http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(authenticationTokenFilterBean(), FilterSecurityInterceptor.class);
         // 禁用缓存
         http.headers().cacheControl();
 
@@ -259,4 +284,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
         return new JwtAuthenticationTokenFilter();
     }
+
+    /**
+     * 验证登录验证码
+     * @return
+     * @throws Exception
+     */
+    /*@Bean
+    public UsernamePasswordAuthenticationFilter myUsernamePasswordAuthenticationFilter() throws Exception {
+        return new MyUsernamePasswordAuthenticationFilter(authenticationManagerBean());
+    }*/
 }

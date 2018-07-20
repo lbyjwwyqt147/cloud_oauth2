@@ -97,7 +97,7 @@ public class MyInvocationSecurityMetadataSourceService implements FilterInvocati
 
     /**
      * 初始化资源 ,提取系统中的所有权限，加载所有url和权限（或角色）的对应关系，  web容器启动就会执行
-     * 如果启动@PostConstruct 注解   则web容器启动时就会执行
+     * 如果启动@PostConstruct 注解   则web容器启动就会执行
      */
     //@PostConstruct
     public void loadResourceDefine() {

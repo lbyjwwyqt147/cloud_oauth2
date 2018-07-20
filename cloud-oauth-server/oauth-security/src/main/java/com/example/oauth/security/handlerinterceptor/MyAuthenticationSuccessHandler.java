@@ -64,6 +64,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
         //将身份 存储到SecurityContext里
         SecurityContext securityContext = SecurityContextHolder.getContext();
         securityContext.setAuthentication(authentication);
+        httpServletRequest.getSession().setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
         StringBuffer msg = new StringBuffer("用户：");
         msg.append(userDetails.getUsername()).append(" 成功登录系统.");
         log.info(msg.toString());

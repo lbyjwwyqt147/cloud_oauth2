@@ -1,15 +1,19 @@
 package com.example.oauth.security.jwt;
 
+import com.alibaba.fastjson.JSON;
 import com.example.oauth.security.handlerinterceptor.MyAuthenticationException;
 import com.example.oauth.server.common.exception.DescribeException;
 import com.example.oauth.server.common.exception.ErrorCodeEnum;
 import com.example.oauth.server.common.redis.RedisKeys;
 import com.example.oauth.server.common.redis.RedisUtil;
+import com.example.oauth.server.common.util.TokenUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +22,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import javax.annotation.Resource;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -43,7 +48,7 @@ import java.util.Date;
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
-    @Autowired
+    @Resource(name = "myUserDetailService")
     private UserDetailsService userDetailsService;
 
     @Autowired
@@ -66,6 +71,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         String authHeader = httpServletRequest.getHeader(this.tokenHeader);
         if (authHeader != null && authHeader.startsWith(tokenHead)) {
             final String authToken = authHeader.substring(tokenHead.length()); // The part after "Bearer "
+            log.info("请求"+httpServletRequest.getRequestURI()+"携带的token值：" + authToken);
             // 查看redis中的token信息是否过期
             boolean isExists = redisUtil.hexists(RedisKeys.USER_KEY,authToken);
             if (!isExists){
@@ -88,27 +94,32 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 }
             }
 
-
+            //补充ｔｏｋｅｎ　验证是否有效　　代谢
 
             String useraccount = jwtTokenUtil.getUsernameFromToken(authToken);
             log.info("JwtAuthenticationTokenFilter[doFilterInternal] checking authentication " + useraccount);
 
             //token校验通过
-            if (useraccount != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                //根据account去数据库中查询user数据，足够信任token的情况下，可以省略这一步
-                UserDetails userDetails = this.userDetailsService.loadUserByUsername(useraccount);
+            if(useraccount != null){
+                TokenUtils.setToken(authToken);//设置token
+                Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+                if(authentication == null  || authentication.getPrincipal().equals("anonymous")){
+                    //根据account去数据库中查询user数据，足够信任token的情况下，可以省略这一步
+                    UserDetails userDetails = this.userDetailsService.loadUserByUsername(useraccount);
 
-                if (jwtTokenUtil.validateToken(authToken, userDetails)) {
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                            userDetails, null, userDetails.getAuthorities());
-                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(
-                            httpServletRequest));
-                    log.info("JwtAuthenticationTokenFilter[doFilterInternal]  authenticated user " + useraccount + ", setting security context");
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                    if (jwtTokenUtil.validateToken(authToken, userDetails)) {
+                        UsernamePasswordAuthenticationToken usernamePasswordAuthentication = new UsernamePasswordAuthenticationToken(
+                                userDetails, null, userDetails.getAuthorities());
+                        usernamePasswordAuthentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(
+                                httpServletRequest));
+                        log.info("JwtAuthenticationTokenFilter[doFilterInternal]  authenticated user " + useraccount + ", setting security context");
+                        SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthentication);
+                    }
+                }else {
+                    log.info("当前请求用户信息："+ JSON.toJSONString(authentication.getPrincipal()));
                 }
             }
         }
-
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 }
