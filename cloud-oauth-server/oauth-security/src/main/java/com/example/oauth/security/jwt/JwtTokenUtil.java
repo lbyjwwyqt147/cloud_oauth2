@@ -20,9 +20,9 @@ import java.util.*;
  * @FileName: JwtTokenUtil
  * @Company:
  * @author    ljy
- * @Date      2018年05月120日
+ * @Date      2018年05月12日
  * @version   1.0.0
- * @remark:   jwt工具类
+ * @remark:   jwt工具类  提供校验toeken 、生成token、根据token获取用户等方法
  *
  */
 @Component

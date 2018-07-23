@@ -22,7 +22,7 @@ import java.io.IOException;
  * @author    ljy
  * @Date      2018年05月120日
  * @version   1.0.0
- * @remark:   jwt未授权处理类
+ * @remark:   jwt 认证处理类
  *
  */
 @Slf4j

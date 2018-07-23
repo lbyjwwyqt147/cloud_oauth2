@@ -4,6 +4,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 
+/***
+ * url 匹配
+ */
 @Component
 public class AntUrlPathMatcher implements UrlMatcher {
     private boolean requiresLowerCaseUrl;

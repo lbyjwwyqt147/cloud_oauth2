@@ -13,7 +13,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /***
- *  自定义 登录时认证
+ *
+ * @FileName: MyUsernamePasswordAuthenticationFilter
+ * @Company:
+ * @author    ljy
+ * @Date      2018年07月15日
+ * @version   1.0.0
+ * @remark:   自定义 登录校验
+ * @explain   调用登录接口时会进入到此类的attemptAuthentication方法 进行相关校验操作
+ *
  */
 @Slf4j
 public class MyUsernamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {

@@ -25,8 +25,8 @@ import java.util.Map;
  * @author    ljy
  * @Date      2018年05月15日
  * @version   1.0.0
- * @remark:   登录认证失败 需要做的业务操作
- * @explain   当检测到用户处于未登录系统时访问资源则会进入到此类并执行相关业务
+ * @remark:   认证失败 需要做的业务操作
+ * @explain   当检测到用户访问系统资源认证失败时则会进入到此类并执行相关业务
  *
  */
 @Slf4j

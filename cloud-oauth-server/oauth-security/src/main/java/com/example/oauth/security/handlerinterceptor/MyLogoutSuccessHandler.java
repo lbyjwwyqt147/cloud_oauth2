@@ -8,6 +8,8 @@ import com.example.oauth.server.common.util.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -41,6 +43,8 @@ public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
         String userKey =  RedisKeys.USER_KEY;
         String token = userUtils.getUserToken(httpServletRequest);
         redisUtil.hdel(userKey,token);
+        SecurityContextHolder.clearContext();  //清空上下文
+        httpServletRequest.getSession().removeAttribute("SPRING_SECURITY_CONTEXT"); // 从session中移除
         //退出信息插入日志记录表中
         ResultUtil.writeJavaScript(httpServletResponse,ErrorCodeEnum.SUCCESS,"退出系统成功.");
     }
