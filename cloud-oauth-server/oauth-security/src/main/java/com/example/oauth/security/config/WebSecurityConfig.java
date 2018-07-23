@@ -1,5 +1,6 @@
 package com.example.oauth.security.config;
 
+import com.example.oauth.security.utils.SkipPathRequestMatcher;
 import com.example.oauth.server.common.filter.SimpleCORSFilter;
 import com.example.oauth.security.handlerinterceptor.*;
 import com.example.oauth.security.jwt.JwtAuthenticationEntryPoint;
@@ -28,8 +29,10 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -107,6 +110,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     public void configure(WebSecurity web) throws Exception {
+        //解决静态资源被拦截的问题
+        web.ignoring().antMatchers("/favicon.ico");
+        web.ignoring().antMatchers("/error");
         super.configure(web);
     }
 
@@ -151,12 +157,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //关闭csrf验证
         http.csrf().disable()
                 // 基于token，所以不需要session  如果基于session 则表使用这段代码
-               // .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                //.and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 //对请求进行认证  url认证配置顺序为：1.先配置放行不需要认证的 permitAll() 2.然后配置 需要特定权限的 hasRole() 3.最后配置 anyRequest().authenticated()
                 .authorizeRequests()
                 // 所有 /oauth/v1/api/login/ 请求的都放行 不做认证即不需要登录即可访问
-                .antMatchers(antMatchers).permitAll()
+                .antMatchers(antMatchers.split(",")).permitAll()
+                //.antMatchers("/auth/v1/api/login/**","/auth/v1/api/module/tree/**","/auth/v1/api/grid/**").permitAll()
                 // 对于获取token的rest api要允许匿名访问
                 .antMatchers("oauth/**").permitAll()
                 // 其他请求都需要进行认证,认证通过够才能访问   待考证：如果使用重定向 httpServletRequest.getRequestDispatcher(url).forward(httpServletRequest,httpServletResponse); 重定向跳转的url不会被拦截（即在这里配置了重定向的url需要特定权限认证不起效），但是如果在Controller 方法上配置了方法级的权限则会进行拦截
@@ -171,7 +178,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 // 登录url
                 .loginProcessingUrl("/auth/v1/api/login/entry")  // 此登录url 和Controller 无关系
-                //.loginProcessingUrl("/auth/v1/api/login/enter")  //使用自己定义的Controller 中的方法 登录会进入Controller 中的方法
+               // .loginProcessingUrl("/auth/v1/api/login/enter")  //使用自己定义的Controller 中的方法 登录会进入Controller 中的方法
                 // username参数名称 后台接收前端的参数名
                 .usernameParameter("userAccount")
                 //登录密码参数名称 后台接收前端的参数名
@@ -203,10 +210,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .rememberMe()
                 //cookie的有效期（秒为单位
                 .tokenValiditySeconds(3600);
-
         //http.addFilterBefore(simpleCORSFilter, BasicAuthenticationFilter.class); //跨域
         // 加入自定义UsernamePasswordAuthenticationFilter替代原有Filter
-     //   http.addFilterAt(myUsernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterAt(myUsernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         //在 beforeFilter 之前添加 自定义 filter
         http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
         // 添加JWT filter 验证其他请求的Token是否合法
@@ -282,7 +288,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Bean
     public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
-        return new JwtAuthenticationTokenFilter();
+        // JwtAuthenticationTokenFilter 过滤器被配置为跳过这个点：/auth/v1/api/login/retrieve/pwd 和 /auth/v1/api/login/entry 不进行token 验证. 通过 SkipPathRequestMatcher 实现 RequestMatcher 接口来实现。
+        List<String> pathsToSkip = Arrays.asList("/auth/v1/api/login/retrieve/pwd","/auth/v1/api/login/entry","/auth/v1/api/login/enter");  //不需要token 验证的url
+        String processingPath = "/auth/v1/api/**"; //　需要验证token　的url
+        SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(pathsToSkip, processingPath);
+        return new JwtAuthenticationTokenFilter(matcher);
     }
 
     /**
@@ -290,8 +300,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * @return
      * @throws Exception
      */
-    /*@Bean
+    @Bean
     public UsernamePasswordAuthenticationFilter myUsernamePasswordAuthenticationFilter() throws Exception {
-        return new MyUsernamePasswordAuthenticationFilter(authenticationManagerBean());
-    }*/
+        return new MyUsernamePasswordAuthenticationFilter(authenticationManagerBean(),myAuthenticationSuccessHandler(),myAuthenticationFailureHandler());
+    }
 }

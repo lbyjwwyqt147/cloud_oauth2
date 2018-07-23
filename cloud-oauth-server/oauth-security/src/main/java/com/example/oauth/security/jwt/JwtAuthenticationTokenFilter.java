@@ -19,6 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -48,6 +49,7 @@ import java.util.Date;
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
+
     @Resource(name = "myUserDetailService")
     private UserDetailsService userDetailsService;
 
@@ -66,8 +68,24 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Value("${jwt.expiration}")
     private Long expiration;
 
+    private RequestMatcher authenticationRequestMatcher;
+
+    public JwtAuthenticationTokenFilter() {
+
+    }
+
+    public JwtAuthenticationTokenFilter(RequestMatcher authenticationRequestMatcher) {
+        this.authenticationRequestMatcher = authenticationRequestMatcher;
+    }
+
+
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
+        //过滤掉不需要token验证的url
+        if(authenticationRequestMatcher != null && !authenticationRequestMatcher.matches(httpServletRequest)){
+            filterChain.doFilter(httpServletRequest, httpServletResponse);
+            return;
+        }
         String authHeader = httpServletRequest.getHeader(this.tokenHeader);
         if (authHeader != null && authHeader.startsWith(tokenHead)) {
             final String authToken = authHeader.substring(tokenHead.length()); // The part after "Bearer "
@@ -94,7 +112,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 }
             }
 
-            //补充ｔｏｋｅｎ　验证是否有效　　代谢
 
             String useraccount = jwtTokenUtil.getUsernameFromToken(authToken);
             log.info("JwtAuthenticationTokenFilter[doFilterInternal] checking authentication " + useraccount);
@@ -103,7 +120,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             if(useraccount != null){
                 TokenUtils.setToken(authToken);//设置token
                 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-                if(authentication == null  || authentication.getPrincipal().equals("anonymous")){
+                if(authentication == null  || authentication.getPrincipal().equals("anonymousUser")){
                     //根据account去数据库中查询user数据，足够信任token的情况下，可以省略这一步
                     UserDetails userDetails = this.userDetailsService.loadUserByUsername(useraccount);
 
@@ -118,6 +135,9 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 }else {
                     log.info("当前请求用户信息："+ JSON.toJSONString(authentication.getPrincipal()));
                 }
+            }else {
+                log.info("token 无效.");
+                throw  new MyAuthenticationException(ErrorCodeEnum.TOKEN_INVALID);
             }
         }
         filterChain.doFilter(httpServletRequest, httpServletResponse);

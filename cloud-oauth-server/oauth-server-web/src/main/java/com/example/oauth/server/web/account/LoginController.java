@@ -71,9 +71,9 @@ public class LoginController extends AbstractController {
             return ResultUtil.fail("验证码错误.");
         }
         //登录 身份认证
-        // 这句代码会自动执行咱们自定义的 "MyUserDetailService.java" 类
-        //1: 将用户名和密码封装成token  new UsernamePasswordAuthenticationToken(userAccount, userPwd)
-        //2: 将token传给AuthenticationManager进行身份认证   authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userAccount, userPwd));
+        // 这句代码会自动执行咱们自定义的 "MyUserDetailService.java" 身份认证类
+        //1: 将用户名和密码封装成UsernamePasswordAuthenticationToken  new UsernamePasswordAuthenticationToken(userAccount, userPwd)
+        //2: 将UsernamePasswordAuthenticationToken传给AuthenticationManager进行身份认证   authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userAccount, userPwd));
         //3: 认证完毕，返回一个认证后的身份： Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userAccount, userPwd));
         //4: 认证后，存储到SecurityContext里   SecurityContext securityContext = SecurityContextHolder.getContext();securityContext.setAuthentication(authentication);
 
@@ -102,9 +102,10 @@ public class LoginController extends AbstractController {
      * @param userPwd
      * @return
      */
-    @GetMapping("login/pwd")
+    @GetMapping("login/retrieve/pwd")
     public RestfulVo retrievePassword(String userAccount, String userPwd){
-        return null;
+        System.out.println("进入找回密码方法........................");
+        return ResultUtil.success("找回密码成功.");
     }
 
 
